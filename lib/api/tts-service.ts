@@ -38,14 +38,30 @@ export class TTSService {
 
   /**
    * Extract speech content from HTML (talk tags)
-   * Matches content within <talk> tags
+   * First converts quoted text to <talk> tags, then extracts content
    */
   extractSpeechContent(htmlContent: string): string[] {
+    // Step 1: Convert quotes to <talk> tags (same logic as ChatHtmlBubble)
+    let processedContent = htmlContent;
+
+    // Convert Chinese quotes ""
+    processedContent = processedContent.replace(/(<[^>]+>)|(["""][^"""]+["""])/g, (_match, tag, quote) => {
+      if (tag) return tag;
+      return `<talk>${quote}</talk>`;
+    });
+
+    // Convert English quotes ""
+    processedContent = processedContent.replace(/(<[^>]+>)|(["""][^""]+["""])/g, (_match, tag, quote) => {
+      if (tag) return tag;
+      return `<talk>${quote}</talk>`;
+    });
+
+    // Step 2: Extract content from <talk> tags
     const talkRegex = /<talk[^>]*>(.*?)<\/talk>/gi;
     const matches: string[] = [];
     let match;
 
-    while ((match = talkRegex.exec(htmlContent)) !== null) {
+    while ((match = talkRegex.exec(processedContent)) !== null) {
       // Remove quotes and clean text
       const text = match[1]
         .replace(/["""""]/g, '') // Remove quotes
