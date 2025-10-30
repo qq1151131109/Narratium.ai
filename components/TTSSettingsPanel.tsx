@@ -32,7 +32,7 @@ export default function TTSSettingsPanel({ onSettingsChange }: TTSSettingsProps)
   const [enabled, setEnabled] = useState(false);
   const [apiKey, setApiKey] = useState("");
   const [autoPlay, setAutoPlay] = useState(true);
-  const [workflowId, setWorkflowId] = useState("1983506334995914754");
+  const [workflowId, setWorkflowId] = useState("1983711725981769729");
   const [showApiKey, setShowApiKey] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
 
@@ -46,7 +46,16 @@ export default function TTSSettingsPanel({ onSettingsChange }: TTSSettingsProps)
     if (savedEnabled === "true") setEnabled(true);
     if (savedApiKey) setApiKey(savedApiKey);
     if (savedAutoPlay === "false") setAutoPlay(false);
-    if (savedWorkflowId) setWorkflowId(savedWorkflowId);
+
+    // Auto-migrate old workflow ID to new one
+    if (savedWorkflowId === "1983506334995914754") {
+      console.log("Auto-migrating old workflow ID to new one");
+      const newWorkflowId = "1983711725981769729";
+      setWorkflowId(newWorkflowId);
+      localStorage.setItem("tts_workflow_id", newWorkflowId);
+    } else if (savedWorkflowId) {
+      setWorkflowId(savedWorkflowId);
+    }
   }, []);
 
   // Notify parent component of settings changes
@@ -64,7 +73,7 @@ export default function TTSSettingsPanel({ onSettingsChange }: TTSSettingsProps)
 
     // Dispatch event to notify other components
     window.dispatchEvent(new CustomEvent("ttsSettingsChanged", {
-      detail: { enabled, apiKey, autoPlay, workflowId }
+      detail: { enabled, apiKey, autoPlay, workflowId },
     }));
 
     setSaveSuccess(true);
@@ -176,7 +185,7 @@ export default function TTSSettingsPanel({ onSettingsChange }: TTSSettingsProps)
               type="text"
               value={workflowId}
               onChange={(e) => setWorkflowId(e.target.value)}
-              placeholder="1983506334995914754"
+              placeholder="1983711725981769729"
               className={`w-full px-3 py-2 text-xs bg-[#1c1c1c] border border-[#534741] rounded text-[#f4e8c1] focus:border-[#d1a35c] focus:outline-none ${fontClass}`}
             />
             <p className={`mt-1 text-xs text-[#8a8a8a] ${fontClass}`}>
@@ -201,8 +210,8 @@ export default function TTSSettingsPanel({ onSettingsChange }: TTSSettingsProps)
             saveSuccess
               ? "bg-green-600 text-white"
               : !apiKey && enabled
-              ? "bg-[#534741] text-[#8a8a8a] cursor-not-allowed"
-              : "bg-[#d1a35c] hover:bg-[#e0b46d] text-[#1a1816] hover:shadow-[0_0_8px_rgba(209,163,92,0.4)]"
+                ? "bg-[#534741] text-[#8a8a8a] cursor-not-allowed"
+                : "bg-[#d1a35c] hover:bg-[#e0b46d] text-[#1a1816] hover:shadow-[0_0_8px_rgba(209,163,92,0.4)]"
           } ${fontClass}`}
         >
           {saveSuccess ? "✓ 已保存" : "保存设置"}

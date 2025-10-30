@@ -22,7 +22,7 @@ export interface UseTTSOptions {
 }
 
 export function useTTS(options: UseTTSOptions) {
-  const { apiKey, workflowId = '1983506334995914754', autoPlay = true } = options;
+  const { apiKey, workflowId = '1983711725981769729', autoPlay = true } = options;
 
   const [states, setStates] = useState<Map<string, TTSState>>(new Map());
   const ttsServiceRef = useRef<TTSService>();

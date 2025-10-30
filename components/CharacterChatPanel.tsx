@@ -128,11 +128,13 @@ export default function CharacterChatPanel({
   const [ttsApiKey, setTtsApiKey] = useState<string>("");
   const [ttsEnabled, setTtsEnabled] = useState<boolean>(false);
   const [ttsAutoPlay, setTtsAutoPlay] = useState<boolean>(true);
+  const [ttsWorkflowId, setTtsWorkflowId] = useState<string>("1983711725981769729");
 
   // Initialize TTS hook
   const tts = useTTS({
     apiKey: ttsApiKey,
-    autoPlay: ttsAutoPlay
+    autoPlay: ttsAutoPlay,
+    workflowId: ttsWorkflowId,
   });
 
   useEffect(() => {
@@ -168,6 +170,7 @@ export default function CharacterChatPanel({
     const savedTtsApiKey = localStorage.getItem("tts_api_key");
     const savedTtsEnabled = localStorage.getItem("tts_enabled");
     const savedTtsAutoPlay = localStorage.getItem("tts_auto_play");
+    const savedTtsWorkflowId = localStorage.getItem("tts_workflow_id");
 
     if (savedTtsApiKey) {
       setTtsApiKey(savedTtsApiKey);
@@ -177,6 +180,15 @@ export default function CharacterChatPanel({
     }
     if (savedTtsAutoPlay === "false") {
       setTtsAutoPlay(false);
+    }
+
+    // Auto-migrate old workflow ID to new one
+    if (savedTtsWorkflowId === "1983506334995914754") {
+      const newWorkflowId = "1983711725981769729";
+      setTtsWorkflowId(newWorkflowId);
+      localStorage.setItem("tts_workflow_id", newWorkflowId);
+    } else if (savedTtsWorkflowId) {
+      setTtsWorkflowId(savedTtsWorkflowId);
     }
   }, []);
 
@@ -190,8 +202,16 @@ export default function CharacterChatPanel({
 
     // Only auto-generate for assistant messages
     if (lastMessage.role === "assistant" && ttsAutoPlay) {
+      // Check if already generated or generating
+      const state = tts.getState(lastMessage.id);
+      if (state.isGenerating || state.isPlaying || tts.isCached(lastMessage.id)) {
+        console.log('TTS: Skipping generation - already generated or in progress');
+        return;
+      }
+
       // Delay to ensure content is fully rendered
       const timer = setTimeout(() => {
+        console.log('TTS: Auto-generating for message:', lastMessage.id);
         tts.generateAndPlay(lastMessage.id, lastMessage.content).catch((error) => {
           console.error("Auto TTS generation failed:", error);
         });
@@ -199,7 +219,7 @@ export default function CharacterChatPanel({
 
       return () => clearTimeout(timer);
     }
-  }, [messages, ttsEnabled, ttsApiKey, ttsAutoPlay, isSending, tts]);
+  }, [messages, ttsEnabled, ttsApiKey, ttsAutoPlay, isSending]);
 
   const scrollToBottom = () => {
     const el = scrollRef.current;
@@ -1211,19 +1231,19 @@ export default function CharacterChatPanel({
                               tts.getState(message.id).isPlaying
                                 ? "text-blue-400 hover:text-blue-300 border-blue-400/60 hover:border-blue-300/70 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"
                                 : tts.getState(message.id).isGenerating
-                                ? "text-[#8a8a8a] border-[#333333] cursor-not-allowed"
-                                : "text-[#a18d6f] hover:text-[#60a5fa] border-[#333333] hover:border-[#444444] hover:shadow-[0_0_8px_rgba(96,165,250,0.4)]"
+                                  ? "text-[#8a8a8a] border-[#333333] cursor-not-allowed"
+                                  : "text-[#a18d6f] hover:text-[#60a5fa] border-[#333333] hover:border-[#444444] hover:shadow-[0_0_8px_rgba(96,165,250,0.4)]"
                             }`}
                             data-tooltip={
                               tts.getState(message.id).isGenerating
                                 ? "生成语音中..."
                                 : tts.getState(message.id).isPlaying
-                                ? "停止播放"
-                                : tts.getState(message.id).error
-                                ? tts.getState(message.id).error
-                                : tts.isCached(message.id)
-                                ? "播放语音"
-                                : "生成并播放语音"
+                                  ? "停止播放"
+                                  : tts.getState(message.id).error
+                                    ? tts.getState(message.id).error
+                                    : tts.isCached(message.id)
+                                      ? "播放语音"
+                                      : "生成并播放语音"
                             }
                           >
                             <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#f4e8c1] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#534741] pointer-events-none">

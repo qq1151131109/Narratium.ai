@@ -19,20 +19,20 @@ export interface TTSConfig {
 export interface TTSTaskResult {
   taskId: string;
   audioUrl?: string;
-  status: 'pending' | 'processing' | 'completed' | 'failed';
+  status: "pending" | "processing" | "completed" | "failed";
   error?: string;
 }
 
 export class TTSService {
   private config: TTSConfig;
   private audioCache: Map<string, string> = new Map(); // messageId -> audioUrl
-  private readonly API_BASE_URL = 'https://www.runninghub.cn';
-  private readonly DEFAULT_WORKFLOW_ID = '1983506334995914754';
+  private readonly API_BASE_URL = "https://www.runninghub.cn";
+  private readonly DEFAULT_WORKFLOW_ID = "1983711725981769729";
 
   constructor(config: TTSConfig) {
     this.config = {
       ...config,
-      workflowId: config.workflowId || this.DEFAULT_WORKFLOW_ID
+      workflowId: config.workflowId || this.DEFAULT_WORKFLOW_ID,
     };
   }
 
@@ -64,8 +64,8 @@ export class TTSService {
     while ((match = talkRegex.exec(processedContent)) !== null) {
       // Remove quotes and clean text
       const text = match[1]
-        .replace(/["""""]/g, '') // Remove quotes
-        .replace(/<[^>]+>/g, '') // Remove other HTML tags
+        .replace(/["""""]/g, "") // Remove quotes
+        .replace(/<[^>]+>/g, "") // Remove other HTML tags
         .trim();
 
       if (text) {
@@ -81,11 +81,11 @@ export class TTSService {
    * Used when iframe document is available
    */
   extractSpeechFromDOM(iframeDocument: Document): string[] {
-    const talkElements = iframeDocument.querySelectorAll('[data-tag="talk"]');
+    const talkElements = iframeDocument.querySelectorAll("[data-tag=\"talk\"]");
     const speeches: string[] = [];
 
     talkElements.forEach(element => {
-      const text = element.textContent?.replace(/["""""]/g, '').trim();
+      const text = element.textContent?.replace(/["""""]/g, "").trim();
       if (text) {
         speeches.push(text);
       }
@@ -102,8 +102,8 @@ export class TTSService {
       {
         nodeId: "102", // Multi Line Text node
         fieldName: "multi_line_prompt",
-        fieldValue: text
-      }
+        fieldValue: text,
+      },
     ];
 
     // Add reference audio if provided
@@ -111,27 +111,35 @@ export class TTSService {
       nodeInfoList.push({
         nodeId: "101", // Load Audio node
         fieldName: "audio",
-        fieldValue: referenceAudioFileName
+        fieldValue: referenceAudioFileName,
       });
     }
 
     const response = await fetch(`${this.API_BASE_URL}/task/openapi/create`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Host': 'www.runninghub.cn',
-        'Content-Type': 'application/json'
+        "Host": "www.runninghub.cn",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         apiKey: this.config.apiKey,
         workflowId: this.config.workflowId,
-        nodeInfoList
-      })
+        nodeInfoList,
+      }),
     });
 
     const result = await response.json();
 
+    console.log('TTS API Response:', result);
+
     if (result.code !== 0) {
-      throw new Error(`TTS task creation failed: ${result.msg}`);
+      console.error('TTS API Error Details:', {
+        code: result.code,
+        msg: result.msg,
+        workflowId: this.config.workflowId,
+        apiKey: this.config.apiKey.substring(0, 10) + '...'
+      });
+      throw new Error(`TTS task creation failed: ${result.msg} (code: ${result.code})`);
     }
 
     return result.data.taskId;
@@ -142,15 +150,15 @@ export class TTSService {
    */
   async queryTaskResult(taskId: string): Promise<TTSTaskResult> {
     const response = await fetch(`${this.API_BASE_URL}/task/openapi/outputs`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Host': 'www.runninghub.cn',
-        'Content-Type': 'application/json'
+        "Host": "www.runninghub.cn",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         apiKey: this.config.apiKey,
-        taskId
-      })
+        taskId,
+      }),
     });
 
     const result = await response.json();
@@ -160,20 +168,20 @@ export class TTSService {
       return {
         taskId,
         audioUrl: result.data[0].fileUrl,
-        status: 'completed'
+        status: "completed",
       };
     } else if (result.code === 805) {
       // Task failed
       return {
         taskId,
-        status: 'failed',
-        error: result.data?.failedReason?.exception_message || 'Unknown error'
+        status: "failed",
+        error: result.data?.failedReason?.exception_message || "Unknown error",
       };
     } else {
       // Task in progress
       return {
         taskId,
-        status: 'processing'
+        status: "processing",
       };
     }
   }
@@ -185,7 +193,7 @@ export class TTSService {
     taskId: string,
     maxRetries = 30,
     interval = 2000,
-    onProgress?: (progress: number) => void
+    onProgress?: (progress: number) => void,
   ): Promise<string> {
     for (let i = 0; i < maxRetries; i++) {
       const result = await this.queryTaskResult(taskId);
@@ -196,12 +204,12 @@ export class TTSService {
         onProgress(progress);
       }
 
-      if (result.status === 'completed' && result.audioUrl) {
+      if (result.status === "completed" && result.audioUrl) {
         if (onProgress) onProgress(100);
         return result.audioUrl;
       }
 
-      if (result.status === 'failed') {
+      if (result.status === "failed") {
         throw new Error(`TTS task failed: ${result.error}`);
       }
 
@@ -209,7 +217,7 @@ export class TTSService {
       await new Promise(resolve => setTimeout(resolve, interval));
     }
 
-    throw new Error('TTS task timeout');
+    throw new Error("TTS task timeout");
   }
 
   /**
@@ -218,7 +226,7 @@ export class TTSService {
   async generateSpeech(
     messageId: string,
     htmlContent: string,
-    onProgress?: (progress: number) => void
+    onProgress?: (progress: number) => void,
   ): Promise<string> {
     // Check cache
     const cached = this.audioCache.get(messageId);
@@ -232,11 +240,11 @@ export class TTSService {
     const speeches = this.extractSpeechContent(htmlContent);
 
     if (speeches.length === 0) {
-      throw new Error('No speech content found in message');
+      throw new Error("No speech content found in message");
     }
 
     // Merge all speech content
-    const fullText = speeches.join(' ');
+    const fullText = speeches.join(" ");
 
     // Create TTS task
     if (onProgress) onProgress(10);
@@ -277,16 +285,16 @@ export class TTSService {
    */
   async uploadReferenceAudio(audioFile: File): Promise<string> {
     const formData = new FormData();
-    formData.append('apiKey', this.config.apiKey);
-    formData.append('file', audioFile);
-    formData.append('fileType', 'audio');
+    formData.append("apiKey", this.config.apiKey);
+    formData.append("file", audioFile);
+    formData.append("fileType", "audio");
 
     const response = await fetch(`${this.API_BASE_URL}/task/openapi/upload`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Host': 'www.runninghub.cn'
+        "Host": "www.runninghub.cn",
       },
-      body: formData
+      body: formData,
     });
 
     const result = await response.json();
