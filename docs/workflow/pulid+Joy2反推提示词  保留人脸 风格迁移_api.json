@@ -1,0 +1,478 @@
+{
+  "8": {
+    "inputs": {
+      "samples": [
+        "13",
+        0
+      ],
+      "vae": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "13": {
+    "inputs": {
+      "noise": [
+        "25",
+        0
+      ],
+      "guider": [
+        "22",
+        0
+      ],
+      "sampler": [
+        "16",
+        0
+      ],
+      "sigmas": [
+        "17",
+        0
+      ],
+      "latent_image": [
+        "146",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "SamplerCustomAdvanced"
+    }
+  },
+  "16": {
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "KSamplerSelect"
+    }
+  },
+  "17": {
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 20,
+      "denoise": 0.5000000000000001,
+      "model": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "BasicScheduler"
+    }
+  },
+  "22": {
+    "inputs": {
+      "model": [
+        "30",
+        0
+      ],
+      "conditioning": [
+        "26",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "BasicGuider"
+    }
+  },
+  "25": {
+    "inputs": {
+      "noise_seed": 420518636967360
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "RandomNoise"
+    }
+  },
+  "26": {
+    "inputs": {
+      "guidance": 3.5,
+      "conditioning": [
+        "127",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "30": {
+    "inputs": {
+      "max_shift": 1.15,
+      "base_shift": 0.5,
+      "width": [
+        "55",
+        0
+      ],
+      "height": [
+        "57",
+        0
+      ],
+      "model": [
+        "86",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingFlux",
+    "_meta": {
+      "title": "ModelSamplingFlux"
+    }
+  },
+  "55": {
+    "inputs": {
+      "value": 832
+    },
+    "class_type": "INTConstant",
+    "_meta": {
+      "title": "INT Constant"
+    }
+  },
+  "57": {
+    "inputs": {
+      "value": 1024
+    },
+    "class_type": "INTConstant",
+    "_meta": {
+      "title": "INT Constant"
+    }
+  },
+  "73": {
+    "inputs": {
+      "unet_name": "flux1-dev-fp8.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "74": {
+    "inputs": {
+      "lora_name": "Flux Turbo Lora_StarAi_Flux Turbo Lora.safetensors",
+      "strength_model": 1,
+      "strength_clip": 1,
+      "model": [
+        "73",
+        0
+      ],
+      "clip": [
+        "76",
+        0
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "76": {
+    "inputs": {
+      "clip_name1": "sd3/t5xxl_fp16.safetensors",
+      "clip_name2": "sd3/clip_l.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "77": {
+    "inputs": {
+      "vae_name": "ae.sft"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "81": {
+    "inputs": {},
+    "class_type": "PulidEvaClipLoader",
+    "_meta": {
+      "title": "Load Eva Clip (PuLID)"
+    }
+  },
+  "84": {
+    "inputs": {
+      "provider": "CUDA"
+    },
+    "class_type": "PulidInsightFaceLoader",
+    "_meta": {
+      "title": "Load InsightFace (PuLID)"
+    }
+  },
+  "86": {
+    "inputs": {
+      "weight": 1,
+      "start_at": 0,
+      "end_at": 1,
+      "model": [
+        "74",
+        0
+      ],
+      "pulid_flux": [
+        "87",
+        0
+      ],
+      "eva_clip": [
+        "81",
+        0
+      ],
+      "face_analysis": [
+        "84",
+        0
+      ],
+      "image": [
+        "91",
+        0
+      ],
+      "attn_mask": [
+        "95",
+        0
+      ]
+    },
+    "class_type": "ApplyPulidFlux",
+    "_meta": {
+      "title": "Apply PuLID Flux"
+    }
+  },
+  "87": {
+    "inputs": {
+      "pulid_file": "pulid_flux_v0.9.1.safetensors"
+    },
+    "class_type": "PulidFluxModelLoader",
+    "_meta": {
+      "title": "Load PuLID Flux Model"
+    }
+  },
+  "90": {
+    "inputs": {
+      "image": "9fd1b8c9d88d3eb3803aec3212dba1a4302faf70337330c80bb34005f6b9fb2e.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "91": {
+    "inputs": {
+      "padding": 0,
+      "padding_percent": 0.15,
+      "index": -1,
+      "analysis_models": [
+        "94",
+        0
+      ],
+      "image": [
+        "135",
+        0
+      ]
+    },
+    "class_type": "FaceBoundingBox",
+    "_meta": {
+      "title": "Face Bounding Box"
+    }
+  },
+  "92": {
+    "inputs": {
+      "images": [
+        "91",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "93": {
+    "inputs": {
+      "face": true,
+      "hair": false,
+      "body": false,
+      "clothes": false,
+      "accessories": false,
+      "background": false,
+      "confidence": 0.4,
+      "detail_method": "VITMatte",
+      "detail_erode": 6,
+      "detail_dilate": 6,
+      "black_point": 0.01,
+      "white_point": 0.99,
+      "process_detail": true,
+      "device": "cuda",
+      "max_megapixels": 2,
+      "images": [
+        "91",
+        0
+      ]
+    },
+    "class_type": "LayerMask: PersonMaskUltra V2",
+    "_meta": {
+      "title": "LayerMask: PersonMaskUltra V2(Advance)"
+    }
+  },
+  "94": {
+    "inputs": {
+      "library": "insightface",
+      "provider": "CUDA"
+    },
+    "class_type": "FaceAnalysisModels",
+    "_meta": {
+      "title": "Face Analysis Models"
+    }
+  },
+  "95": {
+    "inputs": {
+      "expand": 30,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 15,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "93",
+        1
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "Grow Mask With Blur"
+    }
+  },
+  "96": {
+    "inputs": {
+      "mask": [
+        "95",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "102": {
+    "inputs": {
+      "image": "4820c256a97f8d1adc25aa04fc1a544774ef9a17b01db44a824b00c2bf1fac48.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "127": {
+    "inputs": {
+      "text": "a people",
+      "clip": [
+        "74",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "135": {
+    "inputs": {
+      "width": [
+        "55",
+        0
+      ],
+      "height": [
+        "57",
+        0
+      ],
+      "interpolation": "nearest",
+      "method": "keep proportion",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "90",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "138": {
+    "inputs": {
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "145": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "146": {
+    "inputs": {
+      "pixels": [
+        "151",
+        0
+      ],
+      "vae": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "151": {
+    "inputs": {
+      "width": [
+        "55",
+        0
+      ],
+      "height": [
+        "57",
+        0
+      ],
+      "interpolation": "nearest",
+      "method": "keep proportion",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "102",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  }
+}

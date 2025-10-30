@@ -1,0 +1,564 @@
+{
+  "108": {
+    "inputs": {
+      "enable_vae_tiling": false,
+      "tile_x": 272,
+      "tile_y": 272,
+      "tile_stride_x": 144,
+      "tile_stride_y": 128,
+      "normalization": "default",
+      "vae": [
+        "133",
+        0
+      ],
+      "samples": [
+        "115",
+        0
+      ]
+    },
+    "class_type": "WanVideoDecode",
+    "_meta": {
+      "title": "WanVideo Decode"
+    }
+  },
+  "110": {
+    "inputs": {
+      "enable_vae_tiling": false,
+      "tile_x": 272,
+      "tile_y": 272,
+      "tile_stride_x": 144,
+      "tile_stride_y": 128,
+      "noise_aug_strength": 0,
+      "latent_strength": 1,
+      "vae": [
+        "133",
+        0
+      ],
+      "image": [
+        "127",
+        0
+      ]
+    },
+    "class_type": "WanVideoEncode",
+    "_meta": {
+      "title": "WanVideo Encode"
+    }
+  },
+  "111": {
+    "inputs": {
+      "model": [
+        "136",
+        0
+      ],
+      "lora": [
+        "153",
+        0
+      ]
+    },
+    "class_type": "WanVideoSetLoRAs",
+    "_meta": {
+      "title": "WanVideo Set LoRAs"
+    }
+  },
+  "115": {
+    "inputs": {
+      "steps": 6,
+      "cfg": 1,
+      "shift": 4,
+      "seed": 45,
+      "force_offload": true,
+      "scheduler": "lcm",
+      "riflex_freq_index": 0,
+      "denoise_strength": 1,
+      "batched_cfg": false,
+      "rope_function": "comfy",
+      "start_step": 0,
+      "end_step": -1,
+      "add_noise_to_samples": false,
+      "model": [
+        "111",
+        0
+      ],
+      "image_embeds": [
+        "216",
+        0
+      ],
+      "text_embeds": [
+        "128",
+        0
+      ],
+      "context_options": [
+        "138",
+        0
+      ]
+    },
+    "class_type": "WanVideoSampler",
+    "_meta": {
+      "title": "WanVideo Sampler"
+    }
+  },
+  "123": {
+    "inputs": {
+      "width": [
+        "127",
+        3
+      ],
+      "height": [
+        "127",
+        4
+      ],
+      "num_frames": [
+        "205",
+        0
+      ]
+    },
+    "class_type": "WanVideoEmptyEmbeds",
+    "_meta": {
+      "title": "WanVideo Empty Embeds"
+    }
+  },
+  "124": {
+    "inputs": {
+      "audio_encoder": [
+        "132",
+        0
+      ],
+      "audio": [
+        "125",
+        0
+      ]
+    },
+    "class_type": "AudioEncoderEncode",
+    "_meta": {
+      "title": "AudioEncoderEncode"
+    }
+  },
+  "125": {
+    "inputs": {
+      "lufs": -23,
+      "audio": [
+        "192",
+        3
+      ]
+    },
+    "class_type": "NormalizeAudioLoudness",
+    "_meta": {
+      "title": "Normalize Audio Loudness"
+    }
+  },
+  "126": {
+    "inputs": {
+      "image": "8950a47970506583110588e35b878f4a338b863d3dd7744be11b2a3fd8a7e7a4.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "127": {
+    "inputs": {
+      "aspect_ratio": "original",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "crop",
+      "method": "lanczos",
+      "round_to_multiple": "16",
+      "scale_to_side": "longest",
+      "scale_to_length": 832,
+      "background_color": "#000000",
+      "image": [
+        "126",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "LayerUtility: ImageScaleByAspectRatio V2"
+    }
+  },
+  "128": {
+    "inputs": {
+      "model_name": "umt5-xxl-enc-fp8_e4m3fn.safetensors",
+      "precision": "bf16",
+      "positive_prompt": "The person being broadcast live on the camera。The person who appeared in the live broadcast camera was gesturing one by one to indicate the items and raising his hand to emphasize the key points. His tone was professional and his logic was clear.",
+      "negative_prompt": "The colors are bright, overexposed, static, with unclear details, subtitles, style, work, painting, picture, static, overall grayish, the worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, finger fusion, static picture, chaotic background, three legs, many people in the background, walking backwards.",
+      "quantization": "disabled",
+      "use_disk_cache": true,
+      "device": "gpu"
+    },
+    "class_type": "WanVideoTextEncodeCached",
+    "_meta": {
+      "title": "WanVideo TextEncode Cached"
+    }
+  },
+  "132": {
+    "inputs": {
+      "audio_encoder_name": "wav2vec2-large-xlsr-53-english.safetensors"
+    },
+    "class_type": "AudioEncoderLoader",
+    "_meta": {
+      "title": "AudioEncoderLoader"
+    }
+  },
+  "133": {
+    "inputs": {
+      "model_name": "Wan2.1_VAE.pth",
+      "precision": "bf16"
+    },
+    "class_type": "WanVideoVAELoader",
+    "_meta": {
+      "title": "WanVideo VAE Loader"
+    }
+  },
+  "136": {
+    "inputs": {
+      "model": "wan2.2_s2v_14B_bf16.safetensors",
+      "base_precision": "fp16_fast",
+      "quantization": "fp8_e4m3fn_scaled",
+      "load_device": "offload_device",
+      "attention_mode": "sageattn",
+      "rms_norm_function": "default"
+    },
+    "class_type": "WanVideoModelLoader",
+    "_meta": {
+      "title": "WanVideo Model Loader"
+    }
+  },
+  "138": {
+    "inputs": {
+      "context_schedule": "uniform_standard",
+      "context_frames": 81,
+      "context_stride": 4,
+      "context_overlap": 16,
+      "freenoise": true,
+      "verbose": false,
+      "fuse_method": "linear"
+    },
+    "class_type": "WanVideoContextOptions",
+    "_meta": {
+      "title": "WanVideo Context Options"
+    }
+  },
+  "139": {
+    "inputs": {
+      "frame_rate": 31,
+      "loop_count": 0,
+      "filename_prefix": "WanVideo2_2_S2V",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": true,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": true,
+      "no_preview": false,
+      "images": [
+        "180",
+        0
+      ],
+      "audio": [
+        "185",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
+    }
+  },
+  "153": {
+    "inputs": {
+      "lora": "Wan21_I2V_14B_lightx2v_cfg_step_distill_lora_rank64.safetensors",
+      "strength": 1.2000000000000002,
+      "low_mem_load": false,
+      "merge_loras": false
+    },
+    "class_type": "WanVideoLoraSelect",
+    "_meta": {
+      "title": "WanVideo Lora Select"
+    }
+  },
+  "154": {
+    "inputs": {
+      "text": "frames\n• 生成的帧数（一次生成多长视频）。\n• 举例：16fps 时，321 帧 ≈ 20 秒；32fps 时，321 帧 ≈ 10 秒。\n• 大值：单段更长，但更耗显存，长视频容易失稳。\n• 小值：更稳定，更利于拼接，但需要频繁续接。\n• 常见设置：\n• 高显存（24G+）：321\n• 中显存（12–16G）：201–241\n• 低显存（8–10G）：100–150"
+    },
+    "class_type": "Note _O",
+    "_meta": {
+      "title": "Note _O"
+    }
+  },
+  "155": {
+    "inputs": {
+      "text": " audio_scale\n\n音频驱动的影响强度（默认 1.0）。\n\n<1.0：弱化嘴型驱动（更稳，嘴型动作会小一些）。\n\n=1.0：标准强度（通常口型与语音基本贴合）。\n\n>1.0：强化嘴型驱动（嘴型更大、更夸张，但可能抖动或失真）。\n\n推荐范围：0.9 ~ 1.2 之间调试。"
+    },
+    "class_type": "Note _O",
+    "_meta": {
+      "title": "Note _O"
+    }
+  },
+  "168": {
+    "inputs": {
+      "images": [
+        "127",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "179": {
+    "inputs": {
+      "text": "🔹 为什么这里是 -23 LUFS？\n-23 LUFS 是一个国际广播常用标准（EBU R128）。\n在数字人视频工作流里用 -23 LUFS 归一化，可以：\n把不同音频的响度统一，让口型驱动更稳定。\n避免语音过大/过小导致嘴型动作不匹配。\n给后期合成、加背景音乐留出动态余量。\n\n\n\n🔹 如果换别的值会怎样？\n-23 LUFS（推荐）：自然、稳定，口型和语音匹配度高。\n-16 LUFS：更响一些，适合网络视频或播客，嘴型可能稍微更“张大”。\n-14 LUFS：接近流媒体平台推荐响度（Spotify/YouTube），嘴型更夸张，但可能不够稳。\n<-24 LUFS：声音太小，驱动信号弱，嘴型动作会变小甚至不明显。"
+    },
+    "class_type": "Note _O",
+    "_meta": {
+      "title": "Note _O"
+    }
+  },
+  "180": {
+    "inputs": {
+      "start": 3,
+      "length": -1,
+      "image": [
+        "217",
+        0
+      ]
+    },
+    "class_type": "ImageFromBatch+",
+    "_meta": {
+      "title": "🔧 Image From Batch"
+    }
+  },
+  "185": {
+    "inputs": {
+      "audio": "ed5d899600c98213bd73b41807d27564d6bb8422e697f052f0599c2a5ebb421f.wav",
+      "audioUI": ""
+    },
+    "class_type": "LoadAudio",
+    "_meta": {
+      "title": "Load Audio"
+    }
+  },
+  "192": {
+    "inputs": {
+      "chunk_fade_shape": "linear",
+      "chunk_length": 20,
+      "chunk_overlap": 0.1,
+      "audio": [
+        "185",
+        0
+      ]
+    },
+    "class_type": "AudioSeparation",
+    "_meta": {
+      "title": "分离"
+    }
+  },
+  "193": {
+    "inputs": {
+      "boolean": [
+        "196",
+        0
+      ],
+      "on_true": [
+        "194",
+        0
+      ],
+      "on_false": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "Switch any [Crystools]",
+    "_meta": {
+      "title": "🪛 Switch any"
+    }
+  },
+  "194": {
+    "inputs": {
+      "expression": "a+1",
+      "a": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "Math Expression 🐍"
+    }
+  },
+  "196": {
+    "inputs": {
+      "comparison": "a >= b",
+      "a": [
+        "203",
+        0
+      ],
+      "b": [
+        "198",
+        1
+      ]
+    },
+    "class_type": "easy compare",
+    "_meta": {
+      "title": "Compare"
+    }
+  },
+  "197": {
+    "inputs": {
+      "a": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "CM_IntToFloat",
+    "_meta": {
+      "title": "IntToFloat"
+    }
+  },
+  "198": {
+    "inputs": {
+      "expression": "a+0.5",
+      "a": [
+        "197",
+        0
+      ]
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "Math Expression 🐍"
+    }
+  },
+  "199": {
+    "inputs": {
+      "any": [
+        "196",
+        0
+      ]
+    },
+    "class_type": "SDVN Any Show",
+    "_meta": {
+      "title": "🔎 Any show"
+    }
+  },
+  "200": {
+    "inputs": {
+      "a": [
+        "203",
+        0
+      ]
+    },
+    "class_type": "CM_FloatToInt",
+    "_meta": {
+      "title": "FloatToInt"
+    }
+  },
+  "201": {
+    "inputs": {
+      "any": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "SDVN Any Show",
+    "_meta": {
+      "title": "🔎 Any show"
+    }
+  },
+  "203": {
+    "inputs": {
+      "audio": [
+        "192",
+        3
+      ]
+    },
+    "class_type": "SoundFlow_GetLength",
+    "_meta": {
+      "title": "Audio Get Length"
+    }
+  },
+  "204": {
+    "inputs": {
+      "text": "67.58956916099773",
+      "anything": [
+        "203",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "Show Any"
+    }
+  },
+  "205": {
+    "inputs": {
+      "expression": "a*16+1",
+      "a": [
+        "193",
+        0
+      ]
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "Math Expression 🐍"
+    }
+  },
+  "216": {
+    "inputs": {
+      "frame_window_size": [
+        "205",
+        0
+      ],
+      "audio_scale": 0.9,
+      "pose_start_percent": 0,
+      "pose_end_percent": 1,
+      "enable_framepack": false,
+      "embeds": [
+        "123",
+        0
+      ],
+      "audio_encoder_output": [
+        "124",
+        0
+      ],
+      "ref_latent": [
+        "110",
+        0
+      ]
+    },
+    "class_type": "WanVideoAddS2VEmbeds",
+    "_meta": {
+      "title": "WanVideo Add S2V Embeds"
+    }
+  },
+  "217": {
+    "inputs": {
+      "ds_factor": 1,
+      "interpolation_factor": 8,
+      "seed": 192045444848255,
+      "gimmvfi_model": [
+        "218",
+        0
+      ],
+      "images": [
+        "108",
+        0
+      ]
+    },
+    "class_type": "GIMMVFI_interpolate",
+    "_meta": {
+      "title": "GIMM-VFI Interpolate"
+    }
+  },
+  "218": {
+    "inputs": {
+      "model": "gimmvfi_r_arb_lpips_fp32.safetensors"
+    },
+    "class_type": "DownloadAndLoadGIMMVFIModel",
+    "_meta": {
+      "title": "(Down)Load GIMMVFI Model"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "29": {
+    "inputs": {
+      "prompt": [
+        "48",
+        0
+      ],
+      "seed": 1399402219,
+      "aspectRatio": "auto",
+      "images": [
+        "39",
+        0
+      ],
+      "image1": [
+        "40",
+        0
+      ]
+    },
+    "class_type": "RH_Nano_Banana_Image2Image",
+    "_meta": {
+      "title": "RH Nano Banana Image2Image"
+    }
+  },
+  "39": {
+    "inputs": {
+      "image": "e1036f41ad5b403b35f5c4285d38bcf4e4a84137394a142447d822ddd0e96c90.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "图像1"
+    }
+  },
+  "40": {
+    "inputs": {
+      "image": "4820c256a97f8d1adc25aa04fc1a544774ef9a17b01db44a824b00c2bf1fac48.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "图像2"
+    }
+  },
+  "48": {
+    "inputs": {
+      "text": "把图片中的女人和图片中的男人放在一起，让它们拥抱在一起，背景是海边上，"
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "🔤 CR Text"
+    }
+  },
+  "49": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "29",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  }
+}

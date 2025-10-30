@@ -1,0 +1,482 @@
+{
+  "6": {
+    "inputs": {
+      "text": [
+        "114",
+        0
+      ],
+      "clip": [
+        "67",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": "色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走",
+      "clip": [
+        "67",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "82",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "38": {
+    "inputs": {
+      "clip_name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "wan",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "Load CLIP"
+    }
+  },
+  "39": {
+    "inputs": {
+      "vae_name": "wan_2.1_vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "55": {
+    "inputs": {
+      "shift": 1.0000000000000002,
+      "model": [
+        "64",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingSD3",
+    "_meta": {
+      "title": "ModelSamplingSD3"
+    }
+  },
+  "56": {
+    "inputs": {
+      "unet_name": "wan2.2_t2v_low_noise_14B_fp8_scaled.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "59": {
+    "inputs": {
+      "width": 720,
+      "height": 1280,
+      "length": 1,
+      "batch_size": 1
+    },
+    "class_type": "EmptyHunyuanLatentVideo",
+    "_meta": {
+      "title": "EmptyHunyuanLatentVideo"
+    }
+  },
+  "64": {
+    "inputs": {
+      "nag_scale": 11,
+      "nag_alpha": 0.25,
+      "nag_tau": 2.5,
+      "input_type": "default",
+      "model": [
+        "65",
+        0
+      ],
+      "conditioning": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "WanVideoNAG",
+    "_meta": {
+      "title": "WanVideoNAG"
+    }
+  },
+  "65": {
+    "inputs": {
+      "sage_attention": "auto",
+      "model": [
+        "67",
+        0
+      ]
+    },
+    "class_type": "PathchSageAttentionKJ",
+    "_meta": {
+      "title": "Patch Sage Attention KJ"
+    }
+  },
+  "67": {
+    "inputs": {
+      "model_weight_1": 1.0000000000000002,
+      "clip_weight_1": 1.0000000000000002,
+      "lora_name_1": "Instareal_low.safetensors",
+      "model_weight_2": 1.0000000000000002,
+      "clip_weight_2": 1.0000000000000002,
+      "lora_name_2": "Lenovo.safetensors",
+      "model_weight_3": 1.0000000000000002,
+      "clip_weight_3": 1,
+      "lora_name_3": "None",
+      "model": [
+        "56",
+        0
+      ],
+      "clip": [
+        "38",
+        0
+      ]
+    },
+    "class_type": "Power Lora Loader (rgthree)",
+    "_meta": {
+      "title": "Power Lora Loader (rgthree)"
+    }
+  },
+  "69": {
+    "inputs": {
+      "unet_name": "wan2.2_t2v_high_noise_14B_fp8_scaled.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "70": {
+    "inputs": {
+      "model_weight_1": 1.0000000000000002,
+      "clip_weight_1": 1.0000000000000002,
+      "lora_name_1": "Instareal_high.safetensors",
+      "model_weight_2": 1.0000000000000002,
+      "clip_weight_2": 1.0000000000000002,
+      "lora_name_2": "Lenovo.safetensors",
+      "model_weight_3": 1,
+      "clip_weight_3": 1,
+      "lora_name_3": "None",
+      "model": [
+        "69",
+        0
+      ],
+      "clip": [
+        "38",
+        0
+      ]
+    },
+    "class_type": "Power Lora Loader (rgthree)",
+    "_meta": {
+      "title": "Power Lora Loader (rgthree)"
+    }
+  },
+  "71": {
+    "inputs": {
+      "sage_attention": "auto",
+      "model": [
+        "70",
+        0
+      ]
+    },
+    "class_type": "PathchSageAttentionKJ",
+    "_meta": {
+      "title": "Patch Sage Attention KJ"
+    }
+  },
+  "73": {
+    "inputs": {
+      "shift": 1.0000000000000002,
+      "model": [
+        "71",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingSD3",
+    "_meta": {
+      "title": "ModelSamplingSD3"
+    }
+  },
+  "74": {
+    "inputs": {
+      "model_name": "4x-UltraSharp.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "75": {
+    "inputs": {
+      "upscale_model": [
+        "74",
+        0
+      ],
+      "image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Upscale Image (using Model)"
+    }
+  },
+  "76": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "scale_by": 0.5000000000000001,
+      "image": [
+        "75",
+        0
+      ]
+    },
+    "class_type": "ImageScaleBy",
+    "_meta": {
+      "title": "Upscale Image By"
+    }
+  },
+  "77": {
+    "inputs": {
+      "pixels": [
+        "76",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "79": {
+    "inputs": {
+      "samples": [
+        "84",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "81": {
+    "inputs": {
+      "eta": 0.7500000000000001,
+      "sampler_name": "exponential/res_2s",
+      "scheduler": "beta57",
+      "steps": 12,
+      "steps_to_run": 4,
+      "denoise": 1,
+      "cfg": 3.500000000000001,
+      "seed": 190236071360263,
+      "sampler_mode": "standard",
+      "bongmath": true,
+      "model": [
+        "73",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "59",
+        0
+      ]
+    },
+    "class_type": "ClownsharKSampler_Beta",
+    "_meta": {
+      "title": "ClownsharKSampler"
+    }
+  },
+  "82": {
+    "inputs": {
+      "eta": 0.5,
+      "sampler_name": "exponential/res_2s",
+      "scheduler": "beta57",
+      "steps": 12,
+      "steps_to_run": -1,
+      "denoise": 1,
+      "cfg": 3.500000000000001,
+      "seed": 461764504522947,
+      "sampler_mode": "resample",
+      "bongmath": true,
+      "model": [
+        "55",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "81",
+        0
+      ]
+    },
+    "class_type": "ClownsharKSampler_Beta",
+    "_meta": {
+      "title": "ClownsharKSampler"
+    }
+  },
+  "84": {
+    "inputs": {
+      "eta": 0.30000000000000004,
+      "sampler_name": "exponential/res_2s",
+      "scheduler": "bong_tangent",
+      "steps": 3,
+      "steps_to_run": -1,
+      "denoise": 0.30000000000000004,
+      "cfg": 2.0000000000000004,
+      "seed": 479969775620243,
+      "sampler_mode": "standard",
+      "bongmath": true,
+      "model": [
+        "55",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "ClownsharKSampler_Beta",
+    "_meta": {
+      "title": "ClownsharKSampler"
+    }
+  },
+  "88": {
+    "inputs": {
+      "upscale_model": [
+        "89",
+        0
+      ],
+      "image": [
+        "79",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Upscale Image (using Model)"
+    }
+  },
+  "89": {
+    "inputs": {
+      "model_name": "x1_ITF_SkinDiffDetail_Lite_v1.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "91": {
+    "inputs": {
+      "grain_power": 0.15000000000000002,
+      "grain_scale": 1,
+      "grain_sat": 1,
+      "image": [
+        "88",
+        0
+      ]
+    },
+    "class_type": "LayerFilter: AddGrain",
+    "_meta": {
+      "title": "LayerFilter: Add Grain"
+    }
+  },
+  "101": {
+    "inputs": {
+      "anything": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "Anything Everywhere",
+    "_meta": {
+      "title": "Anything Everywhere"
+    }
+  },
+  "111": {
+    "inputs": {
+      "inStr": "Instareal, l3n0v0, "
+    },
+    "class_type": "String",
+    "_meta": {
+      "title": "String"
+    }
+  },
+  "114": {
+    "inputs": {
+      "string_a": [
+        "111",
+        0
+      ],
+      "string_b": [
+        "116",
+        0
+      ],
+      "delimiter": ""
+    },
+    "class_type": "StringConcatenate",
+    "_meta": {
+      "title": "String Concatenate 📅🅕🅝"
+    }
+  },
+  "116": {
+    "inputs": {
+      "text": "手机拍摄照片，中景镜头，室内暖光，特写镜头，正脸直视镜头，眼平视角，male，年龄25-34，穿着商务休闲（衬衫+针织开衫），自然肤质（可见毛孔与细微瑕疵），不过度磨皮，轻微噪点与轻度压缩痕迹，背景简洁"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "117": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "91",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "3": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "4": {
+    "inputs": {
+      "width": 768,
+      "height": 1024,
+      "batch_size": 1,
+      "color": 0
+    },
+    "class_type": "EmptyImage",
+    "_meta": {
+      "title": "自定义图像尺寸"
+    }
+  },
+  "12": {
+    "inputs": {
+      "prompt": "一个人在吃饭",
+      "seed": 2047993034,
+      "aspectRatio": "auto",
+      "images": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "RH_Nano_Banana_Image2Image",
+    "_meta": {
+      "title": "RH Nano Banana Image2Image"
+    }
+  }
+}

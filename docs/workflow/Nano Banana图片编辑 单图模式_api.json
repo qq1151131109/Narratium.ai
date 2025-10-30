@@ -1,0 +1,39 @@
+{
+  "32": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "34": {
+    "inputs": {
+      "prompt": "",
+      "seed": 899210948,
+      "aspectRatio": "auto",
+      "image1": [
+        "35",
+        0
+      ]
+    },
+    "class_type": "RH_Nano_Banana_Image2Image",
+    "_meta": {
+      "title": "RH_Nano_Banana_Image2Image"
+    }
+  },
+  "35": {
+    "inputs": {
+      "image": "e1036f41ad5b403b35f5c4285d38bcf4e4a84137394a142447d822ddd0e96c90.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  }
+}
