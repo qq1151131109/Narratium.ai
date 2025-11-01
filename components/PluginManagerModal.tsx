@@ -192,7 +192,7 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="bg-[#1e1c1b] bg-opacity-90 border border-[#334155]/40 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[85vh] overflow-hidden relative z-10 backdrop-filter backdrop-blur-md"
+              className="bg-[#1e1c1b] bg-opacity-90 border border-[#4a3b5c]/40 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[85vh] overflow-hidden relative z-10 backdrop-filter backdrop-blur-md"
               onClick={(e) => e.stopPropagation()}
             >
               {/* 头部 */}
@@ -216,7 +216,7 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
                     whileTap={{ scale: 0.95 }}
                     onClick={handleRefreshPlugins}
                     disabled={isRefreshing}
-                    className="p-2 bg-[#334155]/30 hover:bg-[#a18d6f]/40 text-[#e0f2fe] rounded-lg transition-all duration-200 disabled:opacity-50 group"
+                    className="p-2 bg-[#4a3b5c]/30 hover:bg-[#a18d6f]/40 text-[#e0f2fe] rounded-lg transition-all duration-200 disabled:opacity-50 group"
                     title={t("plugins.refresh")}
                   >
                     <RefreshCw className={`w-4 h-4 ${isRefreshing ? "animate-spin" : "group-hover:rotate-180"} transition-transform duration-300`} />
@@ -225,7 +225,7 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={onClose}
-                    className="p-2 text-[#7db3fd] hover:text-[#e0f2fe] hover:bg-[#334155]/30 rounded-lg transition-all duration-200"
+                    className="p-2 text-[#7db3fd] hover:text-[#e0f2fe] hover:bg-[#4a3b5c]/30 rounded-lg transition-all duration-200"
                   >
                     <X className="w-4 h-4" />
                   </motion.button>
@@ -233,7 +233,7 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
               </div>
 
               {/* 工具栏 */}
-              <div className="px-6 py-3 border-b border-[#334155]/30">
+              <div className="px-6 py-3 border-b border-[#4a3b5c]/30">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     {/* 优化的下拉框 */}
@@ -242,7 +242,7 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        className="flex items-center space-x-2 bg-gradient-to-r from-[#334155]/25 to-[#334155]/15 hover:from-[#334155]/35 hover:to-[#334155]/25 text-[#e0f2fe] px-4 py-2.5 rounded-xl border border-[#334155]/40 hover:border-[#e0f2fe]/30 transition-all duration-200 group min-w-[140px]"
+                        className="flex items-center space-x-2 bg-gradient-to-r from-[#4a3b5c]/25 to-[#4a3b5c]/15 hover:from-[#4a3b5c]/35 hover:to-[#4a3b5c]/25 text-[#e0f2fe] px-4 py-2.5 rounded-xl border border-[#4a3b5c]/40 hover:border-[#e0f2fe]/30 transition-all duration-200 group min-w-[140px]"
                       >
                         <Filter className="w-4 h-4 text-[#7db3fd] group-hover:text-[#e0f2fe] transition-colors" />
                         <div className="flex items-center space-x-2 flex-1">
@@ -250,7 +250,7 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
                             <>
                               <currentFilter.icon className={`w-4 h-4 ${currentFilter.color}`} />
                               <span className="text-sm font-medium">{currentFilter.label}</span>
-                              <span className="text-xs bg-[#334155]/40 px-2 py-0.5 rounded-full text-[#7db3fd]">
+                              <span className="text-xs bg-[#4a3b5c]/40 px-2 py-0.5 rounded-full text-[#7db3fd]">
                                 {currentFilter.count}
                               </span>
                             </>
@@ -267,7 +267,7 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: -10, scale: 0.95 }}
                             transition={{ duration: 0.15 }}
-                            className="absolute top-full left-0 mt-2 w-full bg-[#1e1c1b] border border-[#334155]/40 rounded-xl shadow-2xl overflow-hidden z-20 backdrop-blur-md"
+                            className="absolute top-full left-0 mt-2 w-full bg-[#1e1c1b] border border-[#4a3b5c]/40 rounded-xl shadow-2xl overflow-hidden z-20 backdrop-blur-md"
                           >
                             {filterOptions.map((option) => (
                               <motion.button
@@ -279,8 +279,8 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
                                 }}
                                 className={`w-full flex items-center space-x-3 px-4 py-3 text-left transition-all duration-150 ${
                                   filter === option.value 
-                                    ? "bg-[#334155]/30 border-r-2 border-[#e0f2fe]" 
-                                    : "hover:bg-[#334155]/20"
+                                    ? "bg-[#4a3b5c]/30 border-r-2 border-[#e0f2fe]" 
+                                    : "hover:bg-[#4a3b5c]/20"
                                 }`}
                               >
                                 <option.icon className={`w-4 h-4 ${option.color}`} />
@@ -292,7 +292,7 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
                                 <span className={`text-xs px-2 py-1 rounded-full ${
                                   filter === option.value 
                                     ? "bg-[#e0f2fe]/20 text-[#e0f2fe]" 
-                                    : "bg-[#334155]/30 text-[#7db3fd]"
+                                    : "bg-[#4a3b5c]/30 text-[#7db3fd]"
                                 }`}>
                                   {option.count}
                                 </span>
@@ -304,7 +304,7 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
                     </div>
                     
                     <div className="flex items-center space-x-2 text-xs">
-                      <div className="px-3 py-1.5 bg-gradient-to-r from-[#334155]/20 to-[#334155]/10 rounded-lg text-[#7db3fd] border border-[#334155]/20">
+                      <div className="px-3 py-1.5 bg-gradient-to-r from-[#4a3b5c]/20 to-[#4a3b5c]/10 rounded-lg text-[#7db3fd] border border-[#4a3b5c]/20">
                         <span className="font-medium text-[#e0f2fe]">{filteredPlugins.length}</span>
                         <span className="mx-1 text-[#7db3fd]/60">/</span>
                         <span>{plugins.length}</span>
@@ -344,13 +344,13 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
                         whileHover={{ y: -2, transition: { duration: 0.2 } }}
-                        className="group bg-gradient-to-br from-[#2a261f]/30 to-[#1e1c1b]/50 rounded-xl p-5 border border-[#334155]/30 hover:border-[#e0f2fe]/40 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-[#e0f2fe]/10"
+                        className="group bg-gradient-to-br from-[#2a261f]/30 to-[#1e1c1b]/50 rounded-xl p-5 border border-[#4a3b5c]/30 hover:border-[#e0f2fe]/40 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-[#e0f2fe]/10"
                       >
                         <div className="flex items-start justify-between">
                           {/* 插件信息 */}
                           <div className="flex items-start space-x-4 flex-1">
                             {/* 插件图标 */}
-                            <div className="w-12 h-12 bg-gradient-to-br from-[#334155]/40 to-[#2a261f]/60 rounded-xl flex items-center justify-center overflow-hidden group-hover:from-[#e0f2fe]/20 group-hover:to-[#d1a35c]/20 transition-all duration-300">
+                            <div className="w-12 h-12 bg-gradient-to-br from-[#4a3b5c]/40 to-[#2a261f]/60 rounded-xl flex items-center justify-center overflow-hidden group-hover:from-[#e0f2fe]/20 group-hover:to-[#d1a35c]/20 transition-all duration-300">
                               {plugin.manifest.icon ? (
                                 // Check if icon is a URL or emoji/text
                                 plugin.manifest.icon.startsWith("http") || plugin.manifest.icon.startsWith("/") ? (
@@ -391,7 +391,7 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
                                 <h3 className="font-medium text-[#e0f2fe] truncate">
                                   {plugin.manifest.name}
                                 </h3>
-                                <span className="text-xs bg-[#334155]/30 px-2 py-1 rounded-md text-[#7db3fd] flex-shrink-0">
+                                <span className="text-xs bg-[#4a3b5c]/30 px-2 py-1 rounded-md text-[#7db3fd] flex-shrink-0">
                                   v{plugin.manifest.version}
                                 </span>
                                 <div className="flex items-center space-x-1 flex-shrink-0">
@@ -459,7 +459,7 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
                                 }
                               }}
                               disabled={!plugin.manifest.homepage}
-                              className="p-2 bg-[#334155]/20 hover:bg-[#334155]/40 text-[#7db3fd] rounded-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                              className="p-2 bg-[#4a3b5c]/20 hover:bg-[#4a3b5c]/40 text-[#7db3fd] rounded-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
                               title={t("plugins.homepage")}
                             >
                               <ExternalLink className="w-4 h-4" />
@@ -468,7 +468,7 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
                             <motion.button
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
-                              className="p-2 bg-[#334155]/20 hover:bg-[#334155]/40 text-[#7db3fd] rounded-lg transition-all duration-200"
+                              className="p-2 bg-[#4a3b5c]/20 hover:bg-[#4a3b5c]/40 text-[#7db3fd] rounded-lg transition-all duration-200"
                               onClick={() => {
                                 console.log("Plugin details:", plugin);
                               }}
@@ -485,14 +485,14 @@ export default function PluginManagerModal({ isOpen, onClose }: PluginManagerMod
               </div>
 
               {/* 底部状态栏 */}
-              <div className="px-6 py-4 border-t border-[#334155]/30 bg-gradient-to-r from-[#2a261f]/20 to-[#1e1c1b]/40">
+              <div className="px-6 py-4 border-t border-[#4a3b5c]/30 bg-gradient-to-r from-[#2a261f]/20 to-[#1e1c1b]/40">
                 <div className="flex items-center justify-between text-xs">
                   <div className="flex items-center space-x-3 text-[#7db3fd]">
                     <div className="flex items-center space-x-2">
                       <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                       <span>{t("plugins.systemStatus")}</span>
                     </div>
-                    <span className="text-[#334155]">•</span>
+                    <span className="text-[#4a3b5c]">•</span>
                     <span>
                       {t("plugins.pluginStats").replace("{enabled}", plugins.filter(p => p.enabled).length.toString()).replace("{total}", plugins.length.toString())}
                     </span>

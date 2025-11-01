@@ -368,7 +368,7 @@ export default function CharacterCards() {
               <div className="flex items-center gap-3">
                 <h1 className={`text-xl sm:text-2xl magical-login-text ${serifFontClass}`}>{t("sidebar.characterCards")}</h1>
                 <motion.button
-                  className={`hidden md:block portal-button text-[#7db3fd] hover:text-[#7dd3fc] p-1.5 sm:p-2 border border-[#334155] rounded-lg cursor-pointer ${fontClass} translate-y-[1px]`}
+                  className={`hidden md:block portal-button text-[#7db3fd] hover:text-[#f9a8d4] p-1.5 sm:p-2 border border-[#4a3b5c] rounded-lg cursor-pointer ${fontClass} translate-y-[1px]`}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   onClick={() => {
@@ -397,7 +397,7 @@ export default function CharacterCards() {
                 <motion.div
                   className={`portal-button relative overflow-hidden px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg cursor-pointer ${fontClass}
                     bg-gradient-to-b from-[#2a231c] to-[#1a1510]
-                    border border-[#334155]
+                    border border-[#4a3b5c]
                     shadow-[0_0_15px_rgba(192,164,128,0.1)]
                     hover:shadow-[0_0_20px_rgba(192,164,128,0.2)]
                     before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-[rgba(192,164,128,0.1)] before:to-transparent
@@ -415,14 +415,14 @@ export default function CharacterCards() {
                   }}
                   onClick={() => setIsImportModalOpen(true)}
                 >
-                  <span className="relative z-10 text-[#7db3fd] group-hover:text-[#7dd3fc] transition-colors duration-300 text-xs sm:text-base">
+                  <span className="relative z-10 text-[#7db3fd] group-hover:text-[#f9a8d4] transition-colors duration-300 text-xs sm:text-base">
                     {t("characterCardsPage.importCharacter")}
                   </span>
                 </motion.div>
                 <motion.div
                   className={`portal-button relative overflow-hidden px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg cursor-pointer ${fontClass}
                     bg-gradient-to-b from-[#2a231c] to-[#1a1510]
-                    border border-[#334155]
+                    border border-[#4a3b5c]
                     shadow-[0_0_15px_rgba(192,164,128,0.1)]
                     hover:shadow-[0_0_20px_rgba(192,164,128,0.2)]
                     before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-[rgba(192,164,128,0.1)] before:to-transparent
@@ -440,7 +440,7 @@ export default function CharacterCards() {
                   }}
                   onClick={() => setIsDownloadModalOpen(true)}
                 >
-                  <span className="relative z-10 text-[#7db3fd] group-hover:text-[#7dd3fc] transition-colors duration-300 text-xs sm:text-base">
+                  <span className="relative z-10 text-[#7db3fd] group-hover:text-[#f9a8d4] transition-colors duration-300 text-xs sm:text-base">
                     {t("characterCardsPage.downloadCharacter")}
                   </span>
                 </motion.div>
@@ -475,7 +475,7 @@ export default function CharacterCards() {
                 </div>
                 <p className={`text-[#eae6db] mb-6 ${serifFontClass}`}>{t("characterCardsPage.noCharacters")}</p>
                 <motion.div
-                  className={`portal-button inline-block text-[#7db3fd] hover:text-[#7dd3fc] px-5 py-2 border border-[#334155] rounded-lg cursor-pointer ${fontClass}`}
+                  className={`portal-button inline-block text-[#7db3fd] hover:text-[#f9a8d4] px-5 py-2 border border-[#4a3b5c] rounded-lg cursor-pointer ${fontClass}`}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   onClick={() => setIsImportModalOpen(true)}

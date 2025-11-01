@@ -104,7 +104,7 @@ export default function UserNameSettingModal({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="fantasy-bg bg-opacity-75 border border-[#334155] rounded-lg shadow-lg p-4 sm:p-8 w-full max-w-sm sm:max-w-md relative z-10 backdrop-filter backdrop-blur-sm mx-4"
+            className="fantasy-bg bg-opacity-75 border border-[#4a3b5c] rounded-lg shadow-lg p-4 sm:p-8 w-full max-w-sm sm:max-w-md relative z-10 backdrop-filter backdrop-blur-sm mx-4"
           >
             <button 
               onClick={onClose}
@@ -141,7 +141,7 @@ export default function UserNameSettingModal({
                 <label className={`block text-sm text-[#7db3fd] mb-2 ${fontClass}`}>
                   {t("userNameSetting.loginUsername")}
                 </label>
-                <div className="relative magical-input min-h-[50px] flex items-center justify-center bg-[#2a261f]/50 border border-[#334155]/50">
+                <div className="relative magical-input min-h-[50px] flex items-center justify-center bg-[#2a261f]/50 border border-[#4a3b5c]/50">
                   <span className={`text-center text-sm text-[#8a8a8a] ${serifFontClass}`}>
                     {typeof window !== "undefined" ? (localStorage.getItem("username") || t("userNameSetting.notLoggedIn")) : t("userNameSetting.notLoggedIn")}
                   </span>

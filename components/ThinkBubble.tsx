@@ -35,7 +35,7 @@ export default function ThinkBubble({
     <div className="mb-3">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex items-center gap-2 px-3 py-2 bg-[#2a261f]/70 hover:bg-[#342f25]/80 border border-[#334155]/60 rounded-lg transition-all duration-300 group"
+        className="flex items-center gap-2 px-3 py-2 bg-[#2a261f]/70 hover:bg-[#342f25]/80 border border-[#4a3b5c]/60 rounded-lg transition-all duration-300 group"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@ export default function ThinkBubble({
           isExpanded ? "max-h-96 opacity-100 mt-2" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="bg-[#1f1d1a]/80 border border-[#334155]/40 rounded-lg p-4 backdrop-blur-sm">
+        <div className="bg-[#1f1d1a]/80 border border-[#4a3b5c]/40 rounded-lg p-4 backdrop-blur-sm">
           <div className={`text-sm text-[#7db3fd] leading-relaxed whitespace-pre-wrap ${serifFontClass}`}>
             {thinkingContent}
           </div>

@@ -72,9 +72,9 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
   const getStatusConfig = (status: string) => {
     const statusMap: { [key: string]: { color: string; label: string; icon: React.ReactNode; pulse?: boolean } } = {
       idle: { color: "text-slate-400", label: t("agentProgress.idle") || "Idle", icon: <Clock size={14} /> },
-      thinking: { color: "text-blue-400", label: t("agentProgress.thinking") || "Thinking", icon: <Brain size={14} />, pulse: true },
-      executing: { color: "text-blue-400", label: t("agentProgress.executing") || "Executing", icon: <Zap size={14} />, pulse: true },
-      waiting_user: { color: "text-blue-400", label: t("agentProgress.waitingUser") || "Awaiting Input", icon: <User size={14} />, pulse: true },
+      thinking: { color: "text-pink-400", label: t("agentProgress.thinking") || "Thinking", icon: <Brain size={14} />, pulse: true },
+      executing: { color: "text-pink-400", label: t("agentProgress.executing") || "Executing", icon: <Zap size={14} />, pulse: true },
+      waiting_user: { color: "text-pink-400", label: t("agentProgress.waitingUser") || "Awaiting Input", icon: <User size={14} />, pulse: true },
       completed: { color: "text-[#e0f2fe]", label: t("agentProgress.completed") || "Completed", icon: <Award size={14} /> },
       failed: { color: "text-rose-400", label: t("agentProgress.failed") || "Failed", icon: <AlertCircle size={14} /> },
     };
@@ -97,7 +97,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
   };
 
   return (
-    <div className="bg-black/40 border border-blue-500/20 rounded-lg p-3 space-y-3">
+    <div className="bg-black/40 border border-rose-500/20 rounded-lg p-3 space-y-3">
       {/* Compact Header */}
       <div className="text-center">
         <h3 className={`text-sm font-semibold text-[#e0f2fe] ${serifFontClass} magical-text`}>
@@ -188,7 +188,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
             className="w-full flex items-center justify-between p-1.5 rounded-md hover:bg-black/30 transition-colors"
           >
             <div className="flex items-center gap-2">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400 fantasy-glow" />
+              <Sparkles className="w-3.5 h-3.5 text-pink-400 fantasy-glow" />
               <span className={`text-xs font-medium text-[#7db3fd] ${fontClass}`}>
                 {t("agentProgress.results") || "生成结果"}
               </span>
@@ -213,7 +213,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
                   {/* Character Card */}
                   <div className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2 text-[#7db3fd]">
-                      <User className="w-3 h-3 text-blue-400" />
+                      <User className="w-3 h-3 text-pink-400" />
                       <span className={fontClass}>{t("agentProgress.characterCard") || "角色卡"}</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -235,7 +235,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
                   {/* Status System */}
                   <div className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2 text-[#7db3fd]">
-                      <FileText className="w-3 h-3 text-blue-400" />
+                      <FileText className="w-3 h-3 text-pink-400" />
                       <span className={fontClass}>{t("agentProgress.statusSystem") || "状态系统"}</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -257,7 +257,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
                   {/* World Data */}
                   <div className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2 text-[#7db3fd]">
-                      <Database className="w-3 h-3 text-blue-400" />
+                      <Database className="w-3 h-3 text-pink-400" />
                       <span className={fontClass}>{t("agentProgress.worldData") || "世界数据"}</span>
                     </div>
                     <div className="flex items-center gap-2">

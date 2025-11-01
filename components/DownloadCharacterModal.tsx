@@ -502,7 +502,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
       <motion.div 
         initial={{ scale: 0.95, opacity: 0 }} 
         animate={{ scale: 1, opacity: 1 }} 
-        className={`bg-[#1a1714] rounded-lg shadow-2xl w-full border border-[#334155] relative z-10 ${
+        className={`bg-[#1a1714] rounded-lg shadow-2xl w-full border border-[#4a3b5c] relative z-10 ${
           isMobile 
             ? "h-full max-h-[calc(100vh-12rem)] p-3 rounded-none pb-28" 
             : "p-6 max-w-6xl max-h-[90vh] rounded-lg"
@@ -546,7 +546,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                 }
               }}
               disabled={loading}
-              className={`group p-2 rounded-full text-[#a18d6f] hover:text-[#5b9cfa] hover:bg-[#252220] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7dd3fc]/40 relative ${loading ? "opacity-60 cursor-wait" : ""}`}
+              className={`group p-2 rounded-full text-[#a18d6f] hover:text-[#5b9cfa] hover:bg-[#252220] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#f9a8d4]/40 relative ${loading ? "opacity-60 cursor-wait" : ""}`}
               title={t("downloadModal.refresh")}
               aria-label={t("downloadModal.refresh")}
               type="button"
@@ -569,7 +569,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
               )}
             </button>
             <button
-              className={"p-2 rounded-full text-[#a18d6f] hover:text-[#5b9cfa] hover:bg-[#252220] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#7dd3fc]/40"}
+              className={"p-2 rounded-full text-[#a18d6f] hover:text-[#5b9cfa] hover:bg-[#252220] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#f9a8d4]/40"}
               onClick={onClose}
               title={t("common.close")}
               aria-label={t("common.close")}
@@ -595,8 +595,8 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
               onClick={() => setSelectedTag("all")}
               className={`${isMobile ? "px-2.5 py-1 text-xs" : "px-3 py-1.5 text-sm"} rounded-full transition-all duration-200 ${fontClass} ${
                 selectedTag === "all"
-                  ? "bg-gradient-to-br from-[#e0cfa0] to-[#f0e2b8] text-[#334155] font-semibold shadow-lg shadow-[#e0cfa0]/20 border border-transparent"
-                  : "bg-transparent text-[#7db3fd] hover:bg-[#252220] hover:text-[#e0cfa0] border border-[#334155]/50 hover:border-[#334155]"
+                  ? "bg-gradient-to-br from-[#e0cfa0] to-[#f0e2b8] text-[#4a3b5c] font-semibold shadow-lg shadow-[#e0cfa0]/20 border border-transparent"
+                  : "bg-transparent text-[#7db3fd] hover:bg-[#252220] hover:text-[#e0cfa0] border border-[#4a3b5c]/50 hover:border-[#4a3b5c]"
               }`}
             >
               {isMobile 
@@ -612,8 +612,8 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                 onClick={() => setSelectedTag(tag)}
                 className={`${isMobile ? "px-2.5 py-1 text-xs" : "px-3 py-1.5 text-sm"} rounded-full transition-all duration-200 ${fontClass} ${
                   selectedTag === tag
-                    ? "bg-gradient-to-br from-[#e0cfa0] to-[#f0e2b8] text-[#334155] font-semibold shadow-lg shadow-[#e0cfa0]/20 border border-transparent"
-                    : "bg-transparent text-[#7db3fd] hover:bg-[#252220] hover:text-[#e0cfa0] border border-[#334155]/50 hover:border-[#334155]"
+                    ? "bg-gradient-to-br from-[#e0cfa0] to-[#f0e2b8] text-[#4a3b5c] font-semibold shadow-lg shadow-[#e0cfa0]/20 border border-transparent"
+                    : "bg-transparent text-[#7db3fd] hover:bg-[#252220] hover:text-[#e0cfa0] border border-[#4a3b5c]/50 hover:border-[#4a3b5c]"
                 } ${tagCounts[tag] === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
                 disabled={tagCounts[tag] === 0}
               >
@@ -671,7 +671,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                         delay: index * 0.02,
                         ease: "easeOut",
                       }}
-                      className={`bg-[#252220] rounded-lg border border-[#334155] hover:border-[#7db3fd] transition-all duration-200 hover:shadow-lg ${
+                      className={`bg-[#252220] rounded-lg border border-[#4a3b5c] hover:border-[#7db3fd] transition-all duration-200 hover:shadow-lg ${
                         isMobile ? "p-3 flex gap-3" : "p-4"
                       }`}
                     >
@@ -702,13 +702,13 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                             {tags.slice(0, 2).map(tag => (
                               <span
                                 key={tag}
-                                className={`px-2 py-0.5 text-xs rounded-full bg-black/60 text-[#7dd3fc] ${fontClass}`}
+                                className={`px-2 py-0.5 text-xs rounded-full bg-black/60 text-[#f9a8d4] ${fontClass}`}
                               >
                                 {t(`downloadModal.tags.${tag}`)}
                               </span>
                             ))}
                             {tags.length > 2 && (
-                              <span className={`px-2 py-0.5 text-xs rounded-full bg-black/60 text-[#7dd3fc] ${fontClass}`}>
+                              <span className={`px-2 py-0.5 text-xs rounded-full bg-black/60 text-[#f9a8d4] ${fontClass}`}>
                                 +{tags.length - 2}
                               </span>
                             )}
@@ -731,13 +731,13 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                               {tags.slice(0, 3).map(tag => (
                                 <span
                                   key={tag}
-                                  className={`px-1.5 py-0.5 text-xs rounded-full bg-[#334155] text-[#7dd3fc] ${fontClass}`}
+                                  className={`px-1.5 py-0.5 text-xs rounded-full bg-[#4a3b5c] text-[#f9a8d4] ${fontClass}`}
                                 >
                                   {t(`downloadModal.tags.${tag}`)}
                                 </span>
                               ))}
                               {tags.length > 3 && (
-                                <span className={`px-1.5 py-0.5 text-xs rounded-full bg-[#334155] text-[#7dd3fc] ${fontClass}`}>
+                                <span className={`px-1.5 py-0.5 text-xs rounded-full bg-[#4a3b5c] text-[#f9a8d4] ${fontClass}`}>
                                   +{tags.length - 3}
                                 </span>
                               )}
@@ -750,8 +750,8 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                           disabled={!!importing}
                           className={`group w-full rounded-lg transition-all duration-200 ${fontClass} ${
                             importing === file.name
-                              ? "bg-[#334155] text-[#7db3fd] cursor-wait"
-                              : "bg-gradient-to-br from-[#e0cfa0] to-[#f9d77e] text-[#334155] hover:shadow-lg hover:shadow-[#e0cfa0]/20 hover:from-[#f0e2b8] hover:to-[#f9d77e]"
+                              ? "bg-[#4a3b5c] text-[#7db3fd] cursor-wait"
+                              : "bg-gradient-to-br from-[#e0cfa0] to-[#f9d77e] text-[#4a3b5c] hover:shadow-lg hover:shadow-[#e0cfa0]/20 hover:from-[#f0e2b8] hover:to-[#f9d77e]"
                           } ${isMobile ? "px-2 py-1.5 text-xs" : "px-3 py-2 text-sm"}`}
                           onClick={() => handleDownloadAndImport(file)}
                         >
@@ -798,7 +798,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-[#1a1714] rounded-lg shadow-2xl border border-[#334155] relative z-10 max-w-md w-full mx-4 p-6"
+              className="bg-[#1a1714] rounded-lg shadow-2xl border border-[#4a3b5c] relative z-10 max-w-md w-full mx-4 p-6"
             >
               <div className="text-center">
                 <div className="mb-4">
@@ -819,7 +819,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                 <div className="flex flex-col gap-3">
                   <button
                     onClick={() => handleRegulatoryWarningClose(false)}
-                    className={`w-full bg-gradient-to-br from-[#e0cfa0] to-[#f9d77e] text-[#334155] font-semibold py-2.5 px-4 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[#e0cfa0]/20 hover:from-[#f0e2b8] hover:to-[#f9d77e] ${fontClass}`}
+                    className={`w-full bg-gradient-to-br from-[#e0cfa0] to-[#f9d77e] text-[#4a3b5c] font-semibold py-2.5 px-4 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[#e0cfa0]/20 hover:from-[#f0e2b8] hover:to-[#f9d77e] ${fontClass}`}
                   >
                     {t("downloadModal.regulatoryWarning.understand")}
                   </button>

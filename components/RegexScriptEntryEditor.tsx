@@ -99,15 +99,15 @@ export default function RegexScriptEntryEditor({
     <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div 
         ref={modalRef}
-        className="bg-gradient-to-br from-[#1a1816] via-[#252220] to-[#1a1816] rounded-xl p-5 w-full max-w-2xl border border-[#334155]/60 shadow-2xl shadow-black/30 relative overflow-hidden"
+        className="bg-gradient-to-br from-[#1a1816] via-[#252220] to-[#1a1816] rounded-xl p-5 w-full max-w-2xl border border-[#4a3b5c]/60 shadow-2xl shadow-black/30 relative overflow-hidden"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/3 via-transparent to-blue-500/3 opacity-50"></div>
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-rose-500/3 via-transparent to-rose-500/3 opacity-50"></div>
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-rose-500/30 to-transparent"></div>
         
         <div className="relative z-10">
           <div className="flex justify-between items-center mb-5">
             <h2 className={`text-lg text-[#eae6db] ${serifFontClass} font-medium`}>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-sky-300 to-blue-300">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-purple-300 to-pink-300">
                 {editingScript?.id ? t("regexScriptEditor.editScript") : t("regexScriptEditor.newScript")}
               </span>
             </h2>
@@ -130,9 +130,9 @@ export default function RegexScriptEntryEditor({
                 type="text"
                 value={localScript.scriptName || ""}
                 onChange={(e) => updateScript({ scriptName: e.target.value })}
-                className="w-full px-3 py-2 bg-gradient-to-br from-[#1a1816] to-[#252220] border border-[#334155]/60 rounded-lg text-[#e0f2fe] 
-                  focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-300
-                  placeholder-[#a18d6f]/70 hover:border-[#334155] text-sm"
+                className="w-full px-3 py-2 bg-gradient-to-br from-[#1a1816] to-[#252220] border border-[#4a3b5c]/60 rounded-lg text-[#e0f2fe] 
+                  focus:border-rose-500/60 focus:outline-none focus:ring-2 focus:ring-rose-500/20 transition-all duration-300
+                  placeholder-[#a18d6f]/70 hover:border-[#4a3b5c] text-sm"
                 placeholder={t("regexScriptEditor.scriptNamePlaceholder")}
               />
             </div>
@@ -145,9 +145,9 @@ export default function RegexScriptEntryEditor({
                 type="text"
                 value={localScript.findRegex || ""}
                 onChange={(e) => updateScript({ findRegex: e.target.value })}
-                className="w-full px-3 py-2 bg-gradient-to-br from-[#1a1816] to-[#252220] border border-[#334155]/60 rounded-lg text-[#5b9cfa] 
-                  focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-300
-                  placeholder-[#a18d6f]/70 hover:border-[#334155] font-mono text-sm"
+                className="w-full px-3 py-2 bg-gradient-to-br from-[#1a1816] to-[#252220] border border-[#4a3b5c]/60 rounded-lg text-[#5b9cfa] 
+                  focus:border-rose-500/60 focus:outline-none focus:ring-2 focus:ring-rose-500/20 transition-all duration-300
+                  placeholder-[#a18d6f]/70 hover:border-[#4a3b5c] font-mono text-sm"
                 placeholder={t("regexScriptEditor.findRegexPlaceholder")}
               />
             </div>
@@ -160,15 +160,15 @@ export default function RegexScriptEntryEditor({
                 type="text"
                 value={localScript.replaceString || ""}
                 onChange={(e) => updateScript({ replaceString: e.target.value })}
-                className="w-full px-3 py-2 bg-gradient-to-br from-[#1a1816] to-[#252220] border border-[#334155]/60 rounded-lg text-[#93c5fd] 
-                  focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-300
-                  placeholder-[#a18d6f]/70 hover:border-[#334155] font-mono text-sm"
+                className="w-full px-3 py-2 bg-gradient-to-br from-[#1a1816] to-[#252220] border border-[#4a3b5c]/60 rounded-lg text-[#fbcfe8] 
+                  focus:border-rose-500/60 focus:outline-none focus:ring-2 focus:ring-rose-500/20 transition-all duration-300
+                  placeholder-[#a18d6f]/70 hover:border-[#4a3b5c] font-mono text-sm"
                 placeholder={t("regexScriptEditor.replaceStringPlaceholder") || "Leave empty to remove matched text"}
               />
               <div className={`mt-1 text-[10px] text-[#a18d6f]/80 ${fontClass}`}>
                 {(localScript.replaceString || "").length === 0 ? 
                   <span className="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     {t("regexScriptEditor.emptyReplaceHint") || "Empty: Will remove matched text"}
@@ -187,9 +187,9 @@ export default function RegexScriptEntryEditor({
                   type="number"
                   value={localScript.placement?.[0] || 999}
                   onChange={(e) => updateScript({ placement: [parseInt(e.target.value) || 999] })}
-                  className="w-20 px-3 py-2 bg-gradient-to-br from-[#1a1816] to-[#252220] border border-[#334155]/60 rounded-lg text-[#e0f2fe] 
-                    focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-300
-                    hover:border-[#334155] text-sm text-center"
+                  className="w-20 px-3 py-2 bg-gradient-to-br from-[#1a1816] to-[#252220] border border-[#4a3b5c]/60 rounded-lg text-[#e0f2fe] 
+                    focus:border-rose-500/60 focus:outline-none focus:ring-2 focus:ring-rose-500/20 transition-all duration-300
+                    hover:border-[#4a3b5c] text-sm text-center"
                   min="0"
                   max="999"
                 />
@@ -204,8 +204,8 @@ export default function RegexScriptEntryEditor({
                   />
                   <div className={`w-5 h-5 rounded border-2 transition-all duration-300 flex items-center justify-center ${
                     localScript.disabled 
-                      ? "bg-gradient-to-br from-sky-600 to-sky-700 border-sky-500/60" 
-                      : "bg-gradient-to-br from-[#1a1816] to-[#252220] border-[#334155]/60 group-hover:border-blue-500/40"
+                      ? "bg-gradient-to-br from-sky-600 to-sky-700 border-purple-500/60" 
+                      : "bg-gradient-to-br from-[#1a1816] to-[#252220] border-[#4a3b5c]/60 group-hover:border-rose-500/40"
                   }`}>
                     {localScript.disabled && (
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -220,12 +220,12 @@ export default function RegexScriptEntryEditor({
               </label>
             </div>
 
-            <div className="flex justify-end space-x-3 mt-6 pt-4 border-t border-[#334155]/30">
+            <div className="flex justify-end space-x-3 mt-6 pt-4 border-t border-[#4a3b5c]/30">
               <button
                 onClick={onClose}
                 className="px-4 py-2 bg-gradient-to-br from-[#252220] to-[#1a1816] hover:from-[#342f25] hover:to-[#252220] 
-                  text-[#e0f2fe] rounded-lg border border-[#334155]/60 transition-all duration-300 text-sm font-medium
-                  hover:border-[#334155] hover:shadow-lg group"
+                  text-[#e0f2fe] rounded-lg border border-[#4a3b5c]/60 transition-all duration-300 text-sm font-medium
+                  hover:border-[#4a3b5c] hover:shadow-lg group"
               >
                 <span className={`${serifFontClass} group-hover:scale-105 transition-transform inline-block`}>
                   {t("regexScriptEditor.cancel")}
@@ -234,9 +234,9 @@ export default function RegexScriptEntryEditor({
               <button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="px-4 py-2 bg-gradient-to-br from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 
+                className="px-4 py-2 bg-gradient-to-br from-blue-600 to-blue-700 hover:from-rose-500 hover:to-blue-600 
                   text-[#1a1816] rounded-lg font-medium transition-all duration-300 text-sm
-                  disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-blue-500/25 group
+                  disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-rose-500/25 group
                   disabled:hover:shadow-none"
               >
                 <span className={`${serifFontClass} flex items-center group-hover:scale-105 transition-transform ${isSaving ? "" : "group-hover:text-white"}`}>

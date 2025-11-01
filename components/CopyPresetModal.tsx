@@ -94,12 +94,12 @@ export default function CopyPresetModal({
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-md mx-4 bg-gradient-to-br from-[#1a1816] via-[#252220] to-[#1a1816] rounded-lg border border-[#334155] shadow-2xl">
+      <div className="relative w-full max-w-md mx-4 bg-gradient-to-br from-[#1a1816] via-[#252220] to-[#1a1816] rounded-lg border border-[#4a3b5c] shadow-2xl">
         {/* Header */}
-        <div className="p-4 border-b border-[#334155] bg-gradient-to-r from-blue-500/5 to-transparent">
+        <div className="p-4 border-b border-[#4a3b5c] bg-gradient-to-r from-rose-500/5 to-transparent">
           <div className="flex items-center justify-between">
             <h3 className={`text-lg font-medium text-[#eae6db] ${serifFontClass}`}>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-cyan-400 to-teal-300">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-500 via-cyan-400 to-teal-300">
                 {t("preset.copyPreset")}
               </span>
             </h3>
@@ -122,7 +122,7 @@ export default function CopyPresetModal({
             <label className={`block text-sm font-medium text-[#a18d6f] mb-2 ${fontClass}`}>
               {t("preset.sourcePreset")}
             </label>
-            <div className="px-3 py-2 bg-[#252220]/50 text-[#a18d6f] rounded-md border border-[#334155]/50 text-sm">
+            <div className="px-3 py-2 bg-[#252220]/50 text-[#a18d6f] rounded-md border border-[#4a3b5c]/50 text-sm">
               {sourcePresetName}
             </div>
           </div>
@@ -138,9 +138,9 @@ export default function CopyPresetModal({
               placeholder={t("preset.newPresetNamePlaceholder")}
               disabled={isCopying}
               className={`w-full px-3 py-2 bg-gradient-to-br from-[#1a1816] via-[#252220] to-[#1a1816] 
-                text-[#eae6db] rounded-md border border-[#334155] 
-                focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 
-                transition-all duration-300 hover:border-[#334155] backdrop-blur-sm
+                text-[#eae6db] rounded-md border border-[#4a3b5c] 
+                focus:border-rose-500/60 focus:outline-none focus:ring-2 focus:ring-rose-500/20 
+                transition-all duration-300 hover:border-[#4a3b5c] backdrop-blur-sm
                 shadow-inner ${fontClass}
                 disabled:opacity-50 disabled:cursor-not-allowed`}
               autoFocus
@@ -155,8 +155,8 @@ export default function CopyPresetModal({
               disabled={isCopying}
               className={`px-4 py-2 text-sm font-medium text-[#a18d6f] hover:text-[#eae6db] 
                 bg-gradient-to-br from-[#1a1816] via-[#252220] to-[#1a1816] 
-                border border-[#334155] rounded-md 
-                hover:border-[#334155] transition-all duration-300 backdrop-blur-sm
+                border border-[#4a3b5c] rounded-md 
+                hover:border-[#4a3b5c] transition-all duration-300 backdrop-blur-sm
                 disabled:opacity-50 disabled:cursor-not-allowed ${fontClass}`}
             >
               {t("preset.cancel")}
@@ -169,7 +169,7 @@ export default function CopyPresetModal({
                 hover:from-[#1f1c19] hover:to-[#141108] 
                 text-[#8db4e9] hover:text-[#aec7f6] 
                 rounded-md transition-all duration-300 
-                shadow-lg hover:shadow-blue-500/20 
+                shadow-lg hover:shadow-rose-500/20 
                 border border-[#334050]
                 disabled:opacity-50 disabled:cursor-not-allowed ${fontClass}
                 flex items-center`}

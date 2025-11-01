@@ -139,7 +139,7 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
             className="relative w-full max-w-md mx-4 bg-gradient-to-br from-[#1a1a1a] via-[#1e1e1e] to-[#1a1a1a] rounded-2xl shadow-2xl border border-[#3a3a3a]/50 overflow-hidden"
           >
             {/* Animated background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-60" />
+            <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 via-transparent to-purple-500/5 opacity-60" />
             <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f59e0b' fill-opacity='0.03'%3E%3Cpath d='M30 30l30-30v60L30 30z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20" />
             
             {/* Header */}
@@ -159,8 +159,8 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
               </h2>
               
               {isGuest && (
-                <div className="flex items-center gap-2 text-xs text-blue-400/80">
-                  <div className="w-2 h-2 rounded-full bg-blue-400/60"></div>
+                <div className="flex items-center gap-2 text-xs text-pink-400/80">
+                  <div className="w-2 h-2 rounded-full bg-pink-400/60"></div>
                   <span className={fontClass}>{t("account.guestMode")}</span>
                 </div>
               )}
@@ -171,8 +171,8 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
               <div className="flex items-start gap-4">
                 {/* Avatar */}
                 <div className="relative">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-400 via-blue-500 to-sky-500 p-[2px] shadow-lg">
-                    <div className="w-full h-full rounded-full bg-[#1a1a1a] flex items-center justify-center text-2xl font-bold text-blue-300">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-400 via-rose-500 to-purple-500 p-[2px] shadow-lg">
+                    <div className="w-full h-full rounded-full bg-[#1a1a1a] flex items-center justify-center text-2xl font-bold text-pink-300">
                       {user.username.charAt(0).toUpperCase()}
                     </div>
                   </div>
@@ -197,7 +197,7 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
                             type="text"
                             value={editedUsername}
                             onChange={(e) => setEditedUsername(e.target.value)}
-                            className="flex-1 bg-[#2a2a2a] border border-[#3a3a3a] rounded-lg px-3 py-2 text-[#e0f2fe] text-sm focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20"
+                            className="flex-1 bg-[#2a2a2a] border border-[#3a3a3a] rounded-lg px-3 py-2 text-[#e0f2fe] text-sm focus:outline-none focus:border-rose-500/50 focus:ring-1 focus:ring-rose-500/20"
                             autoFocus
                           />
                           <button
@@ -236,7 +236,7 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
                         </span>
                         <button
                           onClick={() => setIsEditing(true)}
-                          className="opacity-0 group-hover:opacity-100 px-2 py-1 text-xs text-[#888] hover:text-blue-400 transition-all duration-200 rounded"
+                          className="opacity-0 group-hover:opacity-100 px-2 py-1 text-xs text-[#888] hover:text-pink-400 transition-all duration-200 rounded"
                         >
                           {t("account.edit")}
                         </button>
@@ -276,7 +276,7 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
                       </span>
                       <button
                         onClick={() => navigator.clipboard.writeText(user.id)}
-                        className="p-1 text-[#888] hover:text-blue-400 transition-colors duration-200"
+                        className="p-1 text-[#888] hover:text-pink-400 transition-colors duration-200"
                         title={t("account.copyId")}
                       >
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -297,14 +297,14 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
             <div className="px-6 py-4">
               <div className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg ${
                 isGuest 
-                  ? "bg-blue-500/10 border border-blue-500/20" 
+                  ? "bg-rose-500/10 border border-rose-500/20" 
                   : "bg-green-500/10 border border-green-500/20"
               }`}>
                 <div className={`w-2 h-2 rounded-full ${
-                  isGuest ? "bg-blue-400" : "bg-green-400"
+                  isGuest ? "bg-pink-400" : "bg-green-400"
                 }`}></div>
                 <span className={`text-xs font-medium ${
-                  isGuest ? "text-blue-300" : "text-green-300"
+                  isGuest ? "text-pink-300" : "text-green-300"
                 } ${fontClass}`}>
                   {isGuest ? t("account.guestAccount") : t("account.verifiedAccount")}
                 </span>

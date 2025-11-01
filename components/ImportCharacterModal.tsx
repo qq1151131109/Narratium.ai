@@ -244,7 +244,7 @@ export default function ImportCharacterModal({ isOpen, onClose, onImport }: Impo
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="bg-[#1e1c1b] bg-opacity-75 border border-[#334155] rounded-lg shadow-xl w-full max-w-md relative z-10 overflow-hidden fantasy-bg backdrop-filter backdrop-blur-sm"
+            className="bg-[#1e1c1b] bg-opacity-75 border border-[#4a3b5c] rounded-lg shadow-xl w-full max-w-md relative z-10 overflow-hidden fantasy-bg backdrop-filter backdrop-blur-sm"
           >
             <div className="p-6">
               <h2 className={`text-xl text-[#eae6db] mb-4 ${serifFontClass}`}>{t("importCharacterModal.title")}</h2>
@@ -254,7 +254,7 @@ export default function ImportCharacterModal({ isOpen, onClose, onImport }: Impo
               </p>
               
               <div
-                className={`border-2 border-dashed rounded-lg p-8 mb-4 text-center transition-colors duration-300 ${isDragging ? "border-[#5b9cfa] bg-[#252220]" : "border-[#334155] hover:border-[#a18d6f]"}`}
+                className={`border-2 border-dashed rounded-lg p-8 mb-4 text-center transition-colors duration-300 ${isDragging ? "border-[#5b9cfa] bg-[#252220]" : "border-[#4a3b5c] hover:border-[#a18d6f]"}`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
@@ -317,7 +317,7 @@ export default function ImportCharacterModal({ isOpen, onClose, onImport }: Impo
               <div className="flex justify-end space-x-3">
                 <button
                   onClick={handleClose}
-                  className={`px-4 py-2 text-[#7db3fd] hover:text-[#7dd3fc] transition-colors ${fontClass}`}
+                  className={`px-4 py-2 text-[#7db3fd] hover:text-[#f9a8d4] transition-colors ${fontClass}`}
                 >
                   {t("common.cancel")}  
                 </button>
@@ -325,7 +325,7 @@ export default function ImportCharacterModal({ isOpen, onClose, onImport }: Impo
                 <button
                   onClick={(e) => {trackButtonClick("ImportCharacterModal", "导入角色");handleUpload();}}
                   disabled={selectedFiles.length === 0 || isUploading}
-                  className={`px-4 py-2 bg-[#252220] hover:bg-[#3a2a2a] border border-[#334155] rounded-md text-[#5b9cfa] transition-colors ${fontClass} ${(selectedFiles.length === 0 || isUploading) ? "opacity-50 cursor-not-allowed" : ""}`}
+                  className={`px-4 py-2 bg-[#252220] hover:bg-[#3a2a2a] border border-[#4a3b5c] rounded-md text-[#5b9cfa] transition-colors ${fontClass} ${(selectedFiles.length === 0 || isUploading) ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   {isUploading ? (
                     <div className="flex items-center">

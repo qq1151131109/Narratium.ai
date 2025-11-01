@@ -62,7 +62,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to right, rgba(59, 130, 246, 0), rgba(59, 130, 246, 0.05));
+  background: linear-gradient(to right, rgba(236, 72, 153, 0), rgba(236, 72, 153, 0.05));
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: 4px;
@@ -74,12 +74,12 @@
 
 .menu-item.active::before {
   opacity: 1;
-  background: linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.02));
+  background: linear-gradient(to right, rgba(236, 72, 153, 0.1), rgba(236, 72, 153, 0.02));
 }
 
 .menu-item:hover svg,
 .menu-item.active svg {
-  filter: drop-shadow(0 0 2px rgba(96, 165, 250, 0.5));
+  filter: drop-shadow(0 0 2px rgba(244, 114, 182, 0.5));
 }
 
 .menu-divider {
@@ -98,7 +98,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: rgba(59, 130, 246, 0.3);
+  background-color: rgba(236, 72, 153, 0.3);
   top: -2.5px;
 }
 
@@ -135,7 +135,7 @@
 .session-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: rgba(59, 130, 246, 0.3);
+  border-color: rgba(236, 72, 153, 0.3);
 }
 
 .session-card:hover::before {
@@ -156,11 +156,11 @@
   bottom: -2px;
   border-radius: 50%;
   background: conic-gradient(from 0deg,
-      rgba(59, 130, 246, 0),
-      rgba(59, 130, 246, 0.3),
-      rgba(96, 165, 250, 0.5),
-      rgba(59, 130, 246, 0.3),
-      rgba(59, 130, 246, 0));
+      rgba(236, 72, 153, 0),
+      rgba(236, 72, 153, 0.3),
+      rgba(244, 114, 182, 0.5),
+      rgba(236, 72, 153, 0.3),
+      rgba(236, 72, 153, 0));
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -181,7 +181,7 @@
 .fantasy-scrollbar::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom,
       rgba(83, 71, 65, 0.7),
-      rgba(59, 130, 246, 0.3),
+      rgba(236, 72, 153, 0.3),
       rgba(83, 71, 65, 0.7));
   border-radius: 4px;
 }
@@ -189,19 +189,19 @@
 .fantasy-scrollbar::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom,
       rgba(83, 71, 65, 0.8),
-      rgba(59, 130, 246, 0.4),
+      rgba(236, 72, 153, 0.4),
       rgba(83, 71, 65, 0.8));
 }
 
 .magical-text {
-  color: #93c5fd;
-  text-shadow: 0 0 2px rgba(59, 130, 246, 0.3);
+  color: #fbcfe8;
+  text-shadow: 0 0 2px rgba(236, 72, 153, 0.3);
   letter-spacing: 0.05em;
 }
 
 .magical-login-text {
   color: #dbeafe;
-  text-shadow: 0 0 3px rgba(59, 130, 246, 0.4);
+  text-shadow: 0 0 3px rgba(236, 72, 153, 0.4);
   letter-spacing: 0.08em;
   font-family: 'Cinzel Decorative', 'Noto Serif SC', serif;
 }
@@ -212,7 +212,7 @@
 }
 
 .login-fantasy-bg {
-  background: linear-gradient(to bottom, #0f172a, #1e293b);
+  background: linear-gradient(to bottom, #1a1625, #3d2745);
   background-image:
     linear-gradient(to bottom, rgba(26, 25, 21, 0.92), rgba(33, 30, 28, 0.92)),
     url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%237db3fd' fill-opacity='0.07' fill-rule='evenodd'/%3E%3C/svg%3E");
@@ -320,7 +320,7 @@
 }
 
 .portal-button:hover {
-  color: #7dd3fc;
+  color: #f9a8d4;
 }
 
 .portal-button:hover::before {
@@ -417,14 +417,14 @@
 .breathing-bg {
   background: linear-gradient(
     135deg,
-    #0f1419 0%,
-    #1a1f2e 35%,
-    #1e293b 70%,
-    #334155 100%
+    #1e1b29 0%,
+    #2d1b2e 35%,
+    #3d2745 70%,
+    #4a3b5c 100%
   );
   background-size: 300% 300%;
   animation: backgroundBreath 12s ease-in-out infinite;
-  box-shadow: inset 0 0 26px rgba(59, 130, 246, 0.06), 0 0 14px rgba(96, 165, 250, 0.04);
+  box-shadow: inset 0 0 26px rgba(236, 72, 153, 0.06), 0 0 14px rgba(244, 114, 182, 0.04);
 }
 
 /* Enhanced message card styling for better readability */
@@ -441,7 +441,7 @@
 }
 
 .message-card:hover {
-  border-color: rgba(59, 130, 246, 0.25);
+  border-color: rgba(236, 72, 153, 0.25);
   background: linear-gradient(to bottom right,
       rgba(244, 232, 193, 0.06),
       rgba(244, 232, 193, 0.03));
@@ -505,11 +505,11 @@
 /* Enhanced typography for different message types */
 .message-thinking {
   font-style: italic;
-  color: #60a5fa;
+  color: #f472b6;
   background: linear-gradient(to right,
-      rgba(59, 130, 246, 0.08),
-      rgba(59, 130, 246, 0.04));
-  border-left: 3px solid rgba(59, 130, 246, 0.3);
+      rgba(236, 72, 153, 0.08),
+      rgba(236, 72, 153, 0.04));
+  border-left: 3px solid rgba(236, 72, 153, 0.3);
   padding: 12px 16px;
   border-radius: 0 8px 8px 0;
   margin: 8px 0;
@@ -595,7 +595,7 @@
   content: '✦';
   position: absolute;
   left: -16px;
-  color: #60a5fa;
+  color: #f472b6;
   font-size: 0.8em;
 }
 
@@ -603,10 +603,10 @@
 .fantasy-button {
   background: linear-gradient(135deg, 
       rgba(91, 156, 250, 0.8), 
-      rgba(59, 130, 246, 0.9));
+      rgba(236, 72, 153, 0.9));
   border: 1px solid rgba(91, 156, 250, 0.4);
   border-radius: 6px;
-  color: #0f172a;
+  color: #1a1625;
   font-weight: 600;
   padding: 10px 20px;
   transition: all 0.3s ease;
@@ -696,16 +696,16 @@
 .fantasy-scrollbar::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom,
       rgba(83, 71, 65, 0.8),
-      rgba(59, 130, 246, 0.4),
+      rgba(236, 72, 153, 0.4),
       rgba(83, 71, 65, 0.8));
   border-radius: 5px;
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(236, 72, 153, 0.2);
 }
 
 .fantasy-scrollbar::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom,
       rgba(83, 71, 65, 0.9),
-      rgba(59, 130, 246, 0.5),
+      rgba(236, 72, 153, 0.5),
       rgba(83, 71, 65, 0.9));
-  border-color: rgba(59, 130, 246, 0.3);
+  border-color: rgba(236, 72, 153, 0.3);
 }

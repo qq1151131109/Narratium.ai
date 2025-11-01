@@ -36,10 +36,10 @@ export default function AgentUserInput({ question, options, onResponse, isLoadin
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 mb-4"
+      className="bg-rose-500/10 border border-rose-500/20 rounded-lg p-4 mb-4"
     >
       <div className="flex items-start space-x-3 mb-4">
-        <div className="p-2 rounded-lg bg-blue-500/20 text-blue-400">
+        <div className="p-2 rounded-lg bg-rose-500/20 text-pink-400">
           <ArrowRight className="w-4 h-4" />
         </div>
         <div className="flex-1">
@@ -56,7 +56,7 @@ export default function AgentUserInput({ question, options, onResponse, isLoadin
               onClick={() => setInputMode("options")}
               className={`px-3 py-1 rounded-full transition-colors ${
                 inputMode === "options"
-                  ? "bg-blue-500/20 text-blue-400"
+                  ? "bg-rose-500/20 text-pink-400"
                   : "bg-black/20 text-[#7db3fd]/60 hover:text-[#7db3fd]"
               }`}
             >
@@ -66,7 +66,7 @@ export default function AgentUserInput({ question, options, onResponse, isLoadin
               onClick={() => setInputMode("custom")}
               className={`px-3 py-1 rounded-full transition-colors ${
                 inputMode === "custom"
-                  ? "bg-blue-500/20 text-blue-400"
+                  ? "bg-rose-500/20 text-pink-400"
                   : "bg-black/20 text-[#7db3fd]/60 hover:text-[#7db3fd]"
               }`}
             >
@@ -85,14 +85,14 @@ export default function AgentUserInput({ question, options, onResponse, isLoadin
                   onClick={() => setSelectedOption(option)}
                   className={`text-left p-3 rounded-lg border transition-all ${
                     selectedOption === option
-                      ? "bg-blue-500/20 border-blue-500/40 text-[#7db3fd]"
-                      : "bg-black/20 border-blue-500/20 text-[#7db3fd]/80 hover:bg-black/30 hover:border-blue-500/30"
+                      ? "bg-rose-500/20 border-rose-500/40 text-[#7db3fd]"
+                      : "bg-black/20 border-rose-500/20 text-[#7db3fd]/80 hover:bg-black/30 hover:border-rose-500/30"
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-sm">{option}</span>
                     {selectedOption === option && (
-                      <div className="w-2 h-2 bg-blue-400 rounded-full" />
+                      <div className="w-2 h-2 bg-pink-400 rounded-full" />
                     )}
                   </div>
                 </motion.button>
@@ -111,7 +111,7 @@ export default function AgentUserInput({ question, options, onResponse, isLoadin
               onChange={(e) => setCustomInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Type your response..."
-              className="w-full bg-black/20 border border-blue-500/20 rounded-lg p-3 text-[#7db3fd] text-sm placeholder-[#7db3fd]/40 resize-none min-h-[80px] max-h-[160px] focus:outline-none focus:border-blue-500/40"
+              className="w-full bg-black/20 border border-rose-500/20 rounded-lg p-3 text-[#7db3fd] text-sm placeholder-[#7db3fd]/40 resize-none min-h-[80px] max-h-[160px] focus:outline-none focus:border-rose-500/40"
               disabled={isLoading}
             />
           </div>
@@ -127,7 +127,7 @@ export default function AgentUserInput({ question, options, onResponse, isLoadin
             (inputMode === "options" && !selectedOption) || 
             (inputMode === "custom" && !customInput.trim())
           }
-          className="flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-sky-400 text-black rounded-lg py-2 px-4 font-medium text-sm hover:from-blue-400 hover:to-sky-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+          className="flex items-center space-x-2 bg-gradient-to-r from-rose-500 to-purple-400 text-black rounded-lg py-2 px-4 font-medium text-sm hover:from-pink-400 hover:to-purple-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
         >
           {isLoading ? (
             <>

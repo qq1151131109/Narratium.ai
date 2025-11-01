@@ -719,7 +719,7 @@ export default function CharacterChatPanel({
                           <div className="w-full h-full flex items-center justify-center bg-[#1a1816]">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 text-[#334155]"
+                              className="h-4 w-4 text-[#4a3b5c]"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -771,7 +771,7 @@ export default function CharacterChatPanel({
                                     />
                                   </svg>
                                 </div>
-                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155] z-50">
+                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#4a3b5c] z-50">
                                   {getCurrentConfig()?.name ||
                                       t("modelSettings.noConfigs")}
                                 </div>
@@ -779,7 +779,7 @@ export default function CharacterChatPanel({
 
                               {/* First Level Dropdown - API Configurations */}
                               {showApiDropdown && !showModelDropdown && (
-                                <div className="absolute top-full left-0 mt-1 bg-[#2a261f] border border-[#334155] rounded-md shadow-lg z-50 min-w-[160px]">
+                                <div className="absolute top-full left-0 mt-1 bg-[#2a261f] border border-[#4a3b5c] rounded-md shadow-lg z-50 min-w-[160px]">
                                   {configs.length > 0 ? (
                                     configs.map((config) => (
                                       <button
@@ -832,8 +832,8 @@ export default function CharacterChatPanel({
 
                               {/* Second Level Dropdown - Models within Config */}
                               {showModelDropdown && selectedConfigId && (
-                                <div className="absolute top-full left-0 mt-1 bg-[#2a261f] border border-[#334155] rounded-md shadow-lg z-50 min-w-[180px]">
-                                  <div className="px-2 py-1.5 text-xs text-[#8a8a8a] border-b border-[#334155] flex items-center justify-between">
+                                <div className="absolute top-full left-0 mt-1 bg-[#2a261f] border border-[#4a3b5c] rounded-md shadow-lg z-50 min-w-[180px]">
+                                  <div className="px-2 py-1.5 text-xs text-[#8a8a8a] border-b border-[#4a3b5c] flex items-center justify-between">
                                     <button
                                       onClick={() => {
                                         setShowModelDropdown(false);
@@ -969,7 +969,7 @@ export default function CharacterChatPanel({
                               }}
                               className={`mx-1 w-6 h-6 flex items-center justify-center bg-[#1c1c1c] rounded-lg border shadow-inner transition-all duration-300 group relative ${
                                 activeModes.streaming
-                                  ? "text-blue-400 hover:text-blue-300 border-blue-400/60 hover:border-blue-300/70 hover:shadow-[0_0_8px_rgba(252,211,77,0.4)]"
+                                  ? "text-pink-400 hover:text-pink-300 border-pink-400/60 hover:border-pink-300/70 hover:shadow-[0_0_8px_rgba(252,211,77,0.4)]"
                                   : "text-[#a18d6f] hover:text-[#7db3fd] border-[#333333] hover:border-[#444444]"
                               }`}
                               data-tooltip={
@@ -978,7 +978,7 @@ export default function CharacterChatPanel({
                                   : t("characterChat.enableStreaming")
                               }
                             >
-                              <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155]">
+                              <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#4a3b5c]">
                                 {activeModes.streaming
                                   ? t("characterChat.disableStreaming")
                                   : t("characterChat.enableStreaming")}
@@ -999,7 +999,7 @@ export default function CharacterChatPanel({
                                   d="M3 6h18M3 12h18M3 18h18"
                                   stroke={
                                     activeModes.streaming
-                                      ? "#38bdf8"
+                                      ? "#c084fc"
                                       : "currentColor"
                                   }
                                   strokeLinecap="round"
@@ -1036,7 +1036,7 @@ export default function CharacterChatPanel({
                               }}
                               className={`mx-1 w-6 h-6 flex items-center justify-center bg-[#1c1c1c] rounded-lg border shadow-inner transition-all duration-300 group relative ${
                                 activeModes.fastModel
-                                  ? "text-blue-500 hover:text-blue-400 border-blue-500/60 hover:border-blue-400/70 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"
+                                  ? "text-rose-500 hover:text-pink-400 border-rose-500/60 hover:border-pink-400/70 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"
                                   : "text-[#a18d6f] hover:text-[#7db3fd] border-[#333333] hover:border-[#444444]"
                               }`}
                               data-tooltip={
@@ -1045,7 +1045,7 @@ export default function CharacterChatPanel({
                                   : t("characterChat.enableFastModel")
                               }
                             >
-                              <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155]">
+                              <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#4a3b5c]">
                                 {activeModes.fastModel
                                   ? t("characterChat.disableFastModel")
                                   : t("characterChat.enableFastModel")}
@@ -1066,11 +1066,11 @@ export default function CharacterChatPanel({
                                 <path
                                   d="M7 2L17 14h-7v8l-8-12h7z"
                                   fill={
-                                    activeModes.fastModel ? "#3B82F6" : "none"
+                                    activeModes.fastModel ? "#ec4899" : "none"
                                   }
                                   stroke={
                                     activeModes.fastModel
-                                      ? "#3B82F6"
+                                      ? "#ec4899"
                                       : "currentColor"
                                   }
                                 />
@@ -1088,7 +1088,7 @@ export default function CharacterChatPanel({
                           className="ml-1 w-6 h-6 flex items-center justify-center text-[#a18d6f] hover:text-green-400 bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(34,197,94,0.4)] group relative"
                           data-tooltip={t("characterChat.jumpToMessage")}
                         >
-                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155]">
+                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#4a3b5c]">
                             {t("characterChat.jumpToMessage")}
                           </div>
                           <svg
@@ -1111,14 +1111,14 @@ export default function CharacterChatPanel({
                             trackButtonClick("page", "重新生成消息");
                             onRegenerate(message.id);
                           }}
-                          className={`ml-1 w-6 h-6 flex items-center justify-center text-[#a18d6f] hover:text-sky-400 bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(249,115,22,0.4)] group relative ${
+                          className={`ml-1 w-6 h-6 flex items-center justify-center text-[#a18d6f] hover:text-purple-400 bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(249,115,22,0.4)] group relative ${
                             shouldShowRegenerateButton(message, index)
                               ? ""
                               : "hidden"
                           }`}
                           data-tooltip={t("characterChat.regenerateMessage")}
                         >
-                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155]">
+                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#4a3b5c]">
                             {t("characterChat.regenerateMessage")}
                           </div>
                           <svg
@@ -1190,12 +1190,12 @@ export default function CharacterChatPanel({
         </div>
       </div>
 
-      <div className="sticky bottom-0 bg-[#1a1816] border-t border-[#334155] pt-6 pb-6 px-5 z-5 mt-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.2)]">
+      <div className="sticky bottom-0 bg-[#1a1816] border-t border-[#4a3b5c] pt-6 pb-6 px-5 z-5 mt-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.2)]">
         {suggestedInputs.length > 0 && !isSending && (
           <div className="relative max-w-4xl mx-auto">
             <button
               onClick={() => setSuggestionsCollapsed(!suggestionsCollapsed)}
-              className="absolute -top-10 right-0 bg-[#2a261f] hover:bg-[#342f25] text-[#7db3fd] hover:text-[#e0f2fe] p-1.5 rounded-md border border-[#334155] hover:border-[#a18d6f] transition-all duration-300 shadow-sm hover:shadow z-10"
+              className="absolute -top-10 right-0 bg-[#2a261f] hover:bg-[#342f25] text-[#7db3fd] hover:text-[#e0f2fe] p-1.5 rounded-md border border-[#4a3b5c] hover:border-[#a18d6f] transition-all duration-300 shadow-sm hover:shadow z-10"
               aria-label={suggestionsCollapsed ? "展开建议" : "收起建议"}
             >
               {suggestionsCollapsed ? (
@@ -1243,7 +1243,7 @@ export default function CharacterChatPanel({
                       onSuggestedInput(input);
                     }}
                     disabled={isSending}
-                    className={`bg-[#2a261f] hover:bg-[#342f25] text-[#7db3fd] hover:text-[#e0f2fe] py-1.5 px-4 rounded-md text-xs border border-[#334155] hover:border-[#a18d6f] transition-all duration-300 shadow-sm hover:shadow menu-item ${
+                    className={`bg-[#2a261f] hover:bg-[#342f25] text-[#7db3fd] hover:text-[#e0f2fe] py-1.5 px-4 rounded-md text-xs border border-[#4a3b5c] hover:border-[#a18d6f] transition-all duration-300 shadow-sm hover:shadow menu-item ${
                       isSending ? "opacity-50 cursor-not-allowed" : ""
                     } ${fontClass}`}
                   >
@@ -1263,7 +1263,7 @@ export default function CharacterChatPanel({
         >
           <div className="flex gap-2 sm:gap-3">
             <div className="flex-grow magical-input relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400/20 via-blue-500/5 to-blue-400/10 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-400/20 via-rose-500/5 to-pink-400/10 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
               <input
                 type="text"
                 value={userInput}
@@ -1272,7 +1272,7 @@ export default function CharacterChatPanel({
                   t("characterChat.typeMessage") || "Type a message..."
                 }
                 data-tour="chat-input"
-                className="w-full bg-[#2a261f] border border-[#334155] rounded-lg py-2 sm:py-2.5 px-3 sm:px-4 text-[#e0f2fe] text-sm leading-tight focus:outline-none focus:border-[#7db3fd] shadow-inner relative z-1 transition-all duration-300 group-hover:border-[#a18d6f]"
+                className="w-full bg-[#2a261f] border border-[#4a3b5c] rounded-lg py-2 sm:py-2.5 px-3 sm:px-4 text-[#e0f2fe] text-sm leading-tight focus:outline-none focus:border-[#7db3fd] shadow-inner relative z-1 transition-all duration-300 group-hover:border-[#a18d6f]"
                 disabled={isSending}
               />
             </div>
@@ -1285,7 +1285,7 @@ export default function CharacterChatPanel({
               <button
                 type="submit"
                 disabled={!userInput.trim()}
-                className={`portal-button relative overflow-hidden bg-[#2a261f] hover:bg-[#342f25] text-[#7db3fd] hover:text-[#e0f2fe] py-2 px-3 sm:px-4 rounded-lg text-sm border border-[#334155] hover:border-[#a18d6f] shadow-md transition-all duration-300 ${
+                className={`portal-button relative overflow-hidden bg-[#2a261f] hover:bg-[#342f25] text-[#7db3fd] hover:text-[#e0f2fe] py-2 px-3 sm:px-4 rounded-lg text-sm border border-[#4a3b5c] hover:border-[#a18d6f] shadow-md transition-all duration-300 ${
                   !userInput.trim() ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >
@@ -1305,7 +1305,7 @@ export default function CharacterChatPanel({
                     : "opacity-0 translate-y-2 pointer-events-none"
                 }`}
               >
-                <div className="flex flex-col gap-2 bg-[#1a1a1a]/95 backdrop-blur-sm rounded-lg p-2 border border-[#334155]/50 shadow-lg">
+                <div className="flex flex-col gap-2 bg-[#1a1a1a]/95 backdrop-blur-sm rounded-lg p-2 border border-[#4a3b5c]/50 shadow-lg">
                   {/* 剧情推进 */}
                   <button
                     type="button"
@@ -1319,7 +1319,7 @@ export default function CharacterChatPanel({
                     className={`px-1.5 sm:px-2 md:px-4 py-1.5 text-xs rounded-full border transition-all duration-300 whitespace-nowrap min-w-fit ${
                       activeModes["story-progress"]
                         ? "bg-[#d1a35c] text-[#2a261f] border-[#d1a35c] shadow-[0_0_8px_rgba(209,163,92,0.5)]"
-                        : "bg-[#2a261f] text-[#d1a35c] border-[#334155] hover:border-[#d1a35c] shadow-sm hover:shadow-md"
+                        : "bg-[#2a261f] text-[#d1a35c] border-[#4a3b5c] hover:border-[#d1a35c] shadow-sm hover:shadow-md"
                     }`}
                   >
                     <span className="flex items-center">
@@ -1383,7 +1383,7 @@ export default function CharacterChatPanel({
                     }}
                     className={`px-1.5 sm:px-2 md:px-4 py-1.5 text-xs rounded-full border transition-all duration-300 whitespace-nowrap min-w-fit ${
                       !activeModes["perspective"].active
-                        ? "bg-[#2a261f] text-[#56b3b4] border-[#334155] hover:border-[#56b3b4] shadow-sm hover:shadow-md"
+                        ? "bg-[#2a261f] text-[#56b3b4] border-[#4a3b5c] hover:border-[#56b3b4] shadow-sm hover:shadow-md"
                         : activeModes["perspective"].mode === "novel"
                           ? "bg-[#56b3b4] text-[#2a261f] border-[#56b3b4] shadow-[0_0_8px_rgba(86,179,180,0.5)]"
                           : "bg-[#378384] text-[#2a261f] border-[#378384] shadow-[0_0_8px_rgba(55,131,132,0.5)]"
@@ -1429,7 +1429,7 @@ export default function CharacterChatPanel({
                     className={`px-1.5 sm:px-2 md:px-4 py-1.5 text-xs rounded-full border transition-all duration-300 whitespace-nowrap min-w-fit ${
                       activeModes["scene-setting"]
                         ? "bg-[#c093ff] text-[#2a261f] border-[#c093ff] shadow-[0_0_8px_rgba(192,147,255,0.5)]"
-                        : "bg-[#2a261f] text-[#c093ff] border-[#334155] hover:border-[#c093ff] shadow-sm hover:shadow-md"
+                        : "bg-[#2a261f] text-[#c093ff] border-[#4a3b5c] hover:border-[#c093ff] shadow-sm hover:shadow-md"
                     }`}
                   >
                     <span className="flex items-center">
@@ -1464,7 +1464,7 @@ export default function CharacterChatPanel({
                       trackButtonClick("page", "设置用户名称");
                       setShowUserNameModal(true);
                     }}
-                    className={"px-1.5 sm:px-2 md:px-4 py-1.5 text-xs rounded-full border transition-all duration-300 whitespace-nowrap min-w-fit bg-[#2a261f] text-[#5b9cfa] border-[#334155] hover:border-[#5b9cfa] shadow-sm hover:shadow-md"}
+                    className={"px-1.5 sm:px-2 md:px-4 py-1.5 text-xs rounded-full border transition-all duration-300 whitespace-nowrap min-w-fit bg-[#2a261f] text-[#5b9cfa] border-[#4a3b5c] hover:border-[#5b9cfa] shadow-sm hover:shadow-md"}
                   >
                     <span className="flex items-center">
                       <svg
@@ -1500,7 +1500,7 @@ export default function CharacterChatPanel({
                 className={`px-1.5 sm:px-2 md:px-4 py-1.5 text-xs rounded-full border transition-all duration-300 ${
                   isControlPanelExpanded
                     ? "bg-[#d1a35c] text-[#2a261f] border-[#d1a35c] shadow-[0_0_8px_rgba(209,163,92,0.5)]"
-                    : "bg-[#2a261f] text-[#d1a35c] border-[#334155] hover:border-[#d1a35c] shadow-sm hover:shadow-md"
+                    : "bg-[#2a261f] text-[#d1a35c] border-[#4a3b5c] hover:border-[#d1a35c] shadow-sm hover:shadow-md"
                 }`}
               >
                 <span className="flex items-center">

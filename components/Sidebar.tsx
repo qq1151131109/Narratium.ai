@@ -56,7 +56,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
               <Image src="/logo_circle.png" alt="YX-story" width={80} height={20} className="object-contain" />
             </div>
             <span className={"ml-1 text-lg font-cinzel font-bold tracking-wider h-10 flex items-center -translate-x-3"} style={{ fontFamily: "var(--font-cinzel)" }}>
-              <span className={"bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-sky-400 to-blue-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] font-cinzel"}>YX-story</span>
+              <span className={"bg-clip-text text-transparent bg-gradient-to-r from-rose-500 via-purple-400 to-pink-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] font-cinzel"}>YX-story</span>
             </span>
           </div>
         </div>
@@ -69,7 +69,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
               isOpen ? "4rem" : "-1rem",
             );
           }}
-          className={"flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 hover:bg-[#252525] hover:border-[#444444] hover:text-blue-400 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)] w-8 h-8"}
+          className={"flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 hover:bg-[#252525] hover:border-[#444444] hover:text-pink-400 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)] w-8 h-8"}
           aria-label={isOpen ? (language === "zh" ? "收起侧边栏" : "Collapse Sidebar") : (language === "zh" ? "展开侧边栏" : "Expand Sidebar")}
         >
           {isOpen ? (
@@ -93,7 +93,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                 {isOpen && (
                   <button 
                     onClick={() => setIsHomeOpen(!isHomeOpen)}
-                    className="w-5 h-5 flex items-center justify-center text-[#8a8a8a] hover:text-blue-400 transition-colors duration-300 login-fantasy-bg rounded-sm"
+                    className="w-5 h-5 flex items-center justify-center text-[#8a8a8a] hover:text-pink-400 transition-colors duration-300 login-fantasy-bg rounded-sm"
                     aria-label={isHomeOpen ? t("sidebar.collapseHome") : t("sidebar.expandHome")}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-300 ${isHomeOpen ? "rotate-180" : ""}`}>
@@ -104,10 +104,10 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
               </div>
               <div className={`overflow-hidden transition-all duration-300 ${isOpen ? (isHomeOpen ? "max-h-20 opacity-100 mb-1" : "max-h-0 opacity-0 mb-0") : "max-h-20 opacity-100 mb-1"} mx-1`}>
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-transparent rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   {!isOpen ? (
                     <Link href="/" className={`menu-item flex justify-center p-2 rounded-md cursor-pointer transition-all duration-300 ${isHomeActive ? "bg-blue-900/30" : "hover:bg-[#252525]"}`}>
-                      <div className={`flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 w-8 h-8 ${isHomeActive ? "border-blue-500/80 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] hover:text-blue-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
+                      <div className={`flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 w-8 h-8 ${isHomeActive ? "border-rose-500/80 text-pink-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] hover:text-pink-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                           <polyline points="9 22 9 12 15 12 15 22" />
@@ -116,18 +116,18 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                     </Link>
                   ) : (
                     <Link href="/" className="focus:outline-none group relative overflow-hidden rounded-md w-full transition-all duration-300">
-                      <div className={`absolute inset-0 transition-opacity duration-300 ${isHomeActive ? "bg-gradient-to-br from-blue-500/20 via-blue-500/5 to-transparent opacity-100" : "bg-gradient-to-br from-blue-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100"}`}></div>
+                      <div className={`absolute inset-0 transition-opacity duration-300 ${isHomeActive ? "bg-gradient-to-br from-rose-500/20 via-rose-500/5 to-transparent opacity-100" : "bg-gradient-to-br from-rose-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100"}`}></div>
                       <div className="relative flex items-center p-2 w-full transition-all duration-300 z-10">
                         <div className={`absolute inset-0 w-full h-full bg-[#333] transition-opacity duration-300 ${isHomeActive ? "opacity-20" : "opacity-0 group-hover:opacity-10"}`}></div>
-                        <div className={`absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#60a5fa] to-transparent transition-all duration-500 ${isHomeActive ? "w-full" : "w-0 group-hover:w-full"}`}></div>
-                        <div className={`w-8 h-8 flex items-center justify-center flex-shrink-0 text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 ${isHomeActive ? "border-blue-500/80 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
+                        <div className={`absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#f472b6] to-transparent transition-all duration-500 ${isHomeActive ? "w-full" : "w-0 group-hover:w-full"}`}></div>
+                        <div className={`w-8 h-8 flex items-center justify-center flex-shrink-0 text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 ${isHomeActive ? "border-rose-500/80 text-pink-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] group-hover:text-pink-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                             <polyline points="9 22 9 12 15 12 15 22" />
                           </svg>
                         </div>
                         <div className={"ml-2 transition-all duration-300 ease-in-out overflow-hidden"} style={{ transitionDelay: isOpen ? "50ms" : "0ms", opacity: isOpen ? 1 : 0 }}>
-                          <span className={`magical-text whitespace-nowrap block text-sm transition-colors duration-300 ${fontClass} ${isHomeActive ? "text-blue-300 drop-shadow-[0_0_4px_rgba(96,165,250,0.5)]" : "group-hover:text-blue-400"}`}>
+                          <span className={`magical-text whitespace-nowrap block text-sm transition-colors duration-300 ${fontClass} ${isHomeActive ? "text-pink-300 drop-shadow-[0_0_4px_rgba(96,165,250,0.5)]" : "group-hover:text-pink-400"}`}>
                             {isOpen && t("sidebar.home").split("").map((char, index) => (
                               <span 
                                 key={index} 
@@ -159,7 +159,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                 {isOpen && (
                   <button 
                     onClick={() => setIsGameOpen(!isGameOpen)}
-                    className="w-5 h-5 flex items-center justify-center text-[#8a8a8a] hover:text-blue-400 transition-colors duration-300 login-fantasy-bg rounded-sm"
+                    className="w-5 h-5 flex items-center justify-center text-[#8a8a8a] hover:text-pink-400 transition-colors duration-300 login-fantasy-bg rounded-sm"
                     aria-label={isGameOpen ? t("sidebar.collapseCreation") : t("sidebar.expandCreation")}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-300 ${isGameOpen ? "rotate-180" : ""}`}>
@@ -171,10 +171,10 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
 
               <div className={`overflow-hidden transition-all duration-300 ${isOpen ? (isGameOpen ? "max-h-20 opacity-100 mt-1" : "max-h-0 opacity-0 mt-0") : "max-h-20 opacity-100 mt-1"} mx-1`}>
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-transparent rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   {!isOpen ? (
                     <Link href="/character-cards" className={`menu-item flex justify-center p-2 rounded-md cursor-pointer transition-all duration-300 ${isGameAreaActive ? "bg-blue-900/30" : "hover:bg-[#252525]"}`}>
-                      <div className={`flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 w-8 h-8 ${isGameAreaActive ? "border-blue-500/80 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] hover:text-blue-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
+                      <div className={`flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 w-8 h-8 ${isGameAreaActive ? "border-rose-500/80 text-pink-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] hover:text-pink-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300">
                           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                           <circle cx="12" cy="7" r="4" />
@@ -183,18 +183,18 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                     </Link>
                   ) : (
                     <Link href="/character-cards" className="focus:outline-none group relative overflow-hidden rounded-md w-full transition-all duration-300">
-                      <div className={`absolute inset-0 transition-opacity duration-300 ${isGameAreaActive ? "bg-gradient-to-br from-blue-500/20 via-blue-500/5 to-transparent opacity-100" : "bg-gradient-to-br from-blue-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100"}`}></div>
+                      <div className={`absolute inset-0 transition-opacity duration-300 ${isGameAreaActive ? "bg-gradient-to-br from-rose-500/20 via-rose-500/5 to-transparent opacity-100" : "bg-gradient-to-br from-rose-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100"}`}></div>
                       <div className="relative flex items-center p-2 w-full transition-all duration-300 z-10">
                         <div className={`absolute inset-0 w-full h-full bg-[#333] transition-opacity duration-300 ${isGameAreaActive ? "opacity-20" : "opacity-0 group-hover:opacity-10"}`}></div>
-                        <div className={`absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#60a5fa] to-transparent transition-all duration-500 ${isGameAreaActive ? "w-full" : "w-0 group-hover:w-full"}`}></div>
-                        <div className={`w-8 h-8 flex items-center justify-center flex-shrink-0 text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 ${isGameAreaActive ? "border-blue-500/80 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
+                        <div className={`absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#f472b6] to-transparent transition-all duration-500 ${isGameAreaActive ? "w-full" : "w-0 group-hover:w-full"}`}></div>
+                        <div className={`w-8 h-8 flex items-center justify-center flex-shrink-0 text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 ${isGameAreaActive ? "border-rose-500/80 text-pink-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] group-hover:text-pink-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                             <circle cx="12" cy="7" r="4" />
                           </svg>
                         </div>
                         <div className={"ml-2 transition-all duration-300 ease-in-out overflow-hidden"} style={{ transitionDelay: isOpen ? "50ms" : "0ms", opacity: isOpen ? 1 : 0 }}>
-                          <span className={`magical-text whitespace-nowrap block text-sm transition-colors duration-300 ${fontClass} ${isGameAreaActive ? "text-blue-300 drop-shadow-[0_0_4px_rgba(96,165,250,0.5)]" : "group-hover:text-blue-400"}`}>
+                          <span className={`magical-text whitespace-nowrap block text-sm transition-colors duration-300 ${fontClass} ${isGameAreaActive ? "text-pink-300 drop-shadow-[0_0_4px_rgba(96,165,250,0.5)]" : "group-hover:text-pink-400"}`}>
                             {isOpen && t("sidebar.characterCards").split("").map((char, index) => (
                               <span 
                                 key={index} 
@@ -221,8 +221,8 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
         </ul>
       </nav>
       <div className="relative mt-auto pt-4 px-2 mb-3 transition-all duration-300 overflow-hidden group/footer">
-        <div className="absolute top-0 left-0 right-0 h-[0.5px] bg-gradient-to-r from-transparent via-[#60a5fa] to-transparent opacity-70"></div>
-        <div className="absolute top-0 left-0 right-0 h-[0.5px] bg-gradient-to-r from-transparent via-[#60a5fa] to-transparent opacity-40 blur-[1px] translate-y-[0.5px]"></div>
+        <div className="absolute top-0 left-0 right-0 h-[0.5px] bg-gradient-to-r from-transparent via-[#f472b6] to-transparent opacity-70"></div>
+        <div className="absolute top-0 left-0 right-0 h-[0.5px] bg-gradient-to-r from-transparent via-[#f472b6] to-transparent opacity-40 blur-[1px] translate-y-[0.5px]"></div>
         <div className="absolute top-[-1px] w-8 h-[2px] bg-gradient-to-r from-transparent via-[#7db3fd] to-transparent opacity-0 group-hover/footer:opacity-80 blur-[1px] transition-all duration-500 ease-in-out" 
           style={{
             left: "-10%",
@@ -249,7 +249,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#242424]/0 to-[#1a1a1a]/0 opacity-0 group-hover:opacity-80 transition-opacity duration-300"></div>
               <div className="relative flex items-center justify-center w-full transition-all duration-300 z-10">
-                <div className={`${isOpen ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#60a5fa] group-hover:text-[#38bdf8] transition-colors duration-300`}>
+                <div className={`${isOpen ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#f472b6] group-hover:text-[#c084fc] transition-colors duration-300`}>
                   <svg xmlns="http://www.w3.org/2000/svg" width={isOpen ? "14" : "16"} height={isOpen ? "14" : "16"} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:scale-110">
                     <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
                     <polyline points="10 17 15 12 10 7" />
@@ -258,7 +258,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                 </div>
                 {isOpen && (
                   <div className="ml-2 transition-all duration-300 ease-in-out overflow-hidden" style={{ transitionDelay: isOpen ? "50ms" : "0ms", opacity: isOpen ? 1 : 0 }}>
-                    <span className={`magical-text whitespace-nowrap block text-xs font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#60a5fa] to-[#38bdf8] ${fontClass}`}>
+                    <span className={`magical-text whitespace-nowrap block text-xs font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#f472b6] to-[#c084fc] ${fontClass}`}>
                       {isOpen && t("sidebar.nologin").split("").map((char, index) => (
                         <span 
                           key={index} 
@@ -278,7 +278,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                 )}
               </div>
               <div className="absolute inset-0 w-full h-full bg-[#333] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <div className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#60a5fa] to-transparent w-0 group-hover:w-full transition-all duration-500"></div>
+              <div className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#f472b6] to-transparent w-0 group-hover:w-full transition-all duration-500"></div>
             </button>
           ) : (
             <button
@@ -287,7 +287,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#242424]/0 to-[#1a1a1a]/0 opacity-0 group-hover:opacity-80 transition-opacity duration-300"></div>
               <div className="relative flex items-center justify-center w-full transition-all duration-300 z-10">
-                <div className={`${isOpen ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#60a5fa] group-hover:text-[#38bdf8] transition-colors duration-300 `}>
+                <div className={`${isOpen ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#f472b6] group-hover:text-[#c084fc] transition-colors duration-300 `}>
                   <svg xmlns="http://www.w3.org/2000/svg" width={isOpen ? "14" : "16"} height={isOpen ? "14" : "16"} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:scale-110">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
@@ -296,7 +296,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                 {isOpen && (
                   <div className="ml-2 transition-all duration-300 ease-in-out overflow-hidden" style={{ transitionDelay: isOpen ? "50ms" : "0ms", opacity: isOpen ? 1 : 0 }}>
                     <div>
-                      <span className={`magical-text whitespace-nowrap block text-xs font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#60a5fa] to-[#38bdf8] ${fontClass}`}>
+                      <span className={`magical-text whitespace-nowrap block text-xs font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#f472b6] to-[#c084fc] ${fontClass}`}>
                         {isOpen && user?.username.split("").map((char, index) => (
                           <span 
                             key={index} 
@@ -314,7 +314,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                       </span>
                     </div>
                     <div className="mt-1">
-                      <span className={`magical-text whitespace-nowrap block text-xs font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#60a5fa] to-[#38bdf8] ${fontClass}`}>
+                      <span className={`magical-text whitespace-nowrap block text-xs font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#f472b6] to-[#c084fc] ${fontClass}`}>
                         {isOpen && t("sidebar.openAccount").split("").map((char, index) => (
                           <span 
                             key={index} 
@@ -335,7 +335,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                 )}
               </div>
               <div className="absolute inset-0 w-full h-full bg-[#333] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <div className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#60a5fa] to-transparent w-0 group-hover:w-full transition-all duration-500"></div>
+              <div className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#f472b6] to-transparent w-0 group-hover:w-full transition-all duration-500"></div>
             </button>
           )}
         </div>

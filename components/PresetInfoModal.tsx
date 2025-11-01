@@ -171,7 +171,7 @@ export default function PresetInfoModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="fantasy-bg bg-opacity-75 border border-[#334155] rounded-xl shadow-2xl p-4 sm:p-6 w-full max-w-lg relative z-10 backdrop-filter backdrop-blur-sm mx-4 max-h-[85vh] overflow-hidden"
+            className="fantasy-bg bg-opacity-75 border border-[#4a3b5c] rounded-xl shadow-2xl p-4 sm:p-6 w-full max-w-lg relative z-10 backdrop-filter backdrop-blur-sm mx-4 max-h-[85vh] overflow-hidden"
           >
             {/* Close button */}
             <button 
@@ -187,7 +187,7 @@ export default function PresetInfoModal({
             {/* Header */}
             <div className="text-center mb-6">
               <div className="flex items-center justify-center mb-3">
-                <div className="w-12 h-12 flex items-center justify-center text-[#5b9cfa] bg-[#1c1c1c] rounded-xl border border-[#334155] shadow-inner">
+                <div className="w-12 h-12 flex items-center justify-center text-[#5b9cfa] bg-[#1c1c1c] rounded-xl border border-[#4a3b5c] shadow-inner">
                   {getPresetIcon(presetName)}
                 </div>
               </div>
@@ -202,7 +202,7 @@ export default function PresetInfoModal({
             {/* Content */}
             <div className="overflow-y-auto max-h-[50vh] space-y-4">
               {/* Description */}
-              <div className="p-4 bg-gradient-to-br from-[#2a261f]/60 via-[#1a1816]/40 to-[#2a261f]/60 rounded-lg border border-[#334155]/50">
+              <div className="p-4 bg-gradient-to-br from-[#2a261f]/60 via-[#1a1816]/40 to-[#2a261f]/60 rounded-lg border border-[#4a3b5c]/50">
                 <h3 className={`text-sm font-medium text-[#e0f2fe] mb-2 ${serifFontClass}`}>
                   {t("presetInfo.description")}
                 </h3>
@@ -212,7 +212,7 @@ export default function PresetInfoModal({
               </div>
 
               {/* Features */}
-              <div className="p-4 bg-gradient-to-br from-[#2a261f]/60 via-[#1a1816]/40 to-[#2a261f]/60 rounded-lg border border-[#334155]/50">
+              <div className="p-4 bg-gradient-to-br from-[#2a261f]/60 via-[#1a1816]/40 to-[#2a261f]/60 rounded-lg border border-[#4a3b5c]/50">
                 <h3 className={`text-sm font-medium text-[#e0f2fe] mb-3 ${serifFontClass}`}>
                   {t("presetInfo.features")}
                 </h3>
@@ -229,16 +229,16 @@ export default function PresetInfoModal({
               </div>
 
               {/* Usage tip */}
-              <div className="p-3 bg-gradient-to-r from-blue-900/20 to-sky-900/20 border border-blue-500/30 rounded-lg">
+              <div className="p-3 bg-gradient-to-r from-blue-900/20 to-sky-900/20 border border-rose-500/30 rounded-lg">
                 <div className="flex items-start">
-                  <div className="w-4 h-4 flex items-center justify-center text-blue-400 mr-2 mt-0.5 flex-shrink-0">
+                  <div className="w-4 h-4 flex items-center justify-center text-pink-400 mr-2 mt-0.5 flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 16v-4" />
                       <path d="M12 8h.01" />
                       <circle cx="12" cy="12" r="10" />
                     </svg>
                   </div>
-                  <p className={`text-xs text-blue-300 leading-relaxed ${fontClass}`}>
+                  <p className={`text-xs text-pink-300 leading-relaxed ${fontClass}`}>
                     {t("presetInfo.tip")}
                   </p>
                 </div>

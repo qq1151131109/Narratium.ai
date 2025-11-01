@@ -625,11 +625,11 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
       <div className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm">
         <div className="relative w-full h-full bg-[#181818] breathing-bg text-[#d0d0d0] flex flex-col">
           {/* Header with close button */}
-          <div className="flex-shrink-0 flex justify-between items-center p-4 border-b border-[#334155] bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a]">
+          <div className="flex-shrink-0 flex justify-between items-center p-4 border-b border-[#4a3b5c] bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a]">
             <h1 className={`text-lg magical-text ${serifFontClass}`}>{t("modelSettings.title")}</h1>
             <button
               onClick={() => {trackButtonClick("ModelSidebar", "关闭模型设置"); toggleSidebar();}}
-              className="w-8 h-8 flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-full border border-[#333333] shadow-inner transition-all duration-300 hover:bg-[#252525] hover:border-[#444444] hover:text-blue-400 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"
+              className="w-8 h-8 flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-full border border-[#333333] shadow-inner transition-all duration-300 hover:bg-[#252525] hover:border-[#444444] hover:text-pink-400 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 6L6 18M6 6l12 12" />
@@ -647,7 +647,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                   </label>
                   <button 
                     onClick={(e) => {trackButtonClick("ModelSidebar", "创建新配置"); handleCreateConfig();}}
-                    className="text-sm text-[#d1a35c] hover:text-[#e0f2fe] transition-all duration-200 px-3 py-2 rounded border border-[#334155] hover:border-[#d1a35c] hover:shadow-[0_0_6px_rgba(209,163,92,0.2)] flex items-center gap-2"
+                    className="text-sm text-[#d1a35c] hover:text-[#e0f2fe] transition-all duration-200 px-3 py-2 rounded border border-[#4a3b5c] hover:border-[#d1a35c] hover:shadow-[0_0_6px_rgba(209,163,92,0.2)] flex items-center gap-2"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 5v14M5 12h14" />
@@ -672,7 +672,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                         className={`flex items-center justify-between p-3 rounded-md cursor-pointer text-sm transition-all duration-200 group ${
                           activeConfigId === config.id 
                             ? "bg-[#3a3632] border border-[#d1a35c] shadow-[0_0_8px_rgba(209,163,92,0.2)]" 
-                            : "bg-[#292929] hover:bg-[#333333] border border-transparent hover:border-[#334155]"
+                            : "bg-[#292929] hover:bg-[#333333] border border-transparent hover:border-[#4a3b5c]"
                         }`}
                         onClick={() => handleSwitchConfig(config.id)}
                         onMouseEnter={() => setIsConfigHovered(true)}
@@ -686,7 +686,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                               onChange={(e) => setEditingName(e.target.value)}
                               onBlur={handleSaveName}
                               onKeyDown={handleKeyDown}
-                              className="bg-[#1c1c1c] border border-[#334155] rounded py-1 px-2 text-sm text-[#e0f2fe] w-full focus:border-[#d1a35c] focus:outline-none"
+                              className="bg-[#1c1c1c] border border-[#4a3b5c] rounded py-1 px-2 text-sm text-[#e0f2fe] w-full focus:border-[#d1a35c] focus:outline-none"
                               onClick={e => e.stopPropagation()}
                               autoFocus
                             />
@@ -722,7 +722,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
               </div>
 
               {!showNewConfigForm && activeConfigId && (
-                <div className="border border-[#334155] rounded-md p-4 mb-4 bg-[#1c1c1c] bg-opacity-50 backdrop-blur-sm">
+                <div className="border border-[#4a3b5c] rounded-md p-4 mb-4 bg-[#1c1c1c] bg-opacity-50 backdrop-blur-sm">
                   <div className="mb-3">
                     <span className="text-sm text-[#8a8a8a]">{t("modelSettings.llmType") || "API Type"}:</span>
                     <span className="ml-2 text-sm text-[#e0f2fe]">{llmType === "openai" ? "OpenAI API" : "Ollama API"}</span>
@@ -760,7 +760,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                           setSaveSuccess(true);
                           setTimeout(() => setSaveSuccess(false), 2000);
                         }}
-                        className="bg-[#292929] border border-[#334155] rounded py-2 px-3 text-[#e0f2fe] text-sm w-full truncate focus:border-[#d1a35c] focus:outline-none transition-colors"
+                        className="bg-[#292929] border border-[#4a3b5c] rounded py-2 px-3 text-[#e0f2fe] text-sm w-full truncate focus:border-[#d1a35c] focus:outline-none transition-colors"
                         style={{ textOverflow: "ellipsis" }}
                       >
                         <option value="" disabled className="truncate">{t("modelSettings.selectModel") || "Select a model..."}</option>
@@ -788,7 +788,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                           setSaveSuccess(true);
                           setTimeout(() => setSaveSuccess(false), 2000);
                         }}
-                        className="bg-[#292929] border border-[#334155] rounded py-2 px-3 text-[#e0f2fe] text-sm w-full focus:border-[#d1a35c] focus:outline-none transition-colors"
+                        className="bg-[#292929] border border-[#4a3b5c] rounded py-2 px-3 text-[#e0f2fe] text-sm w-full focus:border-[#d1a35c] focus:outline-none transition-colors"
                         placeholder={llmType === "openai" ? "gpt-4-turbo, claude-3-opus-20240229..." : "llama3, mistral, mixtral..."}
                       />
                     )}
@@ -807,7 +807,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                       onChange={(e) => {
                         setLlmType(e.target.value as LLMType);
                       }}
-                      className="w-full bg-[#292929] border border-[#334155] rounded py-3 px-3 text-sm text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
+                      className="w-full bg-[#292929] border border-[#4a3b5c] rounded py-3 px-3 text-sm text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
                     >
                       <option value="openai">OpenAI API</option>
                       <option value="ollama">Ollama API</option>
@@ -821,7 +821,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                     <input
                       type="text"
                       id="baseUrl"
-                      className="bg-[#292929] border border-[#334155] rounded w-full py-3 px-3 text-sm text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
+                      className="bg-[#292929] border border-[#4a3b5c] rounded w-full py-3 px-3 text-sm text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
                       placeholder={llmType === "openai" ? "https://api.openai.com/v1" : "http://localhost:11434"}
                       value={baseUrl}
                       onChange={(e) => setBaseUrl(e.target.value)}
@@ -836,7 +836,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                       <input
                         type="text"
                         id="apiKey"
-                        className="bg-[#292929] border border-[#334155] rounded w-full py-3 px-3 text-sm text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
+                        className="bg-[#292929] border border-[#4a3b5c] rounded w-full py-3 px-3 text-sm text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
                         placeholder="sk-..."
                         value={apiKey}
                         onChange={(e) => setApiKey(e.target.value)}
@@ -848,7 +848,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                     <div className="relative">
                       {llmType === "openai" && (
                         <button 
-                          className={`bg-[#3e3a3a] hover:bg-[#334155] text-[#e0f2fe] font-normal py-3 px-4 text-sm rounded-md border border-[#d1a35c] w-full transition-colors magical-text ${fontClass}`} 
+                          className={`bg-[#3e3a3a] hover:bg-[#4a3b5c] text-[#e0f2fe] font-normal py-3 px-4 text-sm rounded-md border border-[#d1a35c] w-full transition-colors magical-text ${fontClass}`} 
                           onClick={() => handleGetModelList(baseUrl, apiKey)}
                         >{t("modelSettings.getModelList") || "Get Model List"}</button>
                       )}
@@ -888,7 +888,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                     <input
                       type="text"
                       id="model"
-                      className="bg-[#292929] border border-[#334155] rounded w-full py-3 px-3 text-sm text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
+                      className="bg-[#292929] border border-[#4a3b5c] rounded w-full py-3 px-3 text-sm text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
                       placeholder={llmType === "openai" ? "gpt-4-turbo, claude-3-opus-20240229..." : "llama3, mistral, mixtral..."}
                       value={model}
                       onChange={(e) => setModel(e.target.value)}
@@ -902,7 +902,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                             trackButtonClick("ModelSidebar", t("modelSettings.selectModel") || "Select a model...");
                             setModel(e.target.value);
                           }}
-                          className="w-full bg-[#292929] border border-[#334155] rounded py-3 px-3 text-[#d0d0d0] text-sm leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
+                          className="w-full bg-[#292929] border border-[#4a3b5c] rounded py-3 px-3 text-[#d0d0d0] text-sm leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
                         >
                           <option value="" disabled className="text-[#8a8a8a]">
                             {t("modelSettings.selectModel") || "Select a model..."}
@@ -924,13 +924,13 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                   <div className="flex gap-3">
                     <button
                       onClick={(e) => {trackButtonClick("ModelSidebar", "创建配置"); e.stopPropagation(); handleSave();}}
-                      className={`flex-1 bg-[#3e3a3a] hover:bg-[#334155] text-[#e0f2fe] font-medium py-3 px-4 text-sm rounded border border-[#d1a35c] transition-colors magical-text ${fontClass}`}
+                      className={`flex-1 bg-[#3e3a3a] hover:bg-[#4a3b5c] text-[#e0f2fe] font-medium py-3 px-4 text-sm rounded border border-[#d1a35c] transition-colors magical-text ${fontClass}`}
                     >
                       {t("modelSettings.createConfig") || "Create Configuration"}
                     </button>
                     <button
                       onClick={() => {trackButtonClick("cancel_create_config_btn", "取消创建配置"); handleCancelCreate();}}
-                      className={`px-4 py-3 bg-[#292929] text-sm text-[#d0d0d0] rounded border border-[#334155] hover:bg-[#333333] transition-colors ${fontClass}`}
+                      className={`px-4 py-3 bg-[#292929] text-sm text-[#d0d0d0] rounded border border-[#4a3b5c] hover:bg-[#333333] transition-colors ${fontClass}`}
                     >
                       {t("common.cancel") || "Cancel"}
                     </button>
@@ -943,7 +943,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                   <div className="relative">
                     <button
                       onClick={(e) => {trackButtonClick("ModelSidebar", "保存配置"); e.stopPropagation(); handleSave();}}
-                      className={`bg-[#3e3a3a] hover:bg-[#334155] text-[#e0f2fe] font-normal py-3 px-4 text-sm rounded-md border border-[#d1a35c] w-full transition-all duration-200 hover:shadow-[0_0_8px_rgba(209,163,92,0.2)] ${fontClass}`}
+                      className={`bg-[#3e3a3a] hover:bg-[#4a3b5c] text-[#e0f2fe] font-normal py-3 px-4 text-sm rounded-md border border-[#d1a35c] w-full transition-all duration-200 hover:shadow-[0_0_8px_rgba(209,163,92,0.2)] ${fontClass}`}
                     >
                       {t("modelSettings.saveSettings") || "Save Settings"}
                     </button>
@@ -966,7 +966,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                     <button
                       onClick={(e) => {trackButtonClick("ModelSidebar", "测试模型"); e.stopPropagation(); handleTestModel();}}
                       disabled={isTesting || !baseUrl || !model}
-                      className={`bg-[#3e3a3a] hover:bg-[#334155] text-[#e0f2fe] font-normal py-3 px-4 text-sm rounded-md border border-[#d1a35c] w-full transition-all duration-200 hover:shadow-[0_0_8px_rgba(209,163,92,0.2)] ${fontClass} disabled:opacity-50 disabled:cursor-not-allowed`}
+                      className={`bg-[#3e3a3a] hover:bg-[#4a3b5c] text-[#e0f2fe] font-normal py-3 px-4 text-sm rounded-md border border-[#d1a35c] w-full transition-all duration-200 hover:shadow-[0_0_8px_rgba(209,163,92,0.2)] ${fontClass} disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
                       {isTesting ? (
                         <span className="flex items-center justify-center">
@@ -1017,7 +1017,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                   </p>
                   <button
                     onClick={(e) => { trackButtonClick("ModelSidebar", "创建第一个配置"); e.stopPropagation(); handleCreateConfig(); }}
-                    className={`bg-[#3e3a3a] hover:bg-[#334155] text-[#e0f2fe] font-normal py-3 px-4 text-sm rounded border border-[#d1a35c] transition-all duration-200 hover:shadow-[0_0_8px_rgba(209,163,92,0.2)] ${fontClass} flex items-center justify-center gap-2`}
+                    className={`bg-[#3e3a3a] hover:bg-[#4a3b5c] text-[#e0f2fe] font-normal py-3 px-4 text-sm rounded border border-[#d1a35c] transition-all duration-200 hover:shadow-[0_0_8px_rgba(209,163,92,0.2)] ${fontClass} flex items-center justify-center gap-2`}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 5v14M5 12h14" />
@@ -1036,15 +1036,15 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
   // Desktop sidebar
   return (
     <div
-      className={`h-full magic-border border-l border-[#334155] breathing-bg text-[#d0d0d0] transition-all duration-300 overflow-hidden ${isOpen ? "w-64" : "w-0"
+      className={`h-full magic-border border-l border-[#4a3b5c] breathing-bg text-[#d0d0d0] transition-all duration-300 overflow-hidden ${isOpen ? "w-64" : "w-0"
       }`}
     >
       <div className={`w-64 h-full ${isOpen ? "opacity-100" : "opacity-0"} transition-opacity duration-300 overflow-y-auto fantasy-scrollbar`}>
-        <div className="flex justify-between items-center p-3 border-b border-[#334155] bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a]">
+        <div className="flex justify-between items-center p-3 border-b border-[#4a3b5c] bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a]">
           <h1 className={`text-base magical-text ${serifFontClass}`}>{t("modelSettings.title")}</h1>
           <button
             onClick={() => {trackButtonClick("ModelSidebar", "关闭模型设置"); toggleSidebar();}}
-            className="w-6 h-6 flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-md border border-[#333333] shadow-inner transition-all duration-300 hover:bg-[#252525] hover:border-[#444444] hover:text-blue-400 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"
+            className="w-6 h-6 flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-md border border-[#333333] shadow-inner transition-all duration-300 hover:bg-[#252525] hover:border-[#444444] hover:text-pink-400 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300">
               <path d="M9 18l6-6-6-6" />
@@ -1059,7 +1059,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
               </label>
               <button 
                 onClick={(e) => {trackButtonClick("ModelSidebar", "创建新配置"); handleCreateConfig();}}
-                className="text-xs sm:text-xs text-[10px] text-[#d1a35c] hover:text-[#e0f2fe] transition-all duration-200 px-2 py-1 sm:px-2 sm:py-1 px-1.5 py-0.5 rounded border border-[#334155] hover:border-[#d1a35c] hover:shadow-[0_0_6px_rgba(209,163,92,0.2)] flex items-center gap-1"
+                className="text-xs sm:text-xs text-[10px] text-[#d1a35c] hover:text-[#e0f2fe] transition-all duration-200 px-2 py-1 sm:px-2 sm:py-1 px-1.5 py-0.5 rounded border border-[#4a3b5c] hover:border-[#d1a35c] hover:shadow-[0_0_6px_rgba(209,163,92,0.2)] flex items-center gap-1"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-2.5 sm:h-2.5 w-2 h-2">
                   <path d="M12 5v14M5 12h14" />
@@ -1085,7 +1085,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                     className={`flex items-center justify-between p-1.5 sm:p-1.5 p-1 rounded-md cursor-pointer text-sm sm:text-sm text-xs transition-all duration-200 group ${
                       activeConfigId === config.id 
                         ? "bg-[#3a3632] border border-[#d1a35c] shadow-[0_0_8px_rgba(209,163,92,0.2)]" 
-                        : "bg-[#292929] hover:bg-[#333333] border border-transparent hover:border-[#334155]"
+                        : "bg-[#292929] hover:bg-[#333333] border border-transparent hover:border-[#4a3b5c]"
                     }`}
                     onClick={() => handleSwitchConfig(config.id)}
                     onMouseEnter={() => setIsConfigHovered(true)}
@@ -1099,7 +1099,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                           onChange={(e) => setEditingName(e.target.value)}
                           onBlur={handleSaveName}
                           onKeyDown={handleKeyDown}
-                          className="bg-[#1c1c1c] border border-[#334155] rounded py-0.5 px-1 sm:py-0.5 sm:px-1 py-0 px-0.5 text-xs sm:text-xs text-[10px] text-[#e0f2fe] w-full focus:border-[#d1a35c] focus:outline-none"
+                          className="bg-[#1c1c1c] border border-[#4a3b5c] rounded py-0.5 px-1 sm:py-0.5 sm:px-1 py-0 px-0.5 text-xs sm:text-xs text-[10px] text-[#e0f2fe] w-full focus:border-[#d1a35c] focus:outline-none"
                           onClick={e => e.stopPropagation()}
                           autoFocus
                         />
@@ -1136,7 +1136,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
           </div>
 
           {!showNewConfigForm && activeConfigId && (
-            <div className="border border-[#334155] rounded-md p-2.5 sm:p-2.5 p-2 mb-3 sm:mb-3 mb-2 bg-[#1c1c1c] bg-opacity-50 backdrop-blur-sm">
+            <div className="border border-[#4a3b5c] rounded-md p-2.5 sm:p-2.5 p-2 mb-3 sm:mb-3 mb-2 bg-[#1c1c1c] bg-opacity-50 backdrop-blur-sm">
               <div className="mb-1.5 sm:mb-1.5 mb-1">
                 <span className="text-xs sm:text-xs text-[10px] text-[#8a8a8a]">{t("modelSettings.llmType") || "API Type"}:</span>
                 <span className="ml-2 text-xs sm:text-xs text-[10px] text-[#e0f2fe]">{llmType === "openai" ? "OpenAI API" : "Ollama API"}</span>
@@ -1174,7 +1174,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                       setSaveSuccess(true);
                       setTimeout(() => setSaveSuccess(false), 2000);
                     }}
-                    className="bg-[#292929] border border-[#334155] rounded py-0.5 px-1.5 sm:py-0.5 sm:px-1.5 py-0 px-1 text-[#e0f2fe] text-xs sm:text-xs text-[10px] max-w-[200px] sm:max-w-[200px] max-w-[150px] truncate focus:border-[#d1a35c] focus:outline-none transition-colors"
+                    className="bg-[#292929] border border-[#4a3b5c] rounded py-0.5 px-1.5 sm:py-0.5 sm:px-1.5 py-0 px-1 text-[#e0f2fe] text-xs sm:text-xs text-[10px] max-w-[200px] sm:max-w-[200px] max-w-[150px] truncate focus:border-[#d1a35c] focus:outline-none transition-colors"
                     style={{ textOverflow: "ellipsis" }}
                   >
                     <option value="" disabled className="truncate">{t("modelSettings.selectModel") || "Select a model..."}</option>
@@ -1202,7 +1202,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                       setSaveSuccess(true);
                       setTimeout(() => setSaveSuccess(false), 2000);
                     }}
-                    className="bg-[#292929] border border-[#334155] rounded py-0.5 px-1.5 sm:py-0.5 sm:px-1.5 py-0 px-1 text-[#e0f2fe] text-xs sm:text-xs text-[10px] max-w-[200px] sm:max-w-[200px] max-w-[150px] focus:border-[#d1a35c] focus:outline-none transition-colors"
+                    className="bg-[#292929] border border-[#4a3b5c] rounded py-0.5 px-1.5 sm:py-0.5 sm:px-1.5 py-0 px-1 text-[#e0f2fe] text-xs sm:text-xs text-[10px] max-w-[200px] sm:max-w-[200px] max-w-[150px] focus:border-[#d1a35c] focus:outline-none transition-colors"
                     placeholder={llmType === "openai" ? "gpt-4-turbo, claude-3-opus-20240229..." : "llama3, mistral, mixtral..."}
                   />
                 )}
@@ -1221,7 +1221,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                   onChange={(e) => {
                     setLlmType(e.target.value as LLMType);
                   }}
-                  className="w-full bg-[#292929] border border-[#334155] rounded py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
+                  className="w-full bg-[#292929] border border-[#4a3b5c] rounded py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
                 >
                   <option value="openai">OpenAI API</option>
                   <option value="ollama">Ollama API</option>
@@ -1235,7 +1235,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                 <input
                   type="text"
                   id="baseUrl"
-                  className="bg-[#292929] border border-[#334155] rounded w-full py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
+                  className="bg-[#292929] border border-[#4a3b5c] rounded w-full py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
                   placeholder={llmType === "openai" ? "https://api.openai.com/v1" : "http://localhost:11434"}
                   value={baseUrl}
                   onChange={(e) => setBaseUrl(e.target.value)}
@@ -1250,7 +1250,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                   <input
                     type="text"
                     id="apiKey"
-                    className="bg-[#292929] border border-[#334155] rounded w-full py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
+                    className="bg-[#292929] border border-[#4a3b5c] rounded w-full py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
                     placeholder="sk-..."
                     value={apiKey}
                     onChange={(e) => setApiKey(e.target.value)}
@@ -1262,7 +1262,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                 <div className="relative">
                   {llmType === "openai" && (
                     <button 
-                      className={`bg-[#3e3a3a] hover:bg-[#334155] text-[#e0f2fe] font-normal py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] rounded-md border border-[#d1a35c] w-full transition-colors magical-text ${fontClass}`} 
+                      className={`bg-[#3e3a3a] hover:bg-[#4a3b5c] text-[#e0f2fe] font-normal py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] rounded-md border border-[#d1a35c] w-full transition-colors magical-text ${fontClass}`} 
                       onClick={() => handleGetModelList(baseUrl, apiKey)}
                     >{t("modelSettings.getModelList") || "Get Model List"}</button>
                   )}
@@ -1302,7 +1302,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                 <input
                   type="text"
                   id="model"
-                  className="bg-[#292929] border border-[#334155] rounded w-full py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
+                  className="bg-[#292929] border border-[#4a3b5c] rounded w-full py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] text-[#d0d0d0] leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
                   placeholder={llmType === "openai" ? "gpt-4-turbo, claude-3-opus-20240229..." : "llama3, mistral, mixtral..."}
                   value={model}
                   onChange={(e) => setModel(e.target.value)}
@@ -1316,7 +1316,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                         trackButtonClick("ModelSidebar", t("modelSettings.selectModel") || "Select a model...");
                         setModel(e.target.value);
                       }}
-                      className="w-full bg-[#292929] border border-[#334155] rounded py-2 px-3 sm:py-2 sm:px-3 py-1.5 px-2 text-[#d0d0d0] text-sm sm:text-sm text-xs leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
+                      className="w-full bg-[#292929] border border-[#4a3b5c] rounded py-2 px-3 sm:py-2 sm:px-3 py-1.5 px-2 text-[#d0d0d0] text-sm sm:text-sm text-xs leading-tight focus:outline-none focus:border-[#d1a35c] transition-colors"
                     >
                       <option value="" disabled className="text-[#8a8a8a]">
                         {t("modelSettings.selectModel") || "Select a model..."}
@@ -1338,14 +1338,14 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
               <div className="flex gap-2 sm:gap-2 gap-1">
                 <button
                   onClick={(e) => {trackButtonClick("ModelSidebar", "创建配置"); e.stopPropagation(); handleSave();}}
-                  className={`flex-1 bg-[#3e3a3a] hover:bg-[#334155] text-[#e0f2fe] font-medium py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] rounded border border-[#d1a35c] transition-colors magical-text ${fontClass}`}
+                  className={`flex-1 bg-[#3e3a3a] hover:bg-[#4a3b5c] text-[#e0f2fe] font-medium py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] rounded border border-[#d1a35c] transition-colors magical-text ${fontClass}`}
                 >
                   <span className="sm:block hidden">{t("modelSettings.createConfig") || "Create Configuration"}</span>
                   <span className="sm:hidden block">Create</span>
                 </button>
                 <button
                   onClick={() => {trackButtonClick("cancel_create_config_btn", "取消创建配置"); handleCancelCreate();}}
-                  className={`px-2 py-1.5 sm:px-2 sm:py-1.5 px-1.5 py-1 bg-[#292929] text-xs sm:text-xs text-[10px] text-[#d0d0d0] rounded border border-[#334155] hover:bg-[#333333] transition-colors ${fontClass}`}
+                  className={`px-2 py-1.5 sm:px-2 sm:py-1.5 px-1.5 py-1 bg-[#292929] text-xs sm:text-xs text-[10px] text-[#d0d0d0] rounded border border-[#4a3b5c] hover:bg-[#333333] transition-colors ${fontClass}`}
                 >
                   {t("common.cancel") || "Cancel"}
                 </button>
@@ -1358,7 +1358,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
               <div className="relative">
                 <button
                   onClick={(e) => {trackButtonClick("ModelSidebar", "保存配置"); e.stopPropagation(); handleSave();}}
-                  className={`bg-[#3e3a3a] hover:bg-[#334155] text-[#e0f2fe] font-normal py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] rounded-md border border-[#d1a35c] w-full transition-all duration-200 hover:shadow-[0_0_8px_rgba(209,163,92,0.2)] ${fontClass}`}
+                  className={`bg-[#3e3a3a] hover:bg-[#4a3b5c] text-[#e0f2fe] font-normal py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] rounded-md border border-[#d1a35c] w-full transition-all duration-200 hover:shadow-[0_0_8px_rgba(209,163,92,0.2)] ${fontClass}`}
                 >
                   {t("modelSettings.saveSettings") || "Save Settings"}
                 </button>
@@ -1381,7 +1381,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
                 <button
                   onClick={(e) => {trackButtonClick("ModelSidebar", "测试模型"); e.stopPropagation(); handleTestModel();}}
                   disabled={isTesting || !baseUrl || !model}
-                  className={`bg-[#3e3a3a] hover:bg-[#334155] text-[#e0f2fe] font-normal py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] rounded-md border border-[#d1a35c] w-full transition-all duration-200 hover:shadow-[0_0_8px_rgba(209,163,92,0.2)] ${fontClass} disabled:opacity-50 disabled:cursor-not-allowed`}
+                  className={`bg-[#3e3a3a] hover:bg-[#4a3b5c] text-[#e0f2fe] font-normal py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] rounded-md border border-[#d1a35c] w-full transition-all duration-200 hover:shadow-[0_0_8px_rgba(209,163,92,0.2)] ${fontClass} disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                   {isTesting ? (
                     <span className="flex items-center justify-center">
@@ -1433,7 +1433,7 @@ export default function ModelSidebar({ isOpen, toggleSidebar }: ModelSidebarProp
               </p>
               <button
                 onClick={(e) => { trackButtonClick("ModelSidebar", "创建第一个配置"); e.stopPropagation(); handleCreateConfig(); }}
-                className={`bg-[#3e3a3a] hover:bg-[#334155] text-[#e0f2fe] font-normal py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] rounded border border-[#d1a35c] transition-all duration-200 hover:shadow-[0_0_8px_rgba(209,163,92,0.2)] ${fontClass} flex items-center justify-center gap-1 w-full max-w-[200px] sm:max-w-[200px] max-w-[150px]`}
+                className={`bg-[#3e3a3a] hover:bg-[#4a3b5c] text-[#e0f2fe] font-normal py-1.5 px-2 sm:py-1.5 sm:px-2 py-1 px-1.5 text-xs sm:text-xs text-[10px] rounded border border-[#d1a35c] transition-all duration-200 hover:shadow-[0_0_8px_rgba(209,163,92,0.2)] ${fontClass} flex items-center justify-center gap-1 w-full max-w-[200px] sm:max-w-[200px] max-w-[150px]`}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-2.5 sm:h-2.5 w-2 h-2">
                   <path d="M12 5v14M5 12h14" />

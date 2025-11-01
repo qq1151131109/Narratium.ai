@@ -88,7 +88,7 @@ export default function MobileBottomNav({ openLoginModal, openAccountModal }: Mo
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
       {/* Background with blur effect */}
-      <div className="absolute inset-0 bg-[#1a1714]/95 backdrop-blur-md border-t border-[#334155]/50"></div>
+      <div className="absolute inset-0 bg-[#1a1714]/95 backdrop-blur-md border-t border-[#4a3b5c]/50"></div>
       
       {/* Navigation items */}
       <div className="relative flex items-center justify-around px-2 py-3">
@@ -97,8 +97,8 @@ export default function MobileBottomNav({ openLoginModal, openAccountModal }: Mo
           href="/"
           className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all duration-300 ${
             isActive("/") 
-              ? "text-[#60a5fa] bg-[#2a231c]/50" 
-              : "text-[#a18d6f] hover:text-[#60a5fa] hover:bg-[#2a231c]/30"
+              ? "text-[#f472b6] bg-[#2a231c]/50" 
+              : "text-[#a18d6f] hover:text-[#f472b6] hover:bg-[#2a231c]/30"
           }`}
         >
           <div className="w-6 h-6 flex items-center justify-center mb-1">
@@ -115,8 +115,8 @@ export default function MobileBottomNav({ openLoginModal, openAccountModal }: Mo
           href="/character-cards"
           className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all duration-300 ${
             isActive("/character-cards") 
-              ? "text-[#60a5fa] bg-[#2a231c]/50" 
-              : "text-[#a18d6f] hover:text-[#60a5fa] hover:bg-[#2a231c]/30"
+              ? "text-[#f472b6] bg-[#2a231c]/50" 
+              : "text-[#a18d6f] hover:text-[#f472b6] hover:bg-[#2a231c]/30"
           }`}
         >
           <div className="w-6 h-6 flex items-center justify-center mb-1">
@@ -133,8 +133,8 @@ export default function MobileBottomNav({ openLoginModal, openAccountModal }: Mo
           href="/creator-input"
           className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all duration-300 ${
             isActive("/creator-input") 
-              ? "text-[#60a5fa] bg-[#2a231c]/50" 
-              : "text-[#a18d6f] hover:text-[#60a5fa] hover:bg-[#2a231c]/30"
+              ? "text-[#f472b6] bg-[#2a231c]/50" 
+              : "text-[#a18d6f] hover:text-[#f472b6] hover:bg-[#2a231c]/30"
           }`}
         >
           <div className="w-6 h-6 flex items-center justify-center mb-1">
@@ -155,8 +155,8 @@ export default function MobileBottomNav({ openLoginModal, openAccountModal }: Mo
           onClick={isAuthenticated ? handleOpenAccount : openLoginModal}
           className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all duration-300 ${
             isAuthenticated 
-              ? "text-[#60a5fa] hover:bg-[#2a231c]/30" 
-              : "text-[#a18d6f] hover:text-[#60a5fa] hover:bg-[#2a231c]/30"
+              ? "text-[#f472b6] hover:bg-[#2a231c]/30" 
+              : "text-[#a18d6f] hover:text-[#f472b6] hover:bg-[#2a231c]/30"
           }`}
         >
           <div className="w-6 h-6 flex items-center justify-center mb-1">

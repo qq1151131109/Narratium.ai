@@ -61,7 +61,7 @@ export function Toast({
     case "warning":
       return {
         borderColor: "border-blue-600",
-        iconColor: "text-blue-300",
+        iconColor: "text-pink-300",
         titleColor: "text-yellow-100",
         messageColor: "text-yellow-200",
         defaultTitle: t("toast.warning") || "Warning",

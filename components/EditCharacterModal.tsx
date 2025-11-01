@@ -151,7 +151,7 @@ const EditCharacterModal: React.FC<EditCharacterModalProps> = ({
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="relative w-full max-w-4xl bg-[#1a1816] border border-[#334155] rounded-lg shadow-xl z-10 overflow-hidden"
+            className="relative w-full max-w-4xl bg-[#1a1816] border border-[#4a3b5c] rounded-lg shadow-xl z-10 overflow-hidden"
           >
             <div className="absolute top-2 right-2 z-20">
               <button
@@ -182,7 +182,7 @@ const EditCharacterModal: React.FC<EditCharacterModalProps> = ({
                     <CharacterAvatarBackground avatarPath={characterData.avatar_path} />
                   ) : (
                     <div className="w-full h-full min-h-[500px] flex items-center justify-center bg-[#252220]">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-32 w-32 text-[#334155]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-32 w-32 text-[#4a3b5c]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
                     </div>
@@ -211,7 +211,7 @@ const EditCharacterModal: React.FC<EditCharacterModalProps> = ({
                       id="character-name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className={`w-full bg-[#252220] border border-[#334155] rounded p-3 text-[#eae6db] focus:outline-none focus:ring-1 focus:ring-[#7db3fd] ${fontClass}`}
+                      className={`w-full bg-[#252220] border border-[#4a3b5c] rounded p-3 text-[#eae6db] focus:outline-none focus:ring-1 focus:ring-[#7db3fd] ${fontClass}`}
                       required
                     />
                   </div>
@@ -228,7 +228,7 @@ const EditCharacterModal: React.FC<EditCharacterModalProps> = ({
                       value={personality}
                       onChange={(e) => setPersonality(e.target.value)}
                       rows={3}
-                      className={`w-full bg-[#252220] border border-[#334155] rounded p-3 text-[#eae6db] focus:outline-none focus:ring-1 focus:ring-[#7db3fd] ${fontClass}`}
+                      className={`w-full bg-[#252220] border border-[#4a3b5c] rounded p-3 text-[#eae6db] focus:outline-none focus:ring-1 focus:ring-[#7db3fd] ${fontClass}`}
                     />
                   </div>
               
@@ -244,7 +244,7 @@ const EditCharacterModal: React.FC<EditCharacterModalProps> = ({
                       value={scenario}
                       onChange={(e) => setScenario(e.target.value)}
                       rows={3}
-                      className={`w-full bg-[#252220] border border-[#334155] rounded p-3 text-[#eae6db] focus:outline-none focus:ring-1 focus:ring-[#7db3fd] ${fontClass}`}
+                      className={`w-full bg-[#252220] border border-[#4a3b5c] rounded p-3 text-[#eae6db] focus:outline-none focus:ring-1 focus:ring-[#7db3fd] ${fontClass}`}
                     />
                   </div>
               
@@ -260,7 +260,7 @@ const EditCharacterModal: React.FC<EditCharacterModalProps> = ({
                       value={firstMessage}
                       onChange={(e) => setFirstMessage(e.target.value)}
                       rows={3}
-                      className={`w-full bg-[#252220] border border-[#334155] rounded p-3 text-[#eae6db] focus:outline-none focus:ring-1 focus:ring-[#7db3fd] ${fontClass}`}
+                      className={`w-full bg-[#252220] border border-[#4a3b5c] rounded p-3 text-[#eae6db] focus:outline-none focus:ring-1 focus:ring-[#7db3fd] ${fontClass}`}
                     />
                   </div>
               
@@ -276,7 +276,7 @@ const EditCharacterModal: React.FC<EditCharacterModalProps> = ({
                       value={creatorComment}
                       onChange={(e) => setCreatorComment(e.target.value)}
                       rows={3}
-                      className={`w-full bg-[#252220] border border-[#334155] rounded p-3 text-[#eae6db] focus:outline-none focus:ring-1 focus:ring-[#7db3fd] ${fontClass}`}
+                      className={`w-full bg-[#252220] border border-[#4a3b5c] rounded p-3 text-[#eae6db] focus:outline-none focus:ring-1 focus:ring-[#7db3fd] ${fontClass}`}
                     />
                   </div>
 
@@ -292,7 +292,7 @@ const EditCharacterModal: React.FC<EditCharacterModalProps> = ({
                       type="submit"
                       disabled={isLoading}
                       onClick={(e) => {trackButtonClick("EditCharacterModal", "保存编辑角色");onClose();}}
-                      className={`text-blue-400 hover:text-blue-300 transition-colors duration-300 ${serifFontClass}`}
+                      className={`text-pink-400 hover:text-pink-300 transition-colors duration-300 ${serifFontClass}`}
                     >
                       {isLoading ? (
                         <div className="h-5 w-5 border-2 border-[#1a1816] border-t-transparent rounded-full animate-spin"></div>

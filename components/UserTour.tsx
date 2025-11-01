@@ -256,7 +256,7 @@ export default function UserTour({ steps, isVisible, onComplete, onSkip }: UserT
       )}
 
       <div
-        className="absolute bg-[#2a261f] border border-[#334155] rounded-lg shadow-2xl p-6 max-w-sm pointer-events-auto transition-all duration-300 opacity-100"
+        className="absolute bg-[#2a261f] border border-[#4a3b5c] rounded-lg shadow-2xl p-6 max-w-sm pointer-events-auto transition-all duration-300 opacity-100"
         style={{
           top: tooltipPosition.top,
           left: tooltipPosition.left,
@@ -282,7 +282,7 @@ export default function UserTour({ steps, isVisible, onComplete, onSkip }: UserT
                 key={index}
                 className={`w-2 h-2 rounded-full ${
                   index === currentStep ? "bg-[#5b9cfa]" : 
-                    index < currentStep ? "bg-[#7db3fd]" : "bg-[#334155]"
+                    index < currentStep ? "bg-[#7db3fd]" : "bg-[#4a3b5c]"
                 }`}
               />
             ))}
@@ -297,7 +297,7 @@ export default function UserTour({ steps, isVisible, onComplete, onSkip }: UserT
             {currentStep > 0 && (
               <button
                 onClick={prevStep}
-                className={`px-3 py-1.5 text-sm bg-[#1a1816] text-[#7db3fd] border border-[#334155] rounded hover:bg-[#252220] hover:text-[#e0f2fe] transition-colors ${serifFontClass}`}
+                className={`px-3 py-1.5 text-sm bg-[#1a1816] text-[#7db3fd] border border-[#4a3b5c] rounded hover:bg-[#252220] hover:text-[#e0f2fe] transition-colors ${serifFontClass}`}
               >
                 {t("tour.previous") || "上一步"}
               </button>

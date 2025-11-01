@@ -40,20 +40,21 @@ export default function HomeContent() {
   return (
     <div className="flex flex-col items-center justify-center h-full login-fantasy-bg relative">
       <div
-        className={`absolute inset-0 z-0 opacity-35 transition-opacity duration-500 ${
-          imagesLoaded ? "opacity-35" : "opacity-0"
+        className={`absolute inset-0 z-0 opacity-15 transition-opacity duration-500 ${
+          imagesLoaded ? "opacity-15" : "opacity-0"
         }`}
         style={{
           backgroundImage: "url('/background_yellow.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
+          filter: "hue-rotate(280deg) saturate(0.7)",
         }}
       />
 
       <div
-        className={`absolute inset-0 z-1 opacity-45 transition-opacity duration-500 ${
-          imagesLoaded ? "opacity-45" : "opacity-0"
+        className={`absolute inset-0 z-1 opacity-20 transition-opacity duration-500 ${
+          imagesLoaded ? "opacity-20" : "opacity-0"
         }`}
         style={{
           backgroundImage: "url('/background_red.png')",
@@ -61,6 +62,7 @@ export default function HomeContent() {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           mixBlendMode: "multiply",
+          filter: "hue-rotate(300deg) saturate(0.8)",
         }}
       />
       <div className="absolute inset-0 pointer-events-none z-10">
@@ -92,18 +94,18 @@ export default function HomeContent() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center max-w-2xl px-4 relative z-20"
       >
-        <h1 className="text-5xl font-cinzel mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-sky-400 to-blue-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
+        <h1 className="text-5xl font-cinzel mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 via-purple-400 to-pink-400 drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]">
         YX-story
         </h1>
         <p
           className={`text-xl mb-12 tracking-wide ${serifFontClass}`}
           style={{
-            background: "linear-gradient(to right, #1e3a8a, #3b82f6, #0ea5e9)",
+            background: "linear-gradient(to right, #db2777, #ec4899, #a855f7)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
             color: "transparent",
-            textShadow: "0 0 2px rgba(59, 130, 246, 0.3)",
+            textShadow: "0 0 2px rgba(236, 72, 153, 0.3)",
           }}
         >
           {t("homePage.slogan")}
@@ -112,8 +114,8 @@ export default function HomeContent() {
         <div className="flex flex-col md:flex-row gap-4 justify-center mt-6">
           <Link href="/character-cards">
             <motion.div
-              className={`portal-button text-[#7db3fd] hover:text-[#7dd3fc] text-sm px-6 py-2 border border-[#334155] rounded-md cursor-pointer ${fontClass} tracking-wide shadow-inner`}
-              whileHover={{ scale: 1.03, backgroundColor: "rgba(30, 41, 59, 0.6)" }}
+              className={`portal-button text-[#f9a8d4] hover:text-[#fbcfe8] text-sm px-6 py-2 border border-[#4a3b5c] rounded-md cursor-pointer ${fontClass} tracking-wide shadow-inner`}
+              whileHover={{ scale: 1.03, backgroundColor: "rgba(45, 27, 46, 0.6)" }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
             >
               {t("homePage.immediatelyStart")}

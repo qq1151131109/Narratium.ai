@@ -629,7 +629,7 @@ export default function CharacterPage() {
         </p>
         <a
           href="/character-cards"
-          className="bg-[#252220] hover:bg-[#342f25] text-[#e0f2fe] font-medium py-2 px-4 rounded border border-[#334155]"
+          className="bg-[#252220] hover:bg-[#342f25] text-[#e0f2fe] font-medium py-2 px-4 rounded border border-[#4a3b5c]"
         >
           {t("characterChat.backToCharacters")}
         </a>

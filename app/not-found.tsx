@@ -62,9 +62,9 @@ export default function NotFound() {
         >
           <div className="mb-8 relative">
             <div className="relative mx-auto w-32 h-32 flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full border-2 border-[#334155] opacity-20"></div>
-              <div className="absolute inset-4 rounded-full border-2 border-[#334155] opacity-30"></div>
-              <div className="absolute inset-8 rounded-full border-2 border-[#334155] opacity-40"></div>
+              <div className="absolute inset-0 rounded-full border-2 border-[#4a3b5c] opacity-20"></div>
+              <div className="absolute inset-4 rounded-full border-2 border-[#4a3b5c] opacity-30"></div>
+              <div className="absolute inset-8 rounded-full border-2 border-[#4a3b5c] opacity-40"></div>
               <span className={`text-5xl font-bold text-[#7db3fd] ${titleFontClass}`}>404</span>
             </div>
           </div>
@@ -83,14 +83,14 @@ export default function NotFound() {
           <div className="flex items-center justify-center space-x-4">
             <Link href="/">
               <motion.div
-                className={`portal-button text-[#7db3fd] hover:text-[#7dd3fc] px-4 py-2 text-sm border border-[#334155] rounded-md cursor-pointer ${fontClass}`}
+                className={`portal-button text-[#7db3fd] hover:text-[#f9a8d4] px-4 py-2 text-sm border border-[#4a3b5c] rounded-md cursor-pointer ${fontClass}`}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 {t("notFound.backToHome")}
               </motion.div>
             </Link>
-            <span className="mx-1 text-[#334155]">•</span>
+            <span className="mx-1 text-[#4a3b5c]">•</span>
             <div className={`text-xs text-[#a18d6f] ${fontClass}`}>
               {t("notFound.exploreMore")}
             </div>

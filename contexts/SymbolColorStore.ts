@@ -20,9 +20,9 @@ export const PREDEFINED_COLORS: Record<string, string[]> = {
   "\"...\"": ["#fda4af", "#fb7185", "#f43f5e", "#e11d48"],
   "*...*": ["#c4b5fd", "#a78bfa", "#8b5cf6", "#7c3aed"],
   "**...**": ["#fb7185", "#f43f5e", "#e11d48", "#be123c"],
-  "[...]": ["#93c5fd", "#60a5fa", "#3b82f6", "#2563eb"],
+  "[...]": ["#fbcfe8", "#f472b6", "#ec4899", "#2563eb"],
   "```...```": ["#86efac", "#4ade80", "#22c55e", "#16a34a"],
-  ">...": ["#93c5fd", "#60a5fa", "#3b82f6", "#2563eb"],
+  ">...": ["#fbcfe8", "#f472b6", "#ec4899", "#2563eb"],
   "[...](...)": ["#67e8f9", "#22d3ee", "#06b6d4", "#0891b2"],
 };
 
@@ -39,9 +39,9 @@ const DEFAULT_SYMBOL_COLORS: SymbolColor[] = [
   { symbol: "\"...\"", color: "#fda4af" },
   { symbol: "*...*", color: "#c4b5fd" },
   { symbol: "**...**", color: "#fb7185" },
-  { symbol: "[...]", color: "#93c5fd" },
+  { symbol: "[...]", color: "#fbcfe8" },
   { symbol: "```...```", color: "#86efac" },
-  { symbol: ">...", color: "#93c5fd" },
+  { symbol: ">...", color: "#fbcfe8" },
   { symbol: "[...](...)", color: "#67e8f9" },
 ];
 

@@ -121,7 +121,7 @@ export default function LoadingTransition({
     }
     
     gsap.to(pathsRef.current, {
-      stroke: "#3b82f6",
+      stroke: "#ec4899",
       strokeWidth: (i: number) => i === 0 ? 2 : 4,
       duration: 0.3,
       ease: "power1.in",
@@ -266,25 +266,27 @@ export default function LoadingTransition({
     <div 
       ref={containerRef}
       className="fixed inset-0 z-50 flex items-center justify-center"
-      style={{ backgroundColor: "#242020FF", overflow: "hidden" }}
+      style={{ backgroundColor: "#2d1b2e", overflow: "hidden" }}
     >
       <div
-        className="absolute inset-0 z-0 opacity-35"
+        className="absolute inset-0 z-0 opacity-15"
         style={{
           backgroundImage: "url('/loading_yellow.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
+          filter: "hue-rotate(280deg) saturate(0.7)",
         }}
       />
       <div
-        className="absolute inset-0 z-1 opacity-45"
+        className="absolute inset-0 z-1 opacity-20"
         style={{
           backgroundImage: "url('/loading_red.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           mixBlendMode: "multiply",
+          filter: "hue-rotate(300deg) saturate(0.8)",
         }}
       />
       <audio  
@@ -350,7 +352,7 @@ export default function LoadingTransition({
             height: "min(10rem, 25vw)",
             borderRadius: "100%",
             background: "rgba(251, 165, 61, 0.1)",
-            border: "2px solid #3b82f6",
+            border: "2px solid #ec4899",
             boxShadow: "0 0 15px rgba(251, 146, 60, 0.5)",
             opacity: 0,
             left: "50%",

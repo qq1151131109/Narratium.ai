@@ -109,7 +109,7 @@ const EditPromptModal = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center animate-fadeIn">
       <div className="absolute inset-0 bg-opacity-70 backdrop-blur-md"></div>
-      <div className={`bg-[#1e1c1b] bg-opacity-85 border border-[#334155] rounded-lg shadow-xl p-6 w-full max-w-lg transform transition-all duration-300 animate-slideUp relative z-10 ${serifFontClass}`}>
+      <div className={`bg-[#1e1c1b] bg-opacity-85 border border-[#4a3b5c] rounded-lg shadow-xl p-6 w-full max-w-lg transform transition-all duration-300 animate-slideUp relative z-10 ${serifFontClass}`}>
         <h3 className="text-xl font-medium text-[#e9c08d] mb-4">
           {t("preset.editPrompt")} - {prompt.name}
         </h3>
@@ -119,7 +119,7 @@ const EditPromptModal = ({
           </label>
           <textarea
             id="promptContent"
-            className="w-full p-3 bg-[#252220] border border-[#334155] rounded-md text-[#eae6db] focus:outline-none focus:border-blue-500 h-40 resize-y fantasy-scrollbar"
+            className="w-full p-3 bg-[#252220] border border-[#4a3b5c] rounded-md text-[#eae6db] focus:outline-none focus:border-rose-500 h-40 resize-y fantasy-scrollbar"
             value={editedContent}
             onChange={(e) => setEditedContent(e.target.value)}
           />
@@ -127,14 +127,14 @@ const EditPromptModal = ({
         <div className="flex justify-end space-x-3">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-gradient-to-r from-[#2a2725] to-[#1e1b19] text-[#a18d6f] rounded-md hover:from-[#353230] hover:to-[#282523] transition-all duration-300 border border-[#334155] shadow-md"
+            className="px-4 py-2 bg-gradient-to-r from-[#2a2725] to-[#1e1b19] text-[#a18d6f] rounded-md hover:from-[#353230] hover:to-[#282523] transition-all duration-300 border border-[#4a3b5c] shadow-md"
             disabled={isSaving}
           >
             {t("preset.cancel")}
           </button>
           <button
             onClick={handleSave}
-            className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-md hover:from-blue-700 hover:to-blue-900 transition-all duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-md hover:from-blue-700 hover:to-blue-900 transition-all duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-opacity-50"
             disabled={isSaving}
           >
             {isSaving ? t("common.saving") : t("common.save")}
