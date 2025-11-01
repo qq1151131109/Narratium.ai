@@ -24,7 +24,6 @@
 
 import { useState, useEffect } from "react";
 import Sidebar from "@/components/Sidebar";
-import ModelSidebar from "@/components/ModelSidebar";
 import SettingsDropdown from "@/components/SettingsDropdown";
 import LoginModal from "@/components/LoginModal";
 import AccountModal from "@/components/AccountModal";
@@ -43,7 +42,6 @@ import "@/app/styles/fantasy-ui.css";
  */
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [modelSidebarOpen, setModelSidebarOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -59,14 +57,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     checkIfMobile();
     
     window.addEventListener("resize", checkIfMobile);
-    
-    // Handle closing model sidebar when character sidebar opens on mobile
-    const handleCloseModelSidebar = () => {
-      setModelSidebarOpen(false);
-    };
 
-    window.addEventListener("closeModelSidebar", handleCloseModelSidebar);
-    
     // Handle opening login modal from other components
     const handleShowLoginModal = () => {
       setIsLoginModalOpen(true);
@@ -98,25 +89,12 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     
     return () => {
       window.removeEventListener("resize", checkIfMobile);
-      window.removeEventListener("closeModelSidebar", handleCloseModelSidebar);
       window.removeEventListener("showLoginModal", handleShowLoginModal);
     };
   }, []);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
-  };
-
-  const toggleModelSidebar = () => {
-    const newModelSidebarState = !modelSidebarOpen;
-    setModelSidebarOpen(newModelSidebarState);
-    
-    // On mobile, when opening ModelSidebar, close CharacterSidebar to prevent conflicts
-    if (isMobile && newModelSidebarState) {
-      // Dispatch custom event to notify character page to close its sidebar
-      const closeCharacterSidebarEvent = new CustomEvent("closeCharacterSidebar");
-      window.dispatchEvent(closeCharacterSidebarEvent);
-    }
   };
 
   if (!mounted) {
@@ -146,22 +124,19 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       <main
         className={`flex-1 h-full overflow-auto transition-all duration-300
             ml-0 ${sidebarOpen ? "md:ml-72" : "md:ml-0"}
-            ${modelSidebarOpen ? "mr-64" : "mr-0"}
             pb-20 md:pb-0
           `}
       >
         <div className="h-full relative">
-          <div className={`absolute top-4 right-4 z-[999] ${isMobile && modelSidebarOpen ? "hidden" : ""}`}>
-            <SettingsDropdown toggleModelSidebar={toggleModelSidebar} />
+          <div className={"absolute top-4 right-4 z-[999]"}>
+            <SettingsDropdown />
           </div>
 
           {children}
         </div>
       </main>
 
-      <div className="fixed right-0 top-0 h-full z-40">
-        <ModelSidebar isOpen={modelSidebarOpen} toggleSidebar={toggleModelSidebar} />
-      </div>
+      {/* ModelSidebar removed - LLM config now in .env */}
 
       {/* Mobile Bottom Navigation */}
       <MobileBottomNav 

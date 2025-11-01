@@ -433,17 +433,12 @@ export default function CharacterPage() {
       setLoadingPhase(t("characterChat.extractingTemplate"));
       const username = getDisplayUsername();
       const language = localStorage.getItem("language") || "zh";
-      const llmType = localStorage.getItem("llmType") || "openai";
-      const modelName =
-        localStorage.getItem(
-          llmType === "openai" ? "openaiModel" : "ollamaModel",
-        ) || "";
-      const baseUrl =
-        localStorage.getItem(
-          llmType === "openai" ? "openaiBaseUrl" : "ollamaBaseUrl",
-        ) || "";
-      const apiKey =
-        llmType === "openai" ? localStorage.getItem("openaiApiKey") || "" : "";
+
+      // Load LLM config from environment variables
+      const llmType = (process.env.NEXT_PUBLIC_CHAT_LLM_TYPE || "openai") as "openai" | "ollama";
+      const modelName = process.env.NEXT_PUBLIC_CHAT_LLM_MODEL || "";
+      const baseUrl = process.env.NEXT_PUBLIC_CHAT_LLM_BASE_URL || "";
+      const apiKey = process.env.NEXT_PUBLIC_CHAT_LLM_API_KEY || "";
 
       const initData = await initCharacterDialogue({
         username,
@@ -451,7 +446,7 @@ export default function CharacterPage() {
         modelName,
         baseUrl,
         apiKey,
-        llmType: llmType as "openai" | "ollama",
+        llmType,
         language: language as "zh" | "en",
       });
 
@@ -490,17 +485,13 @@ export default function CharacterPage() {
       setMessages((prev) => [...prev, userMessage]);
 
       const language = localStorage.getItem("language") || "zh";
-      const llmType = localStorage.getItem("llmType") || "openai";
-      const modelName =
-        localStorage.getItem(
-          llmType === "openai" ? "openaiModel" : "ollamaModel",
-        ) || "";
-      const baseUrl =
-        localStorage.getItem(
-          llmType === "openai" ? "openaiBaseUrl" : "ollamaBaseUrl",
-        ) || "";
-      const apiKey =
-        llmType === "openai" ? localStorage.getItem("openaiApiKey") || "" : "";
+
+      // Load LLM config from environment variables
+      const llmType = (process.env.NEXT_PUBLIC_CHAT_LLM_TYPE || "openai") as "openai" | "ollama";
+      const modelName = process.env.NEXT_PUBLIC_CHAT_LLM_MODEL || "";
+      const baseUrl = process.env.NEXT_PUBLIC_CHAT_LLM_BASE_URL || "";
+      const apiKey = process.env.NEXT_PUBLIC_CHAT_LLM_API_KEY || "";
+
       const storedNumber = localStorage.getItem("responseLength");
       const username = getDisplayUsername();
       const responseLength = storedNumber ? parseInt(storedNumber) : 200;

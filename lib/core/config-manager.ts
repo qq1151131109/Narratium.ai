@@ -101,45 +101,42 @@ export class ConfigManager {
  */
 
 /**
- * Load configuration from localStorage
- * This function should be called from the UI layer
+ * Load configuration from environment variables
+ * This replaces the localStorage-based configuration
  */
-export function loadConfigFromLocalStorage(): LLMConfig {
+export function loadConfigFromEnv(): LLMConfig {
   try {
-    const llmType = localStorage.getItem("llmType") as "openai" | "ollama" | null;
-    const openaiModel = localStorage.getItem("openaiModel");
-    const ollamaModel = localStorage.getItem("ollamaModel");
-    const openaiApiKey = localStorage.getItem("openaiApiKey");
-    const openaiBaseUrl = localStorage.getItem("openaiBaseUrl");
-    const ollamaBaseUrl = localStorage.getItem("ollamaBaseUrl");
-    const temperature = localStorage.getItem("temperature");
-    const maxTokens = localStorage.getItem("maxTokens");
-    const tavilyApiKey = localStorage.getItem("tavilyApiKey");
-    const jinaApiKey = localStorage.getItem("jinaApiKey");
-    const falApiKey = localStorage.getItem("falApiKey");
+    const llmType = (process.env.NEXT_PUBLIC_CHAT_LLM_TYPE || "openai") as "openai" | "ollama";
+    const modelName = process.env.NEXT_PUBLIC_CHAT_LLM_MODEL || "";
+    const apiKey = process.env.NEXT_PUBLIC_CHAT_LLM_API_KEY || "";
+    const baseUrl = process.env.NEXT_PUBLIC_CHAT_LLM_BASE_URL || "";
+    const tavilyApiKey = process.env.NEXT_PUBLIC_TAVILY_API_KEY || "";
+    const jinaApiKey = process.env.NEXT_PUBLIC_JINA_API_KEY || "";
+    const falApiKey = process.env.NEXT_PUBLIC_FAL_API_KEY || "";
 
     const config: LLMConfig = {
-      llm_type: llmType || "openai",
-      model_name: llmType === "openai" ? openaiModel || "" : ollamaModel || "",
-      api_key: openaiApiKey || process.env.OPENAI_API_KEY || "",
-      base_url: llmType === "openai" ? openaiBaseUrl || "" : ollamaBaseUrl || "",
-      temperature: temperature ? parseFloat(temperature) : 0.7,
-      max_tokens: maxTokens ? parseInt(maxTokens) : 4000,
-      tavily_api_key: tavilyApiKey || process.env.NEXT_PUBLIC_TAVILY_API_KEY || "",
-      jina_api_key: jinaApiKey || process.env.NEXT_PUBLIC_JINA_API_KEY || "",
-      fal_api_key: falApiKey || process.env.NEXT_PUBLIC_FAL_API_KEY || "",
+      llm_type: llmType,
+      model_name: modelName,
+      api_key: apiKey,
+      base_url: baseUrl,
+      temperature: 0.7,
+      max_tokens: 4000,
+      tavily_api_key: tavilyApiKey,
+      jina_api_key: jinaApiKey,
+      fal_api_key: falApiKey,
     };
-    
-    // Debug: Log configuration loading
-    console.log("Config loaded from localStorage:", {
-      tavilyFromStorage: tavilyApiKey ? "***has value***" : "empty",
-      tavilyFromEnv: process.env.NEXT_PUBLIC_TAVILY_API_KEY ? "***has value***" : "empty",
-      finalTavily: config.tavily_api_key ? "***configured***" : "missing",
+
+    console.log("Config loaded from environment:", {
+      llmType,
+      model: modelName ? "***configured***" : "missing",
+      apiKey: apiKey ? "***configured***" : "missing",
+      baseUrl: baseUrl ? "***configured***" : "missing",
+      tavily: tavilyApiKey ? "***configured***" : "missing",
     });
-    
+
     return config;
   } catch (error) {
-    console.warn("Failed to load configuration from localStorage:", error);
+    console.warn("Failed to load configuration from environment:", error);
     return {
       llm_type: "openai",
       model_name: "",
@@ -151,6 +148,15 @@ export function loadConfigFromLocalStorage(): LLMConfig {
       fal_api_key: "",
     };
   }
+}
+
+/**
+ * Load configuration from localStorage (DEPRECATED - for backward compatibility only)
+ * This function should be called from the UI layer
+ */
+export function loadConfigFromLocalStorage(): LLMConfig {
+  // Now just load from environment variables
+  return loadConfigFromEnv();
 }
 
 /**

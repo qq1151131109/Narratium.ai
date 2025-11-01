@@ -1399,12 +1399,13 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
     if (selectedNode && characterId) {
       setIsSaving(true);
       try {
-        const modelName = localStorage.getItem("modelName") || "";
-        const apiKey = localStorage.getItem("apiKey") || "";
-        const baseUrl = localStorage.getItem("modelBaseUrl") || "";
-        const llmType = localStorage.getItem("llmType") || "openai";
+        // Load LLM config from environment variables
+        const llmType = process.env.NEXT_PUBLIC_CHAT_LLM_TYPE || "openai";
+        const modelName = process.env.NEXT_PUBLIC_CHAT_LLM_MODEL || "";
+        const apiKey = process.env.NEXT_PUBLIC_CHAT_LLM_API_KEY || "";
+        const baseUrl = process.env.NEXT_PUBLIC_CHAT_LLM_BASE_URL || "";
         const language = localStorage.getItem("language") || "zh";
-        
+
         const response = await editDialaogueNodeContent({
           characterId: characterId,
           nodeId: selectedNode.id,

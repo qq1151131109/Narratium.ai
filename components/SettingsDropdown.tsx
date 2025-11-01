@@ -9,10 +9,10 @@ import { backupToGoogle, getFolderList, getGoogleCodeByUrl, getGoogleLoginUrl, g
 import PluginManagerModal from "@/components/PluginManagerModal";
 
 interface SettingsDropdownProps {
-  toggleModelSidebar: () => void;
+  // toggleModelSidebar removed - LLM config now in .env
 }
 
-export default function SettingsDropdown({ toggleModelSidebar }: SettingsDropdownProps) {
+export default function SettingsDropdown({}: SettingsDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPluginManagerOpen, setIsPluginManagerOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -37,11 +37,6 @@ export default function SettingsDropdown({ toggleModelSidebar }: SettingsDropdow
     const newLanguage = language === "zh" ? "en" : "zh";
     setLanguage(newLanguage);
     document.documentElement.lang = newLanguage;
-  };
-
-  const openModelSettings = () => {
-    toggleModelSidebar();
-    setIsOpen(false);
   };
 
   const openPluginManager = () => {
@@ -160,19 +155,9 @@ export default function SettingsDropdown({ toggleModelSidebar }: SettingsDropdow
               </svg>
               {language === "zh" ? t("common.switchToEnglish") : t("common.switchToChinese")}
             </button>
-            
-            <button
-              onClick={openModelSettings}
-              className="flex items-center w-full px-4 py-2 text-sm text-[#f4e8c1] hover:bg-[#252525] transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="3" y1="9" x2="21" y2="9"></line>
-                <line x1="9" y1="21" x2="9" y2="9"></line>
-              </svg>
-              {t("modelSettings.title")}
-            </button>
-            
+
+            {/* Model Settings removed - LLM config now in .env */}
+
             <button
               onClick={openPluginManager}
               className="flex items-center w-full px-4 py-2 text-sm text-[#f4e8c1] hover:bg-[#252525] transition-colors"
