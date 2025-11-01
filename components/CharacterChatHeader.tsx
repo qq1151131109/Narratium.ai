@@ -80,20 +80,20 @@ export default function CharacterChatHeader({
   }, []);
 
   return (
-    <div className="bg-[#1a1816] border-b border-[#534741] p-4 flex items-center">
+    <div className="bg-[#1a1816] border-b border-[#334155] p-4 flex items-center">
       {sidebarCollapsed && (
         <button
           onClick={() => {
             trackButtonClick("page", "切换侧边栏");
             toggleSidebar();
           }}
-          className="relative group ml-3 mr-3 px-3 py-1.5 rounded-lg bg-gradient-to-br from-[#2a2826] via-[#1e1c1b] to-[#252220] border border-[#534741]/60 hover:border-[#666]/70 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/20 overflow-hidden"
+          className="relative group ml-3 mr-3 px-3 py-1.5 rounded-lg bg-gradient-to-br from-[#2a2826] via-[#1e1c1b] to-[#252220] border border-[#334155]/60 hover:border-[#666]/70 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20 overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-transparent to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-sky-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
 
-          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-amber-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
 
-          <div className="relative z-5 text-[#a18d6f] group-hover:text-amber-300 transition-all duration-300 flex items-center justify-center cursor-pointer">
+          <div className="relative z-5 text-[#a18d6f] group-hover:text-blue-300 transition-all duration-300 flex items-center justify-center cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -140,12 +140,12 @@ export default function CharacterChatHeader({
                 />
               </circle>
             </svg>
-            <span className={`ml-2 text-xs ${fontClass} group-hover:text-amber-300 transition-colors duration-300`}>
+            <span className={`ml-2 text-xs ${fontClass} group-hover:text-blue-300 transition-colors duration-300`}>
               {t("characterChat.expandSidebar")}
             </span>
           </div>
 
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-[1px] bg-gradient-to-r from-transparent via-amber-400 to-transparent group-hover:w-3/4 transition-all duration-500"></div>
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-[1px] bg-gradient-to-r from-transparent via-blue-400 to-transparent group-hover:w-3/4 transition-all duration-500"></div>
         </button>
       )}
 
@@ -158,7 +158,7 @@ export default function CharacterChatHeader({
               <div className="w-full h-full flex items-center justify-center bg-[#252220]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 md:h-5 md:w-5 text-[#534741]"
+                  className="h-4 w-4 md:h-5 md:w-5 text-[#334155]"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

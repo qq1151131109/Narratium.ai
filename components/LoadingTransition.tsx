@@ -121,7 +121,7 @@ export default function LoadingTransition({
     }
     
     gsap.to(pathsRef.current, {
-      stroke: "#fba53d",
+      stroke: "#3b82f6",
       strokeWidth: (i: number) => i === 0 ? 2 : 4,
       duration: 0.3,
       ease: "power1.in",
@@ -156,8 +156,8 @@ export default function LoadingTransition({
     });
 
     gsap.to(progressBarFillRef.current, {
-      background: "linear-gradient(90deg, rgba(255,215,0,0.4) 0%, rgba(255,215,0,0.8) 50%, rgba(255,215,0,0.4) 100%)",
-      boxShadow: "0 0 8px rgba(255,215,0,0.6)",
+      background: "linear-gradient(90deg, rgba(125,179,253,0.4) 0%, rgba(125,179,253,0.8) 50%, rgba(125,179,253,0.4) 100%)",
+      boxShadow: "0 0 8px rgba(125,179,253,0.6)",
       duration: timeline.duration(),
       ease: "power2.inOut",
     });
@@ -350,7 +350,7 @@ export default function LoadingTransition({
             height: "min(10rem, 25vw)",
             borderRadius: "100%",
             background: "rgba(251, 165, 61, 0.1)",
-            border: "2px solid #fba53d",
+            border: "2px solid #3b82f6",
             boxShadow: "0 0 15px rgba(251, 146, 60, 0.5)",
             opacity: 0,
             left: "50%",
@@ -393,8 +393,8 @@ export default function LoadingTransition({
             style={{
               width: "0%",
               height: "100%",
-              background: "linear-gradient(90deg, rgba(251,146,60,0.4) 0%, rgba(251,146,60,0.8) 50%, rgba(251,146,60,0.4) 100%)",
-              boxShadow: "0 0 8px rgba(251,146,60,0.6)",
+              background: "linear-gradient(90deg, rgba(59,130,246,0.4) 0%, rgba(59,130,246,0.8) 50%, rgba(59,130,246,0.4) 100%)",
+              boxShadow: "0 0 8px rgba(59,130,246,0.6)",
               borderRadius: "4px",
             }}
           ></div>
@@ -404,7 +404,7 @@ export default function LoadingTransition({
           style={{
             position: "absolute",
             bottom: "5%",
-            color: "#ffd76a",
+            color: "#7db3fd",
             fontSize: "clamp(0.8rem, 3vw, 1.2rem)",
             fontFamily: "var(--font-cinzel)",
             textAlign: "center",
@@ -413,7 +413,7 @@ export default function LoadingTransition({
             left: "50%",
             transform: "translate(-50%, -50%)",
             whiteSpace: "nowrap",
-            textShadow: "0 0 5px rgba(255,215,0,0.7)",
+            textShadow: "0 0 5px rgba(125,179,253,0.7)",
             padding: "0 1rem",
             maxWidth: "90vw",
             overflow: "hidden",

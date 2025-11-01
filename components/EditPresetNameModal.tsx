@@ -83,12 +83,12 @@ export default function EditPresetNameModal({
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-md mx-4 bg-gradient-to-br from-[#1a1816] via-[#252220] to-[#1a1816] rounded-lg border border-[#534741] shadow-2xl">
+      <div className="relative w-full max-w-md mx-4 bg-gradient-to-br from-[#1a1816] via-[#252220] to-[#1a1816] rounded-lg border border-[#334155] shadow-2xl">
         {/* Header */}
-        <div className="p-4 border-b border-[#534741] bg-gradient-to-r from-amber-500/5 to-transparent">
+        <div className="p-4 border-b border-[#334155] bg-gradient-to-r from-blue-500/5 to-transparent">
           <div className="flex items-center justify-between">
             <h3 className={`text-lg font-medium text-[#eae6db] ${serifFontClass}`}>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-500 via-orange-400 to-yellow-300">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-sky-400 to-sky-200">
                 {t("preset.editPresetName")}
               </span>
             </h3>
@@ -118,9 +118,9 @@ export default function EditPresetNameModal({
               placeholder={t("preset.presetNamePlaceholder")}
               disabled={isUpdating}
               className={`w-full px-3 py-2 bg-gradient-to-br from-[#1a1816] via-[#252220] to-[#1a1816] 
-                text-[#eae6db] rounded-md border border-[#534741] 
-                focus:border-amber-500/60 focus:outline-none focus:ring-2 focus:ring-amber-500/20 
-                transition-all duration-300 hover:border-[#534741] backdrop-blur-sm
+                text-[#eae6db] rounded-md border border-[#334155] 
+                focus:border-blue-500/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 
+                transition-all duration-300 hover:border-[#334155] backdrop-blur-sm
                 shadow-inner ${fontClass}
                 disabled:opacity-50 disabled:cursor-not-allowed`}
               autoFocus
@@ -138,8 +138,8 @@ export default function EditPresetNameModal({
               disabled={isUpdating}
               className={`px-4 py-2 text-sm font-medium text-[#a18d6f] hover:text-[#eae6db] 
                 bg-gradient-to-br from-[#1a1816] via-[#252220] to-[#1a1816] 
-                border border-[#534741] rounded-md 
-                hover:border-[#534741] transition-all duration-300 backdrop-blur-sm
+                border border-[#334155] rounded-md 
+                hover:border-[#334155] transition-all duration-300 backdrop-blur-sm
                 disabled:opacity-50 disabled:cursor-not-allowed ${fontClass}`}
             >
               {t("preset.cancel")}

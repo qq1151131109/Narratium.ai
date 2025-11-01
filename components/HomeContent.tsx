@@ -66,12 +66,12 @@ export default function HomeContent() {
       <div className="absolute inset-0 pointer-events-none z-10">
         <div className="absolute top-10 left-10 opacity-5">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L15 8H21L16 12L18 18L12 14L6 18L8 12L3 8H9L12 2Z" fill="#f9c86d" />
+            <path d="M12 2L15 8H21L16 12L18 18L12 14L6 18L8 12L3 8H9L12 2Z" fill="#5b9cfa" />
           </svg>
         </div>
         <div className="absolute top-20 right-20 opacity-5">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 0L12 6H18L13 10L15 16L10 12L5 16L7 10L2 6H8L10 0Z" fill="#f9c86d" />
+            <path d="M10 0L12 6H18L13 10L15 16L10 12L5 16L7 10L2 6H8L10 0Z" fill="#5b9cfa" />
           </svg>
         </div>
         <div className="absolute bottom-20 left-1/4 opacity-5">
@@ -98,7 +98,7 @@ export default function HomeContent() {
         <p
           className={`text-xl mb-12 tracking-wide ${serifFontClass}`}
           style={{
-            background: "linear-gradient(to right, #82652EFF, #DCAA22FF, #D80909FF)",
+            background: "linear-gradient(to right, #1e3a8a, #3b82f6, #0ea5e9)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
@@ -112,7 +112,7 @@ export default function HomeContent() {
         <div className="flex flex-col md:flex-row gap-4 justify-center mt-6">
           <Link href="/character-cards">
             <motion.div
-              className={`portal-button text-[#c0a480] hover:text-[#ffd475] text-sm px-6 py-2 border border-[#534741] rounded-md cursor-pointer ${fontClass} tracking-wide shadow-inner`}
+              className={`portal-button text-[#7db3fd] hover:text-[#ffd475] text-sm px-6 py-2 border border-[#334155] rounded-md cursor-pointer ${fontClass} tracking-wide shadow-inner`}
               whileHover={{ scale: 1.03, backgroundColor: "rgba(40, 35, 30, 0.6)" }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
             >

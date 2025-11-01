@@ -98,7 +98,7 @@ const CharacterCardGrid: React.FC<CharacterCardGridProps> = ({
                 {/* move character to top of the screen */}
                 <button
                   onClick={(e) => {e.stopPropagation(); trackButtonClick("move_to_top_character_btn", "置顶角色"); onMoveToTopClick(character.id);}}
-                  className="p-2 sm:p-1.5 bg-[#252220] hover:bg-[#3a2a2a] rounded-full text-[#c0a480] hover:text-[#ffd475] transition-colors"
+                  className="p-2 sm:p-1.5 bg-[#252220] hover:bg-[#3a2a2a] rounded-full text-[#7db3fd] hover:text-[#ffd475] transition-colors"
                   title={t("characterCardsPage.move_to_top")}
                   aria-label={t("characterCardsPage.move_to_top")}
                 >
@@ -110,7 +110,7 @@ const CharacterCardGrid: React.FC<CharacterCardGridProps> = ({
                 </button>
                 <button
                   onClick={(e) => {trackButtonClick("edit_character_btn", "编辑角色"); onEditClick(character, e);}}
-                  className="p-2 sm:p-1.5 bg-[#252220] hover:bg-[#3a2a2a] rounded-full text-[#c0a480] hover:text-[#ffd475] transition-colors"
+                  className="p-2 sm:p-1.5 bg-[#252220] hover:bg-[#3a2a2a] rounded-full text-[#7db3fd] hover:text-[#ffd475] transition-colors"
                   title={t("characterCardsPage.edit")}
                   aria-label={t("characterCardsPage.edit")}
                 >
@@ -125,7 +125,7 @@ const CharacterCardGrid: React.FC<CharacterCardGridProps> = ({
                     e.stopPropagation();
                     onDeleteClick(character.id);
                   }}
-                  className="p-2 sm:p-1.5 bg-[#252220] hover:bg-[#3a2a2a] rounded-full text-[#c0a480] hover:text-[#ffd475] transition-colors"
+                  className="p-2 sm:p-1.5 bg-[#252220] hover:bg-[#3a2a2a] rounded-full text-[#7db3fd] hover:text-[#ffd475] transition-colors"
                   title={t("characterCardsPage.delete")}
                   aria-label={t("characterCardsPage.delete")}
                 >
@@ -146,7 +146,7 @@ const CharacterCardGrid: React.FC<CharacterCardGridProps> = ({
                     <CharacterAvatarBackground avatarPath={character.avatar_path} />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-[#252220]">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 sm:h-24 sm:w-24 text-[#534741]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 sm:h-24 sm:w-24 text-[#334155]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
                     </div>

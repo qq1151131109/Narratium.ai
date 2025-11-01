@@ -31,8 +31,8 @@ function HomeLoading() {
     <div className="flex flex-col items-center justify-center h-full login-fantasy-bg relative">
       <div className="relative z-20 flex justify-center items-center h-screen">
         <div className="relative w-16 h-16">
-          <div className="absolute inset-0 rounded-full border-2 border-t-[#f9c86d] border-r-[#c0a480] border-b-[#a18d6f] border-l-transparent animate-spin"></div>
-          <div className="absolute inset-2 rounded-full border-2 border-t-[#a18d6f] border-r-[#f9c86d] border-b-[#c0a480] border-l-transparent animate-spin-slow"></div>
+          <div className="absolute inset-0 rounded-full border-2 border-t-[#5b9cfa] border-r-[#7db3fd] border-b-[#a18d6f] border-l-transparent animate-spin"></div>
+          <div className="absolute inset-2 rounded-full border-2 border-t-[#a18d6f] border-r-[#5b9cfa] border-b-[#7db3fd] border-l-transparent animate-spin-slow"></div>
         </div>
       </div>
     </div>

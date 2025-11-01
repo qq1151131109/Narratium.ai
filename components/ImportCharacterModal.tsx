@@ -244,17 +244,17 @@ export default function ImportCharacterModal({ isOpen, onClose, onImport }: Impo
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="bg-[#1e1c1b] bg-opacity-75 border border-[#534741] rounded-lg shadow-xl w-full max-w-md relative z-10 overflow-hidden fantasy-bg backdrop-filter backdrop-blur-sm"
+            className="bg-[#1e1c1b] bg-opacity-75 border border-[#334155] rounded-lg shadow-xl w-full max-w-md relative z-10 overflow-hidden fantasy-bg backdrop-filter backdrop-blur-sm"
           >
             <div className="p-6">
               <h2 className={`text-xl text-[#eae6db] mb-4 ${serifFontClass}`}>{t("importCharacterModal.title")}</h2>
               
-              <p className={`text-[#c0a480] mb-6 text-sm ${fontClass}`}>
+              <p className={`text-[#7db3fd] mb-6 text-sm ${fontClass}`}>
                 {t("importCharacterModal.description")}
               </p>
               
               <div
-                className={`border-2 border-dashed rounded-lg p-8 mb-4 text-center transition-colors duration-300 ${isDragging ? "border-[#f9c86d] bg-[#252220]" : "border-[#534741] hover:border-[#a18d6f]"}`}
+                className={`border-2 border-dashed rounded-lg p-8 mb-4 text-center transition-colors duration-300 ${isDragging ? "border-[#5b9cfa] bg-[#252220]" : "border-[#334155] hover:border-[#a18d6f]"}`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
@@ -270,7 +270,7 @@ export default function ImportCharacterModal({ isOpen, onClose, onImport }: Impo
                 />
                 
                 <div className="flex flex-col items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className={`w-12 h-12 mb-3 ${selectedFiles.length > 0 ? "text-[#f9c86d]" : "text-[#a18d6f]"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className={`w-12 h-12 mb-3 ${selectedFiles.length > 0 ? "text-[#5b9cfa]" : "text-[#a18d6f]"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
                   
@@ -289,7 +289,7 @@ export default function ImportCharacterModal({ isOpen, onClose, onImport }: Impo
                           </p>
                           <div className="mt-2 max-h-16 overflow-y-auto text-xs space-y-1">
                             {selectedFiles.slice(0, 3).map((file, index) => (
-                              <p key={index} className="text-[#c0a480] truncate">{file.name}</p>
+                              <p key={index} className="text-[#7db3fd] truncate">{file.name}</p>
                             ))}
                             {selectedFiles.length > 3 && (
                               <p className="text-[#a18d6f]">... and {selectedFiles.length - 3} more</p>
@@ -317,7 +317,7 @@ export default function ImportCharacterModal({ isOpen, onClose, onImport }: Impo
               <div className="flex justify-end space-x-3">
                 <button
                   onClick={handleClose}
-                  className={`px-4 py-2 text-[#c0a480] hover:text-[#ffd475] transition-colors ${fontClass}`}
+                  className={`px-4 py-2 text-[#7db3fd] hover:text-[#ffd475] transition-colors ${fontClass}`}
                 >
                   {t("common.cancel")}  
                 </button>
@@ -325,11 +325,11 @@ export default function ImportCharacterModal({ isOpen, onClose, onImport }: Impo
                 <button
                   onClick={(e) => {trackButtonClick("ImportCharacterModal", "导入角色");handleUpload();}}
                   disabled={selectedFiles.length === 0 || isUploading}
-                  className={`px-4 py-2 bg-[#252220] hover:bg-[#3a2a2a] border border-[#534741] rounded-md text-[#f9c86d] transition-colors ${fontClass} ${(selectedFiles.length === 0 || isUploading) ? "opacity-50 cursor-not-allowed" : ""}`}
+                  className={`px-4 py-2 bg-[#252220] hover:bg-[#3a2a2a] border border-[#334155] rounded-md text-[#5b9cfa] transition-colors ${fontClass} ${(selectedFiles.length === 0 || isUploading) ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   {isUploading ? (
                     <div className="flex items-center">
-                      <div className="w-4 h-4 mr-2 rounded-full border-2 border-t-[#f9c86d] border-r-[#c0a480] border-b-[#a18d6f] border-l-transparent animate-spin"></div>
+                      <div className="w-4 h-4 mr-2 rounded-full border-2 border-t-[#5b9cfa] border-r-[#7db3fd] border-b-[#a18d6f] border-l-transparent animate-spin"></div>
                       {selectedFiles.length > 1 
                         ? `${t("importCharacterModal.uploading")} (${selectedFiles.length} files)`
                         : t("importCharacterModal.uploading")

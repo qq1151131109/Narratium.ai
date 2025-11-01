@@ -502,7 +502,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
       <motion.div 
         initial={{ scale: 0.95, opacity: 0 }} 
         animate={{ scale: 1, opacity: 1 }} 
-        className={`bg-[#1a1714] rounded-lg shadow-2xl w-full border border-[#534741] relative z-10 ${
+        className={`bg-[#1a1714] rounded-lg shadow-2xl w-full border border-[#334155] relative z-10 ${
           isMobile 
             ? "h-full max-h-[calc(100vh-12rem)] p-3 rounded-none pb-28" 
             : "p-6 max-w-6xl max-h-[90vh] rounded-lg"
@@ -546,7 +546,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                 }
               }}
               disabled={loading}
-              className={`group p-2 rounded-full text-[#a18d6f] hover:text-[#f9c86d] hover:bg-[#252220] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ffd475]/40 relative ${loading ? "opacity-60 cursor-wait" : ""}`}
+              className={`group p-2 rounded-full text-[#a18d6f] hover:text-[#5b9cfa] hover:bg-[#252220] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ffd475]/40 relative ${loading ? "opacity-60 cursor-wait" : ""}`}
               title={t("downloadModal.refresh")}
               aria-label={t("downloadModal.refresh")}
               type="button"
@@ -569,7 +569,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
               )}
             </button>
             <button
-              className={"p-2 rounded-full text-[#a18d6f] hover:text-[#f9c86d] hover:bg-[#252220] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#ffd475]/40"}
+              className={"p-2 rounded-full text-[#a18d6f] hover:text-[#5b9cfa] hover:bg-[#252220] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#ffd475]/40"}
               onClick={onClose}
               title={t("common.close")}
               aria-label={t("common.close")}
@@ -595,8 +595,8 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
               onClick={() => setSelectedTag("all")}
               className={`${isMobile ? "px-2.5 py-1 text-xs" : "px-3 py-1.5 text-sm"} rounded-full transition-all duration-200 ${fontClass} ${
                 selectedTag === "all"
-                  ? "bg-gradient-to-br from-[#e0cfa0] to-[#f0e2b8] text-[#534741] font-semibold shadow-lg shadow-[#e0cfa0]/20 border border-transparent"
-                  : "bg-transparent text-[#c0a480] hover:bg-[#252220] hover:text-[#e0cfa0] border border-[#534741]/50 hover:border-[#534741]"
+                  ? "bg-gradient-to-br from-[#e0cfa0] to-[#f0e2b8] text-[#334155] font-semibold shadow-lg shadow-[#e0cfa0]/20 border border-transparent"
+                  : "bg-transparent text-[#7db3fd] hover:bg-[#252220] hover:text-[#e0cfa0] border border-[#334155]/50 hover:border-[#334155]"
               }`}
             >
               {isMobile 
@@ -612,8 +612,8 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                 onClick={() => setSelectedTag(tag)}
                 className={`${isMobile ? "px-2.5 py-1 text-xs" : "px-3 py-1.5 text-sm"} rounded-full transition-all duration-200 ${fontClass} ${
                   selectedTag === tag
-                    ? "bg-gradient-to-br from-[#e0cfa0] to-[#f0e2b8] text-[#534741] font-semibold shadow-lg shadow-[#e0cfa0]/20 border border-transparent"
-                    : "bg-transparent text-[#c0a480] hover:bg-[#252220] hover:text-[#e0cfa0] border border-[#534741]/50 hover:border-[#534741]"
+                    ? "bg-gradient-to-br from-[#e0cfa0] to-[#f0e2b8] text-[#334155] font-semibold shadow-lg shadow-[#e0cfa0]/20 border border-transparent"
+                    : "bg-transparent text-[#7db3fd] hover:bg-[#252220] hover:text-[#e0cfa0] border border-[#334155]/50 hover:border-[#334155]"
                 } ${tagCounts[tag] === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
                 disabled={tagCounts[tag] === 0}
               >
@@ -626,8 +626,8 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
         {/* Content Area */}
         <div className="flex-1 overflow-hidden">
           {loading ? (
-            <div className={`text-[#c0a480] py-12 text-center ${fontClass}`}>
-              <div className="animate-spin w-8 h-8 border-2 border-[#c0a480] border-t-transparent rounded-full mx-auto mb-4"></div>
+            <div className={`text-[#7db3fd] py-12 text-center ${fontClass}`}>
+              <div className="animate-spin w-8 h-8 border-2 border-[#7db3fd] border-t-transparent rounded-full mx-auto mb-4"></div>
               <div className="mb-2">
                 {loadingStage === "fetching" && t("downloadModal.loading")}
                 {loadingStage === "preloading" && t("downloadModal.preloading")}
@@ -644,7 +644,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
               {error}
             </div>
           ) : filteredCharacters.length === 0 ? (
-            <div className={`text-[#c0a480] py-12 text-center ${fontClass}`}>
+            <div className={`text-[#7db3fd] py-12 text-center ${fontClass}`}>
               <div className="opacity-60 mb-2">📭</div>
               {t("downloadModal.noCharactersInTag")}
             </div>
@@ -671,7 +671,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                         delay: index * 0.02,
                         ease: "easeOut",
                       }}
-                      className={`bg-[#252220] rounded-lg border border-[#534741] hover:border-[#c0a480] transition-all duration-200 hover:shadow-lg ${
+                      className={`bg-[#252220] rounded-lg border border-[#334155] hover:border-[#7db3fd] transition-all duration-200 hover:shadow-lg ${
                         isMobile ? "p-3 flex gap-3" : "p-4"
                       }`}
                     >
@@ -681,7 +681,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                       }`}>
                         {!isImageLoaded && (
                           <div className="absolute inset-0 bg-[#1a1714] flex items-center justify-center">
-                            <div className={`animate-spin border-2 border-[#c0a480] border-t-transparent rounded-full ${
+                            <div className={`animate-spin border-2 border-[#7db3fd] border-t-transparent rounded-full ${
                               isMobile ? "w-4 h-4" : "w-6 h-6"
                             }`}></div>
                           </div>
@@ -731,13 +731,13 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                               {tags.slice(0, 3).map(tag => (
                                 <span
                                   key={tag}
-                                  className={`px-1.5 py-0.5 text-xs rounded-full bg-[#534741] text-[#ffd475] ${fontClass}`}
+                                  className={`px-1.5 py-0.5 text-xs rounded-full bg-[#334155] text-[#ffd475] ${fontClass}`}
                                 >
                                   {t(`downloadModal.tags.${tag}`)}
                                 </span>
                               ))}
                               {tags.length > 3 && (
-                                <span className={`px-1.5 py-0.5 text-xs rounded-full bg-[#534741] text-[#ffd475] ${fontClass}`}>
+                                <span className={`px-1.5 py-0.5 text-xs rounded-full bg-[#334155] text-[#ffd475] ${fontClass}`}>
                                   +{tags.length - 3}
                                 </span>
                               )}
@@ -750,14 +750,14 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                           disabled={!!importing}
                           className={`group w-full rounded-lg transition-all duration-200 ${fontClass} ${
                             importing === file.name
-                              ? "bg-[#534741] text-[#c0a480] cursor-wait"
-                              : "bg-gradient-to-br from-[#e0cfa0] to-[#f9d77e] text-[#534741] hover:shadow-lg hover:shadow-[#e0cfa0]/20 hover:from-[#f0e2b8] hover:to-[#f9d77e]"
+                              ? "bg-[#334155] text-[#7db3fd] cursor-wait"
+                              : "bg-gradient-to-br from-[#e0cfa0] to-[#f9d77e] text-[#334155] hover:shadow-lg hover:shadow-[#e0cfa0]/20 hover:from-[#f0e2b8] hover:to-[#f9d77e]"
                           } ${isMobile ? "px-2 py-1.5 text-xs" : "px-3 py-2 text-sm"}`}
                           onClick={() => handleDownloadAndImport(file)}
                         >
                           {importing === file.name ? (
                             <div className="flex items-center justify-center gap-2">
-                              <div className={`animate-spin border-2 border-[#c0a480] border-t-transparent rounded-full ${
+                              <div className={`animate-spin border-2 border-[#7db3fd] border-t-transparent rounded-full ${
                                 isMobile ? "w-3 h-3" : "w-4 h-4"
                               }`}></div>
                               {isMobile ? t("downloadModal.importingShort") : t("downloadModal.importing")}
@@ -798,12 +798,12 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-[#1a1714] rounded-lg shadow-2xl border border-[#534741] relative z-10 max-w-md w-full mx-4 p-6"
+              className="bg-[#1a1714] rounded-lg shadow-2xl border border-[#334155] relative z-10 max-w-md w-full mx-4 p-6"
             >
               <div className="text-center">
                 <div className="mb-4">
                   <div className="w-12 h-12 mx-auto mb-3 bg-amber-100 rounded-full flex items-center justify-center">
-                    <svg className="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.728-.833-2.498 0L4.316 15.5c-.77.833.192 2.5 1.732 2.5z" />
                     </svg>
                   </div>
@@ -812,21 +812,21 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                   </h3>
                 </div>
                 
-                <p className={`text-[#c0a480] text-sm mb-6 leading-relaxed ${fontClass}`}>
+                <p className={`text-[#7db3fd] text-sm mb-6 leading-relaxed ${fontClass}`}>
                   {t("downloadModal.regulatoryWarning.message")}
                 </p>
                 
                 <div className="flex flex-col gap-3">
                   <button
                     onClick={() => handleRegulatoryWarningClose(false)}
-                    className={`w-full bg-gradient-to-br from-[#e0cfa0] to-[#f9d77e] text-[#534741] font-semibold py-2.5 px-4 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[#e0cfa0]/20 hover:from-[#f0e2b8] hover:to-[#f9d77e] ${fontClass}`}
+                    className={`w-full bg-gradient-to-br from-[#e0cfa0] to-[#f9d77e] text-[#334155] font-semibold py-2.5 px-4 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-[#e0cfa0]/20 hover:from-[#f0e2b8] hover:to-[#f9d77e] ${fontClass}`}
                   >
                     {t("downloadModal.regulatoryWarning.understand")}
                   </button>
                   
                   <button
                     onClick={() => handleRegulatoryWarningClose(true)}
-                    className={`w-full text-[#a18d6f] hover:text-[#c0a480] py-2 px-4 rounded-lg transition-colors duration-200 text-sm ${fontClass}`}
+                    className={`w-full text-[#a18d6f] hover:text-[#7db3fd] py-2 px-4 rounded-lg transition-colors duration-200 text-sm ${fontClass}`}
                   >
                     {t("downloadModal.regulatoryWarning.doNotShowAgain")}
                   </button>

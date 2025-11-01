@@ -79,21 +79,21 @@ const AdvancedSettingsEditor: React.FC<AdvancedSettingsEditorProps> = ({ isOpen,
         className="relative bg-gradient-to-br from-[#232323] to-[#1a1a1a] rounded-xl shadow-2xl w-full max-w-3xl h-[85vh] sm:h-[calc(100vh-4rem)] max-h-[500px] sm:max-h-[700px] flex flex-col overflow-hidden border border-neutral-700/50 transform transition-all duration-300 ease-in-out scale-95 opacity-0 animate-fadeInScaleUp"
       >
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-amber-500/10 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-gradient-to-tr from-amber-500/10 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-amber-500/5 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-blue-500/5 to-transparent rounded-full blur-3xl"></div>
         </div>
 
         <div className="flex items-center justify-between p-2 sm:p-5 border-b border-neutral-700/50 relative">
           <div className="flex items-center space-x-2 sm:space-x-3">
-            <div className="w-5 h-5 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-amber-500/20 to-amber-600/30 flex items-center justify-center border border-amber-500/30 shadow-lg shadow-amber-500/10">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-400">
+            <div className="w-5 h-5 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-blue-600/30 flex items-center justify-center border border-blue-500/30 shadow-lg shadow-blue-500/10">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
                 <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
                 <path d="M2 17l10 5 10-5"></path>
                 <path d="M2 12l10 5 10-5"></path>
               </svg>
             </div>
-            <h2 className={`text-sm sm:text-xl font-semibold ${serifFontClass} bg-clip-text text-transparent bg-gradient-to-r from-amber-500 via-orange-400 to-yellow-300`}>
+            <h2 className={`text-sm sm:text-xl font-semibold ${serifFontClass} bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-sky-400 to-sky-200`}>
               {t("characterChat.advancedSettings")}
             </h2>
           </div>
@@ -102,7 +102,7 @@ const AdvancedSettingsEditor: React.FC<AdvancedSettingsEditorProps> = ({ isOpen,
             className="w-5 h-5 sm:w-7 sm:h-7 flex items-center justify-center text-[#a18d6f] hover:text-[#eae6db] transition-colors duration-300 rounded-md hover:bg-[#333] group relative"
             aria-label={t("common.close")}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="relative z-10 transition-transform duration-300 group-hover:scale-110">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -112,18 +112,18 @@ const AdvancedSettingsEditor: React.FC<AdvancedSettingsEditorProps> = ({ isOpen,
 
         <div className="flex flex-1 overflow-hidden">
           <div className="w-24 sm:w-56 border-r border-neutral-700/50 p-2 sm:p-5 bg-neutral-800/20 relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-50"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-50"></div>
             <div className="relative z-10 space-y-1 sm:space-y-2">
               <button
                 className={`w-full text-left px-1.5 sm:px-3 py-1.5 sm:py-2.5 rounded-lg transition-all duration-200 ease-in-out text-[10px] sm:text-sm font-medium ${fontClass} ${
                   activeTab === "tagColors"
-                    ? "bg-gradient-to-r from-slate-700/80 via-amber-800/60 to-slate-700/80 text-amber-200 shadow-sm border border-amber-600/30 hover:shadow-lg hover:shadow-amber-500/20"
+                    ? "bg-gradient-to-r from-slate-700/80 via-blue-800/60 to-slate-700/80 text-amber-200 shadow-sm border border-blue-600/30 hover:shadow-lg hover:shadow-blue-500/20"
                     : "text-neutral-400 hover:bg-neutral-700/40 hover:text-neutral-200"
                 }`}
                 onClick={() => setActiveTab("tagColors")}
               >
                 <div className="flex items-center space-x-1 sm:space-x-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
                     <circle cx="13.5" cy="6.5" r=".5"></circle>
                     <circle cx="17.5" cy="10.5" r=".5"></circle>
                     <circle cx="8.5" cy="7.5" r=".5"></circle>
@@ -137,7 +137,7 @@ const AdvancedSettingsEditor: React.FC<AdvancedSettingsEditorProps> = ({ isOpen,
           </div>
 
           <div className="flex-1 overflow-y-auto p-2 sm:p-6 bg-neutral-900/30 fantasy-scrollbar relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-30"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-30"></div>
             <div className="relative z-10">
               {activeTab === "tagColors" && (
                 <TagColorEditor

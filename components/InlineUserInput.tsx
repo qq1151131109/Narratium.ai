@@ -75,11 +75,11 @@ const InlineUserInput: React.FC<InlineUserInputProps> = ({
     >
       {/* Redesigned Question Header */}
       <div className="mb-5">
-        <div className="flex items-center gap-2 mb-3 text-amber-400 font-medium text-sm">
+        <div className="flex items-center gap-2 mb-3 text-blue-400 font-medium text-sm">
           <PenSquare className="w-4 h-4" />
           <span>需要您的输入</span>
         </div>
-        <div className="pl-6 text-sm leading-relaxed text-[#c0a480]/90">
+        <div className="pl-6 text-sm leading-relaxed text-[#7db3fd]/90">
           {question}
         </div>
       </div>
@@ -91,11 +91,11 @@ const InlineUserInput: React.FC<InlineUserInputProps> = ({
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-black/20 border border-amber-500/25 rounded-xl p-4 mb-3 backdrop-blur-sm"
+            className="bg-black/20 border border-blue-500/25 rounded-xl p-4 mb-3 backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-1 h-4 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full"></div>
-              <span className="text-xs text-amber-400/90 font-medium tracking-wide">参考选项</span>
+              <div className="w-1 h-4 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full"></div>
+              <span className="text-xs text-blue-400/90 font-medium tracking-wide">参考选项</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {options.map((option, index) => (
@@ -104,7 +104,7 @@ const InlineUserInput: React.FC<InlineUserInputProps> = ({
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.05, duration: 0.25 }}
-                  className="inline-flex items-center px-3 py-1.5 text-xs text-[#c0a480]/80 bg-black/30 border border-amber-500/20 rounded-full hover:bg-black/40 hover:border-amber-400/40 hover:text-[#f4e8c1] transition-all duration-200 cursor-pointer"
+                  className="inline-flex items-center px-3 py-1.5 text-xs text-[#7db3fd]/80 bg-black/30 border border-blue-500/20 rounded-full hover:bg-black/40 hover:border-blue-400/40 hover:text-[#f4e8c1] transition-all duration-200 cursor-pointer"
                   onClick={() => {
                     setCustomInput(option);
                     if (inputRef.current) {
@@ -136,16 +136,16 @@ const InlineUserInput: React.FC<InlineUserInputProps> = ({
             onKeyPress={handleKeyPress}
             placeholder="输入您的回复..."
             disabled={isLoading}
-            className="w-full pl-4 pr-12 py-2.5 text-sm text-[#f4e8c1] bg-black/30 border border-amber-500/30 rounded-full focus:outline-none focus:border-amber-400/60 focus:bg-black/40 placeholder-[#c0a480]/60 transition-all duration-300 hover:border-amber-500/40"
+            className="w-full pl-4 pr-12 py-2.5 text-sm text-[#f4e8c1] bg-black/30 border border-blue-500/30 rounded-full focus:outline-none focus:border-blue-400/60 focus:bg-black/40 placeholder-[#7db3fd]/60 transition-all duration-300 hover:border-blue-500/40"
             autoFocus
           />
           <button
             onClick={handleCustomSubmit}
             disabled={isLoading || !customInput.trim()}
-            className="absolute right-1.5 p-1.5 text-amber-400 rounded-full hover:bg-amber-500/15 disabled:text-[#c0a480]/40 disabled:hover:bg-transparent transition-all duration-200"
+            className="absolute right-1.5 p-1.5 text-blue-400 rounded-full hover:bg-blue-500/15 disabled:text-[#7db3fd]/40 disabled:hover:bg-transparent transition-all duration-200"
           >
             {isLoading ? (
-              <div className="w-4 h-4 border-2 border-[#c0a480]/40 border-t-amber-400 rounded-full animate-spin" />
+              <div className="w-4 h-4 border-2 border-[#7db3fd]/40 border-t-blue-400 rounded-full animate-spin" />
             ) : (
               <Send className="w-4 h-4" />
             )}

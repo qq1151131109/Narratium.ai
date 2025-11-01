@@ -104,11 +104,11 @@ export default function UserNameSettingModal({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="fantasy-bg bg-opacity-75 border border-[#534741] rounded-lg shadow-lg p-4 sm:p-8 w-full max-w-sm sm:max-w-md relative z-10 backdrop-filter backdrop-blur-sm mx-4"
+            className="fantasy-bg bg-opacity-75 border border-[#334155] rounded-lg shadow-lg p-4 sm:p-8 w-full max-w-sm sm:max-w-md relative z-10 backdrop-filter backdrop-blur-sm mx-4"
           >
             <button 
               onClick={onClose}
-              className="absolute top-2 right-2 sm:top-4 sm:right-4 text-[#a18d6f] hover:text-[#f9c86d] transition-colors"
+              className="absolute top-2 right-2 sm:top-4 sm:right-4 text-[#a18d6f] hover:text-[#5b9cfa] transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -117,7 +117,7 @@ export default function UserNameSettingModal({
             </button>
             
             <div className="text-center mb-6">
-              <h1 className="text-2xl sm:text-3xl font-bold text-[#f9c86d] mb-2 font-cinzel">
+              <h1 className="text-2xl sm:text-3xl font-bold text-[#5b9cfa] mb-2 font-cinzel">
                 {t("userNameSetting.title")}
               </h1>
               <p className={`text-sm text-[#a18d6f] ${fontClass}`}>
@@ -138,10 +138,10 @@ export default function UserNameSettingModal({
             <form onSubmit={handleSubmit} className="w-full space-y-6">
               {/* Current Login Username Display */}
               <div>
-                <label className={`block text-sm text-[#c0a480] mb-2 ${fontClass}`}>
+                <label className={`block text-sm text-[#7db3fd] mb-2 ${fontClass}`}>
                   {t("userNameSetting.loginUsername")}
                 </label>
-                <div className="relative magical-input min-h-[50px] flex items-center justify-center bg-[#2a261f]/50 border border-[#534741]/50">
+                <div className="relative magical-input min-h-[50px] flex items-center justify-center bg-[#2a261f]/50 border border-[#334155]/50">
                   <span className={`text-center text-sm text-[#8a8a8a] ${serifFontClass}`}>
                     {typeof window !== "undefined" ? (localStorage.getItem("username") || t("userNameSetting.notLoggedIn")) : t("userNameSetting.notLoggedIn")}
                   </span>
@@ -150,7 +150,7 @@ export default function UserNameSettingModal({
 
               {/* Display Username Input */}
               <div>
-                <label className={`block text-sm text-[#c0a480] mb-2 ${fontClass}`}>
+                <label className={`block text-sm text-[#7db3fd] mb-2 ${fontClass}`}>
                   {t("userNameSetting.displayUsername")}
                 </label>
                 <div className="relative w-full group">
@@ -164,7 +164,7 @@ export default function UserNameSettingModal({
                       disabled={isLoading}
                       autoComplete="off"
                       style={{
-                        caretColor: "#f9c86d",
+                        caretColor: "#5b9cfa",
                         caretShape: "bar",
                         background: "transparent",
                         boxShadow: "none",
@@ -175,7 +175,7 @@ export default function UserNameSettingModal({
                       }}
                     />
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-0.5 opacity-100 transition-opacity duration-300">
-                      <div className="w-full h-full bg-gradient-to-r from-transparent via-[#c0a480] to-transparent"></div>
+                      <div className="w-full h-full bg-gradient-to-r from-transparent via-[#7db3fd] to-transparent"></div>
                     </div>
                   </div>
                 </div>
@@ -203,14 +203,14 @@ export default function UserNameSettingModal({
                 <button
                   type="submit"
                   disabled={isLoading || !displayName.trim()}
-                  className={`group relative px-6 py-2 bg-transparent border border-[#c0a480] text-[#c0a480] rounded-full text-sm font-medium transition-all duration-500 hover:border-[#f9c86d] hover:text-[#f9c86d] hover:shadow-lg hover:shadow-[#c0a480]/20 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden ${serifFontClass}`}
+                  className={`group relative px-6 py-2 bg-transparent border border-[#7db3fd] text-[#7db3fd] rounded-full text-sm font-medium transition-all duration-500 hover:border-[#5b9cfa] hover:text-[#5b9cfa] hover:shadow-lg hover:shadow-[#7db3fd]/20 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden ${serifFontClass}`}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#c0a480]/0 via-[#c0a480]/10 to-[#c0a480]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-[#f9c86d]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#7db3fd]/0 via-[#7db3fd]/10 to-[#7db3fd]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-[#5b9cfa]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="relative z-10 flex items-center justify-center gap-2">
                     {isLoading ? (
                       <>
-                        <div className="animate-spin w-3.5 h-3.5 border border-[#c0a480] border-t-transparent rounded-full"></div>
+                        <div className="animate-spin w-3.5 h-3.5 border border-[#7db3fd] border-t-transparent rounded-full"></div>
                         <span className="tracking-wide">{t("userNameSetting.saving")}</span>
                       </>
                     ) : (
@@ -227,7 +227,7 @@ export default function UserNameSettingModal({
                       </>
                     )}
                   </div>
-                  <div className="absolute inset-0 rounded-full border border-[#f9c86d]/20 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                  <div className="absolute inset-0 rounded-full border border-[#5b9cfa]/20 scale-105 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
                 </button>
               </div>
 

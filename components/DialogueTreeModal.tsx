@@ -184,8 +184,8 @@ function DialogueNodeComponent({ id, data }: NodeProps<DialogueNode["data"]>) {
     borderColor = "border-[#3a3633]";
     hoverBorderColor = "hover:border-[#6b635d]";
     textColor = "text-[#a8a095]";
-    expandIconColor = "text-amber-700";
-    jumpButtonColor = "text-amber-700 hover:text-amber-600";
+    expandIconColor = "text-blue-700";
+    jumpButtonColor = "text-blue-700 hover:text-blue-600";
   }
 
   return (
@@ -194,10 +194,10 @@ function DialogueNodeComponent({ id, data }: NodeProps<DialogueNode["data"]>) {
       onClick={handleNodeClick}
     >
       {showRootTooltip && (
-        <div className="absolute -top-14 right-0 z-20 bg-[#1c1c1c] border border-amber-700 rounded-md p-2 shadow-lg max-w-[200px] text-xs text-amber-400 animate-fade-in">
+        <div className="absolute -top-14 right-0 z-20 bg-[#1c1c1c] border border-blue-700 rounded-md p-2 shadow-lg max-w-[200px] text-xs text-blue-400 animate-fade-in">
           <div className="relative">
             {t("dialogue.rootNodeCannotJump")}
-            <div className="absolute -bottom-6 right-4 w-0 h-0 border-8 border-transparent border-t-amber-700"></div>
+            <div className="absolute -bottom-6 right-4 w-0 h-0 border-8 border-transparent border-t-blue-700"></div>
           </div>
         </div>
       )}
@@ -209,7 +209,7 @@ function DialogueNodeComponent({ id, data }: NodeProps<DialogueNode["data"]>) {
           disabled={isJumping}
         >
           {isJumping ? (
-            <div className="w-4 h-4 rounded-full border-2 border-t-transparent border-amber-400 animate-spin"></div>
+            <div className="w-4 h-4 rounded-full border-2 border-t-transparent border-blue-400 animate-spin"></div>
           ) : (
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="15 10 20 15 15 20"></polyline>
@@ -227,7 +227,7 @@ function DialogueNodeComponent({ id, data }: NodeProps<DialogueNode["data"]>) {
             ? "!bg-purple-500 !border-purple-700" 
             : data.isCurrentPath 
               ? "!bg-red-500 !border-red-700" 
-              : "!bg-amber-700 !border-amber-900"
+              : "!bg-blue-700 !border-blue-900"
         }`}
       />
       <div 
@@ -236,7 +236,7 @@ function DialogueNodeComponent({ id, data }: NodeProps<DialogueNode["data"]>) {
             ? "hover:text-purple-300" 
             : data.isCurrentPath 
               ? "hover:text-red-300" 
-              : "hover:text-amber-700"
+              : "hover:text-blue-700"
         } transition-colors duration-300 flex items-center`}
         onClick={handleToggleExpand}
       >
@@ -282,7 +282,7 @@ function DialogueNodeComponent({ id, data }: NodeProps<DialogueNode["data"]>) {
             ? "!bg-purple-500 !border-purple-700" 
             : data.isCurrentPath 
               ? "!bg-red-500 !border-red-700" 
-              : "!bg-amber-700 !border-amber-900"
+              : "!bg-blue-700 !border-blue-900"
         }`}
       />
     </div>
@@ -1464,12 +1464,12 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <DialogueFlowStyles />
       <div className="absolute inset-0 backdrop-blur-sm"></div>
-      <div ref={modalRef} className="bg-[#1e1c1b] bg-opacity-75 border border-[#534741] rounded-lg shadow-lg p-4 w-[90%] h-[80%] max-w-5xl mx-4 fantasy-bg relative z-10 backdrop-filter backdrop-blur-sm">
+      <div ref={modalRef} className="bg-[#1e1c1b] bg-opacity-75 border border-[#334155] rounded-lg shadow-lg p-4 w-[90%] h-[80%] max-w-5xl mx-4 fantasy-bg relative z-10 backdrop-filter backdrop-blur-sm">
         <div className="flex justify-between items-center mb-4">
           <h3 className={`text-[#f4e8c1] text-lg ${serifFontClass}`}>{t("dialogue.treeVisualization")}</h3>
           <button 
             onClick={(e) => {trackButtonClick("DialogueTreeModal", "关闭对话树");onClose();}}
-            className="text-[#8a8a8a] hover:text-amber-400 transition-colors duration-300"
+            className="text-[#8a8a8a] hover:text-blue-400 transition-colors duration-300"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -1480,17 +1480,17 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
         
         {!characterId ? (
           <div className="h-[calc(100%-6rem)] w-full flex flex-col items-center justify-center">
-            <div className="text-center p-6 border border-[#534741] rounded-lg bg-[#1c1c1c] max-w-lg">
+            <div className="text-center p-6 border border-[#334155] rounded-lg bg-[#1c1c1c] max-w-lg">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d1a35c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-4">
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="12" y1="8" x2="12" y2="12"></line>
                 <line x1="12" y1="16" x2="12.01" y2="16"></line>
               </svg>
-              <h4 className={`text-amber-400 mb-3 ${serifFontClass}`}>{t("dialogue.noCharacterSelected")}</h4>
+              <h4 className={`text-blue-400 mb-3 ${serifFontClass}`}>{t("dialogue.noCharacterSelected")}</h4>
               <p className={`text-[#f4e8c1] mb-4 ${fontClass}`}>{t("dialogue.selectCharacterFirst")}</p>
               <button 
                 onClick={(e) => {trackButtonClick("DialogueTreeModal", "关闭对话树");onClose();}}
-                className={`px-4 py-2 bg-[#2a2825] hover:bg-[#3a3835] text-amber-400 rounded-md transition-all duration-300 border border-amber-700 hover:shadow-[0_0_8px_rgba(251,146,60,0.4)] ${fontClass}`}
+                className={`px-4 py-2 bg-[#2a2825] hover:bg-[#3a3835] text-blue-400 rounded-md transition-all duration-300 border border-blue-700 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)] ${fontClass}`}
               >
                 {t("common.return")}
               </button>
@@ -1498,24 +1498,24 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
           </div>
         ) : !dataLoaded ? (
           <div className="h-[calc(100%-6rem)] w-full flex flex-col items-center justify-center">
-            <div className="text-center p-6 border border-[#534741] rounded-lg bg-[#1c1c1c] max-w-lg">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-400 mx-auto mb-4"></div>
+            <div className="text-center p-6 border border-[#334155] rounded-lg bg-[#1c1c1c] max-w-lg">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-400 mx-auto mb-4"></div>
               <p className={`text-[#f4e8c1] ${fontClass}`}>{t("dialogue.loadingDialogue")}</p>
             </div>
           </div>
         ) : nodes.length === 0 ? (
           <div className="h-[calc(100%-6rem)] w-full flex flex-col items-center justify-center">
-            <div className="text-center p-6 border border-[#534741] rounded-lg bg-[#1c1c1c] max-w-lg">
+            <div className="text-center p-6 border border-[#334155] rounded-lg bg-[#1c1c1c] max-w-lg">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d1a35c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-4">
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="12" y1="8" x2="12" y2="12"></line>
                 <line x1="12" y1="16" x2="12.01" y2="16"></line>
               </svg>
-              <h4 className={`text-amber-400 mb-3 ${serifFontClass}`}>{t("dialogue.noDialogueNodes")}</h4>
+              <h4 className={`text-blue-400 mb-3 ${serifFontClass}`}>{t("dialogue.noDialogueNodes")}</h4>
               <p className={`text-[#f4e8c1] mb-4 ${fontClass}`}>{t("dialogue.startConversation")}</p>
               <button 
                 onClick={(e) => {trackButtonClick("DialogueTreeModal", "关闭对话树");onClose();}}
-                className={`px-4 py-2 bg-[#2a2825] hover:bg-[#3a3835] text-amber-400 rounded-md transition-all duration-300 border border-amber-700 hover:shadow-[0_0_8px_rgba(251,146,60,0.4)] ${fontClass}`}
+                className={`px-4 py-2 bg-[#2a2825] hover:bg-[#3a3835] text-blue-400 rounded-md transition-all duration-300 border border-blue-700 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)] ${fontClass}`}
               >
                 {t("common.return") || "返回"}
               </button>
@@ -1541,18 +1541,18 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
               nodeStrokeWidth={3}
               nodeColor="#d1a35c"
               maskColor="rgba(30, 28, 27, 0.5)"
-              className="fantasy-bg border border-[#534741] rounded-md shadow-md overflow-hidden"
+              className="fantasy-bg border border-[#334155] rounded-md shadow-md overflow-hidden"
               style={{
                 backgroundColor: "rgba(28, 28, 27, 0.7)",
-                border: "1px solid #534741",
+                border: "1px solid #334155",
                 borderRadius: "0.375rem",
               }}
             />
-            <Background color="#534741" gap={16} size={1.5} />
-            <Panel position="top-right" className="fantasy-bg border border-[#534741] p-3 rounded-md shadow-md">
+            <Background color="#334155" gap={16} size={1.5} />
+            <Panel position="top-right" className="fantasy-bg border border-[#334155] p-3 rounded-md shadow-md">
               <div className="flex flex-col space-y-2">
                 {/* Layout Status */}
-                <div className="flex flex-col space-y-1 pb-2 border-b border-[#534741]">
+                <div className="flex flex-col space-y-1 pb-2 border-b border-[#334155]">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
                       <div className={`w-2 h-2 rounded-full mr-2 ${Object.keys(userAdjustedPositions).length > 0 ? "bg-blue-400" : "bg-gray-500"}`}></div>
@@ -1562,7 +1562,7 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
                     </div>
                     <button
                       onClick={() => {trackButtonClick("DialogueTreeModal", "重置布局");resetLayout();}}
-                      className={`text-[#8a8a8a] hover:text-amber-400 transition-colors duration-300 text-xs ${fontClass} px-2 py-1 rounded hover:bg-[#2a2825]`}
+                      className={`text-[#8a8a8a] hover:text-blue-400 transition-colors duration-300 text-xs ${fontClass} px-2 py-1 rounded hover:bg-[#2a2825]`}
                       title={t("dialogue.resetLayout")}
                     >
                       {t("dialogue.resetLayout")}
@@ -1571,20 +1571,20 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
                 </div>
                 
                 <div className="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-400 mr-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400 mr-2">
                     <polyline points="15 10 20 15 15 20"></polyline>
                     <path d="M4 4v7a4 4 0 0 0 4 4h12"></path>
                   </svg>
                   <span className={`text-[#d1a35c] text-xs ${fontClass}`}>{t("dialogue.jumpToNode")}</span>
                 </div>
                 <div className="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-400 mr-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400 mr-2">
                     <path d="M9 18l6-6-6-6" />
                   </svg>
                   <span className={`text-[#d1a35c] text-xs ${fontClass}`}>{t("dialogue.expandNode")}</span>
                 </div>
                 <div className="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-400 mr-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400 mr-2">
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                   </svg>
@@ -1598,12 +1598,12 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
                 
         {isEditModalOpen && selectedNode && (
           <div className="absolute inset-0 flex items-center justify-center backdrop-blur-md z-20">
-            <div ref={editModalRef} className="bg-[#1e1c1b] bg-opacity-85 border border-[#534741] rounded-lg p-6 w-[80%] max-w-2xl backdrop-filter backdrop-blur-sm shadow-lg">
+            <div ref={editModalRef} className="bg-[#1e1c1b] bg-opacity-85 border border-[#334155] rounded-lg p-6 w-[80%] max-w-2xl backdrop-filter backdrop-blur-sm shadow-lg">
               <div className="flex justify-between items-center mb-4">
                 <h4 className={`text-[#f4e8c1] text-lg ${serifFontClass}`}>{t("dialogue.editNode") || "编辑对话节点"}</h4>
                 <button 
                   onClick={(e) => {trackButtonClick("DialogueTreeModal", "关闭编辑对话");setIsEditModalOpen(false);}}
-                  className="text-[#8a8a8a] hover:text-amber-400 transition-colors duration-300"
+                  className="text-[#8a8a8a] hover:text-blue-400 transition-colors duration-300"
                   aria-label={t("common.close")}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1613,8 +1613,8 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
                 </button>
               </div>
                       
-              <div className="fantasy-bg border border-[#534741] rounded-md p-3 mb-4 shadow-inner">
-                <h5 className={`text-amber-400 text-sm mb-2 ${serifFontClass}`}>{t("dialogue.memorySummary")}:</h5>
+              <div className="fantasy-bg border border-[#334155] rounded-md p-3 mb-4 shadow-inner">
+                <h5 className={`text-blue-400 text-sm mb-2 ${serifFontClass}`}>{t("dialogue.memorySummary")}:</h5>
                 <div className="ml-2">
                   <ol className={`list-decimal list-inside ${fontClass} text-[#f4e8c1] text-sm`}>
                     {selectedNode.data.label.split(/——>|-->|->|→/).map((step, index) => (
@@ -1637,7 +1637,7 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
                   <textarea 
                     value={editContent}
                     onChange={(e) => setEditContent(e.target.value)}
-                    className={`w-full h-64 p-3 bg-[#121212] border border-[#444444] rounded-md text-[#f4e8c1] fantasy-scrollbar focus:outline-none focus:border-amber-400 ${fontClass} text-sm leading-relaxed`}
+                    className={`w-full h-64 p-3 bg-[#121212] border border-[#444444] rounded-md text-[#f4e8c1] fantasy-scrollbar focus:outline-none focus:border-blue-400 ${fontClass} text-sm leading-relaxed`}
                     placeholder={t("dialogue.responsePlaceholder")}
                   />
                 </div>
@@ -1646,7 +1646,7 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
               <div className="flex justify-end gap-5 mt-4">
                 <button 
                   onClick={(e) => {trackButtonClick("DialogueTreeModal", "关闭编辑对话");setIsEditModalOpen(false);}}
-                  className={`text-[#8a8a8a] hover:text-amber-400 transition-colors duration-300 ${serifFontClass}`}
+                  className={`text-[#8a8a8a] hover:text-blue-400 transition-colors duration-300 ${serifFontClass}`}
                   aria-label={t("common.cancel")}
                   disabled={isSaving}
                 >
@@ -1654,13 +1654,13 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
                 </button>
                 {isSaving ? (
                   <div className="relative w-8 h-8">
-                    <div className="absolute inset-0 rounded-full border-2 border-t-[#f9c86d] border-r-[#c0a480] border-b-[#a18d6f] border-l-transparent animate-spin"></div>
-                    <div className="absolute inset-1 rounded-full border-2 border-t-[#a18d6f] border-r-[#f9c86d] border-b-[#c0a480] border-l-transparent animate-spin-slow"></div>
+                    <div className="absolute inset-0 rounded-full border-2 border-t-[#5b9cfa] border-r-[#7db3fd] border-b-[#a18d6f] border-l-transparent animate-spin"></div>
+                    <div className="absolute inset-1 rounded-full border-2 border-t-[#a18d6f] border-r-[#5b9cfa] border-b-[#7db3fd] border-l-transparent animate-spin-slow"></div>
                   </div>
                 ) : (
                   <button 
                     onClick={(e) => {trackButtonClick("DialogueTreeModal", "保存编辑对话");saveEditContent();}}
-                    className={`text-amber-400 hover:text-amber-300 transition-colors duration-300 ${serifFontClass}`}
+                    className={`text-blue-400 hover:text-blue-300 transition-colors duration-300 ${serifFontClass}`}
                     aria-label={t("common.save")}
                   >
                     {t("common.save")}
