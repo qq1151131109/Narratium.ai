@@ -577,7 +577,7 @@ export default function RegexScriptEditor({ onClose, characterName, characterId 
                         <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-0">
                           <button
                             onClick={() => toggleScriptExpansion(scriptId)}
-                            className="text-[#a18d6f] hover:text-[#f4e8c1] transition-colors flex-shrink-0"
+                            className="text-[#a18d6f] hover:text-[#e0f2fe] transition-colors flex-shrink-0"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

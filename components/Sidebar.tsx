@@ -69,7 +69,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
               isOpen ? "4rem" : "-1rem",
             );
           }}
-          className={"flex items-center justify-center text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 hover:bg-[#252525] hover:border-[#444444] hover:text-blue-400 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)] w-8 h-8"}
+          className={"flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 hover:bg-[#252525] hover:border-[#444444] hover:text-blue-400 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)] w-8 h-8"}
           aria-label={isOpen ? (language === "zh" ? "收起侧边栏" : "Collapse Sidebar") : (language === "zh" ? "展开侧边栏" : "Expand Sidebar")}
         >
           {isOpen ? (
@@ -107,7 +107,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   {!isOpen ? (
                     <Link href="/" className={`menu-item flex justify-center p-2 rounded-md cursor-pointer transition-all duration-300 ${isHomeActive ? "bg-blue-900/30" : "hover:bg-[#252525]"}`}>
-                      <div className={`flex items-center justify-center text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 w-8 h-8 ${isHomeActive ? "border-blue-500/80 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] hover:text-blue-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
+                      <div className={`flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 w-8 h-8 ${isHomeActive ? "border-blue-500/80 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] hover:text-blue-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                           <polyline points="9 22 9 12 15 12 15 22" />
@@ -120,7 +120,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                       <div className="relative flex items-center p-2 w-full transition-all duration-300 z-10">
                         <div className={`absolute inset-0 w-full h-full bg-[#333] transition-opacity duration-300 ${isHomeActive ? "opacity-20" : "opacity-0 group-hover:opacity-10"}`}></div>
                         <div className={`absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#60a5fa] to-transparent transition-all duration-500 ${isHomeActive ? "w-full" : "w-0 group-hover:w-full"}`}></div>
-                        <div className={`w-8 h-8 flex items-center justify-center flex-shrink-0 text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 ${isHomeActive ? "border-blue-500/80 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
+                        <div className={`w-8 h-8 flex items-center justify-center flex-shrink-0 text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 ${isHomeActive ? "border-blue-500/80 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                             <polyline points="9 22 9 12 15 12 15 22" />
@@ -174,7 +174,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   {!isOpen ? (
                     <Link href="/character-cards" className={`menu-item flex justify-center p-2 rounded-md cursor-pointer transition-all duration-300 ${isGameAreaActive ? "bg-blue-900/30" : "hover:bg-[#252525]"}`}>
-                      <div className={`flex items-center justify-center text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 w-8 h-8 ${isGameAreaActive ? "border-blue-500/80 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] hover:text-blue-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
+                      <div className={`flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 w-8 h-8 ${isGameAreaActive ? "border-blue-500/80 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] hover:text-blue-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300">
                           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                           <circle cx="12" cy="7" r="4" />
@@ -187,7 +187,7 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
                       <div className="relative flex items-center p-2 w-full transition-all duration-300 z-10">
                         <div className={`absolute inset-0 w-full h-full bg-[#333] transition-opacity duration-300 ${isGameAreaActive ? "opacity-20" : "opacity-0 group-hover:opacity-10"}`}></div>
                         <div className={`absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#60a5fa] to-transparent transition-all duration-500 ${isGameAreaActive ? "w-full" : "w-0 group-hover:w-full"}`}></div>
-                        <div className={`w-8 h-8 flex items-center justify-center flex-shrink-0 text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 ${isGameAreaActive ? "border-blue-500/80 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
+                        <div className={`w-8 h-8 flex items-center justify-center flex-shrink-0 text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 ${isGameAreaActive ? "border-blue-500/80 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"}`}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                             <circle cx="12" cy="7" r="4" />

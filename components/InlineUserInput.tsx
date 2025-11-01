@@ -104,7 +104,7 @@ const InlineUserInput: React.FC<InlineUserInputProps> = ({
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.05, duration: 0.25 }}
-                  className="inline-flex items-center px-3 py-1.5 text-xs text-[#7db3fd]/80 bg-black/30 border border-blue-500/20 rounded-full hover:bg-black/40 hover:border-blue-400/40 hover:text-[#f4e8c1] transition-all duration-200 cursor-pointer"
+                  className="inline-flex items-center px-3 py-1.5 text-xs text-[#7db3fd]/80 bg-black/30 border border-blue-500/20 rounded-full hover:bg-black/40 hover:border-blue-400/40 hover:text-[#e0f2fe] transition-all duration-200 cursor-pointer"
                   onClick={() => {
                     setCustomInput(option);
                     if (inputRef.current) {
@@ -136,7 +136,7 @@ const InlineUserInput: React.FC<InlineUserInputProps> = ({
             onKeyPress={handleKeyPress}
             placeholder="输入您的回复..."
             disabled={isLoading}
-            className="w-full pl-4 pr-12 py-2.5 text-sm text-[#f4e8c1] bg-black/30 border border-blue-500/30 rounded-full focus:outline-none focus:border-blue-400/60 focus:bg-black/40 placeholder-[#7db3fd]/60 transition-all duration-300 hover:border-blue-500/40"
+            className="w-full pl-4 pr-12 py-2.5 text-sm text-[#e0f2fe] bg-black/30 border border-blue-500/30 rounded-full focus:outline-none focus:border-blue-400/60 focus:bg-black/40 placeholder-[#7db3fd]/60 transition-all duration-300 hover:border-blue-500/40"
             autoFocus
           />
           <button

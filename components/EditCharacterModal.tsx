@@ -284,7 +284,7 @@ const EditCharacterModal: React.FC<EditCharacterModalProps> = ({
                     <button
                       type="button"
                       onClick={(e) => {trackButtonClick("EditCharacterModal", "关闭编辑角色");onClose();}}
-                      className={`text-[#8a8a8a] hover:text-[#f4e8c1] transition-colors duration-300 ${serifFontClass}`}
+                      className={`text-[#8a8a8a] hover:text-[#e0f2fe] transition-colors duration-300 ${serifFontClass}`}
                     >
                       {t("editCharacterModal.cancel")}
                     </button>

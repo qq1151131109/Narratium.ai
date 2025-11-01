@@ -317,7 +317,7 @@ export default function ImportCharacterModal({ isOpen, onClose, onImport }: Impo
               <div className="flex justify-end space-x-3">
                 <button
                   onClick={handleClose}
-                  className={`px-4 py-2 text-[#7db3fd] hover:text-[#ffd475] transition-colors ${fontClass}`}
+                  className={`px-4 py-2 text-[#7db3fd] hover:text-[#7dd3fc] transition-colors ${fontClass}`}
                 >
                   {t("common.cancel")}  
                 </button>

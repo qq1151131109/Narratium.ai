@@ -1466,7 +1466,7 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
       <div className="absolute inset-0 backdrop-blur-sm"></div>
       <div ref={modalRef} className="bg-[#1e1c1b] bg-opacity-75 border border-[#334155] rounded-lg shadow-lg p-4 w-[90%] h-[80%] max-w-5xl mx-4 fantasy-bg relative z-10 backdrop-filter backdrop-blur-sm">
         <div className="flex justify-between items-center mb-4">
-          <h3 className={`text-[#f4e8c1] text-lg ${serifFontClass}`}>{t("dialogue.treeVisualization")}</h3>
+          <h3 className={`text-[#e0f2fe] text-lg ${serifFontClass}`}>{t("dialogue.treeVisualization")}</h3>
           <button 
             onClick={(e) => {trackButtonClick("DialogueTreeModal", "关闭对话树");onClose();}}
             className="text-[#8a8a8a] hover:text-blue-400 transition-colors duration-300"
@@ -1487,7 +1487,7 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
                 <line x1="12" y1="16" x2="12.01" y2="16"></line>
               </svg>
               <h4 className={`text-blue-400 mb-3 ${serifFontClass}`}>{t("dialogue.noCharacterSelected")}</h4>
-              <p className={`text-[#f4e8c1] mb-4 ${fontClass}`}>{t("dialogue.selectCharacterFirst")}</p>
+              <p className={`text-[#e0f2fe] mb-4 ${fontClass}`}>{t("dialogue.selectCharacterFirst")}</p>
               <button 
                 onClick={(e) => {trackButtonClick("DialogueTreeModal", "关闭对话树");onClose();}}
                 className={`px-4 py-2 bg-[#2a2825] hover:bg-[#3a3835] text-blue-400 rounded-md transition-all duration-300 border border-blue-700 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)] ${fontClass}`}
@@ -1500,7 +1500,7 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
           <div className="h-[calc(100%-6rem)] w-full flex flex-col items-center justify-center">
             <div className="text-center p-6 border border-[#334155] rounded-lg bg-[#1c1c1c] max-w-lg">
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-400 mx-auto mb-4"></div>
-              <p className={`text-[#f4e8c1] ${fontClass}`}>{t("dialogue.loadingDialogue")}</p>
+              <p className={`text-[#e0f2fe] ${fontClass}`}>{t("dialogue.loadingDialogue")}</p>
             </div>
           </div>
         ) : nodes.length === 0 ? (
@@ -1512,7 +1512,7 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
                 <line x1="12" y1="16" x2="12.01" y2="16"></line>
               </svg>
               <h4 className={`text-blue-400 mb-3 ${serifFontClass}`}>{t("dialogue.noDialogueNodes")}</h4>
-              <p className={`text-[#f4e8c1] mb-4 ${fontClass}`}>{t("dialogue.startConversation")}</p>
+              <p className={`text-[#e0f2fe] mb-4 ${fontClass}`}>{t("dialogue.startConversation")}</p>
               <button 
                 onClick={(e) => {trackButtonClick("DialogueTreeModal", "关闭对话树");onClose();}}
                 className={`px-4 py-2 bg-[#2a2825] hover:bg-[#3a3835] text-blue-400 rounded-md transition-all duration-300 border border-blue-700 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)] ${fontClass}`}
@@ -1540,7 +1540,7 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
             <MiniMap 
               nodeStrokeWidth={3}
               nodeColor="#d1a35c"
-              maskColor="rgba(30, 28, 27, 0.5)"
+              maskColor="rgba(15, 23, 42, 0.5)"
               className="fantasy-bg border border-[#334155] rounded-md shadow-md overflow-hidden"
               style={{
                 backgroundColor: "rgba(28, 28, 27, 0.7)",
@@ -1600,7 +1600,7 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
           <div className="absolute inset-0 flex items-center justify-center backdrop-blur-md z-20">
             <div ref={editModalRef} className="bg-[#1e1c1b] bg-opacity-85 border border-[#334155] rounded-lg p-6 w-[80%] max-w-2xl backdrop-filter backdrop-blur-sm shadow-lg">
               <div className="flex justify-between items-center mb-4">
-                <h4 className={`text-[#f4e8c1] text-lg ${serifFontClass}`}>{t("dialogue.editNode") || "编辑对话节点"}</h4>
+                <h4 className={`text-[#e0f2fe] text-lg ${serifFontClass}`}>{t("dialogue.editNode") || "编辑对话节点"}</h4>
                 <button 
                   onClick={(e) => {trackButtonClick("DialogueTreeModal", "关闭编辑对话");setIsEditModalOpen(false);}}
                   className="text-[#8a8a8a] hover:text-blue-400 transition-colors duration-300"
@@ -1616,7 +1616,7 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
               <div className="fantasy-bg border border-[#334155] rounded-md p-3 mb-4 shadow-inner">
                 <h5 className={`text-blue-400 text-sm mb-2 ${serifFontClass}`}>{t("dialogue.memorySummary")}:</h5>
                 <div className="ml-2">
-                  <ol className={`list-decimal list-inside ${fontClass} text-[#f4e8c1] text-sm`}>
+                  <ol className={`list-decimal list-inside ${fontClass} text-[#e0f2fe] text-sm`}>
                     {selectedNode.data.label.split(/——>|-->|->|→/).map((step, index) => (
                       <li key={index} className="mb-1">{step.trim()}</li>
                     ))}
@@ -1637,7 +1637,7 @@ export default function DialogueTreeModal({ isOpen, onClose, characterId, onDial
                   <textarea 
                     value={editContent}
                     onChange={(e) => setEditContent(e.target.value)}
-                    className={`w-full h-64 p-3 bg-[#121212] border border-[#444444] rounded-md text-[#f4e8c1] fantasy-scrollbar focus:outline-none focus:border-blue-400 ${fontClass} text-sm leading-relaxed`}
+                    className={`w-full h-64 p-3 bg-[#121212] border border-[#444444] rounded-md text-[#e0f2fe] fantasy-scrollbar focus:outline-none focus:border-blue-400 ${fontClass} text-sm leading-relaxed`}
                     placeholder={t("dialogue.responsePlaceholder")}
                   />
                 </div>

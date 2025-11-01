@@ -267,7 +267,7 @@ export default function UserTour({ steps, isVisible, onComplete, onSkip }: UserT
         }}
       >
         <div className="mb-4">
-          <h3 className={`text-lg font-semibold text-[#f4e8c1] mb-2 ${serifFontClass}`}>
+          <h3 className={`text-lg font-semibold text-[#e0f2fe] mb-2 ${serifFontClass}`}>
             {currentStepData.title}
           </h3>
           <p className={`text-[#7db3fd] text-sm leading-relaxed ${serifFontClass}`}>
@@ -297,7 +297,7 @@ export default function UserTour({ steps, isVisible, onComplete, onSkip }: UserT
             {currentStep > 0 && (
               <button
                 onClick={prevStep}
-                className={`px-3 py-1.5 text-sm bg-[#1a1816] text-[#7db3fd] border border-[#334155] rounded hover:bg-[#252220] hover:text-[#f4e8c1] transition-colors ${serifFontClass}`}
+                className={`px-3 py-1.5 text-sm bg-[#1a1816] text-[#7db3fd] border border-[#334155] rounded hover:bg-[#252220] hover:text-[#e0f2fe] transition-colors ${serifFontClass}`}
               >
                 {t("tour.previous") || "上一步"}
               </button>

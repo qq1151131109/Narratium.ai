@@ -604,7 +604,7 @@ export default function CharacterPage() {
           <div className="absolute inset-0 rounded-full border-2 border-t-[#5b9cfa] border-r-[#7db3fd] border-b-[#a18d6f] border-l-transparent animate-spin"></div>
           <div className="absolute inset-2 rounded-full border-2 border-t-[#a18d6f] border-r-[#5b9cfa] border-b-[#7db3fd] border-l-transparent animate-spin-slow"></div>
         </div>
-        <p className={`text-[#f4e8c1] ${serifFontClass} text-center mb-2`}>
+        <p className={`text-[#e0f2fe] ${serifFontClass} text-center mb-2`}>
           {loadingPhase}
         </p>
         {isInitializing && (
@@ -621,7 +621,7 @@ export default function CharacterPage() {
   if (error || !character) {
     return (
       <div className="flex flex-col items-center justify-center h-full fantasy-bg">
-        <h1 className="text-2xl text-[#f4e8c1] mb-4">
+        <h1 className="text-2xl text-[#e0f2fe] mb-4">
           {t("characterChat.error")}
         </h1>
         <p className="text-[#7db3fd] mb-6">
@@ -629,7 +629,7 @@ export default function CharacterPage() {
         </p>
         <a
           href="/character-cards"
-          className="bg-[#252220] hover:bg-[#342f25] text-[#f4e8c1] font-medium py-2 px-4 rounded border border-[#334155]"
+          className="bg-[#252220] hover:bg-[#342f25] text-[#e0f2fe] font-medium py-2 px-4 rounded border border-[#334155]"
         >
           {t("characterChat.backToCharacters")}
         </a>

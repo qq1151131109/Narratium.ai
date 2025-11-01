@@ -76,7 +76,7 @@ export function Toast({
       return {
         borderColor: "border-[#a18d6f]",
         iconColor: "text-[#7db3fd]",
-        titleColor: "text-[#f4e8c1]",
+        titleColor: "text-[#e0f2fe]",
         messageColor: "text-[#7db3fd]",
         defaultTitle: t("characterChat.requestFailed") || "Error",
         icon: (

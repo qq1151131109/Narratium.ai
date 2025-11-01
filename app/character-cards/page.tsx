@@ -368,7 +368,7 @@ export default function CharacterCards() {
               <div className="flex items-center gap-3">
                 <h1 className={`text-xl sm:text-2xl magical-login-text ${serifFontClass}`}>{t("sidebar.characterCards")}</h1>
                 <motion.button
-                  className={`hidden md:block portal-button text-[#7db3fd] hover:text-[#ffd475] p-1.5 sm:p-2 border border-[#334155] rounded-lg cursor-pointer ${fontClass} translate-y-[1px]`}
+                  className={`hidden md:block portal-button text-[#7db3fd] hover:text-[#7dd3fc] p-1.5 sm:p-2 border border-[#334155] rounded-lg cursor-pointer ${fontClass} translate-y-[1px]`}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   onClick={() => {
@@ -415,7 +415,7 @@ export default function CharacterCards() {
                   }}
                   onClick={() => setIsImportModalOpen(true)}
                 >
-                  <span className="relative z-10 text-[#7db3fd] group-hover:text-[#ffd475] transition-colors duration-300 text-xs sm:text-base">
+                  <span className="relative z-10 text-[#7db3fd] group-hover:text-[#7dd3fc] transition-colors duration-300 text-xs sm:text-base">
                     {t("characterCardsPage.importCharacter")}
                   </span>
                 </motion.div>
@@ -440,7 +440,7 @@ export default function CharacterCards() {
                   }}
                   onClick={() => setIsDownloadModalOpen(true)}
                 >
-                  <span className="relative z-10 text-[#7db3fd] group-hover:text-[#ffd475] transition-colors duration-300 text-xs sm:text-base">
+                  <span className="relative z-10 text-[#7db3fd] group-hover:text-[#7dd3fc] transition-colors duration-300 text-xs sm:text-base">
                     {t("characterCardsPage.downloadCharacter")}
                   </span>
                 </motion.div>
@@ -475,7 +475,7 @@ export default function CharacterCards() {
                 </div>
                 <p className={`text-[#eae6db] mb-6 ${serifFontClass}`}>{t("characterCardsPage.noCharacters")}</p>
                 <motion.div
-                  className={`portal-button inline-block text-[#7db3fd] hover:text-[#ffd475] px-5 py-2 border border-[#334155] rounded-lg cursor-pointer ${fontClass}`}
+                  className={`portal-button inline-block text-[#7db3fd] hover:text-[#7dd3fc] px-5 py-2 border border-[#334155] rounded-lg cursor-pointer ${fontClass}`}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   onClick={() => setIsImportModalOpen(true)}

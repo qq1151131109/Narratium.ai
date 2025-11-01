@@ -103,7 +103,7 @@ export default function HomeContent() {
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
             color: "transparent",
-            textShadow: "0 0 2px rgba(209, 163, 92, 0.3)",
+            textShadow: "0 0 2px rgba(59, 130, 246, 0.3)",
           }}
         >
           {t("homePage.slogan")}
@@ -112,8 +112,8 @@ export default function HomeContent() {
         <div className="flex flex-col md:flex-row gap-4 justify-center mt-6">
           <Link href="/character-cards">
             <motion.div
-              className={`portal-button text-[#7db3fd] hover:text-[#ffd475] text-sm px-6 py-2 border border-[#334155] rounded-md cursor-pointer ${fontClass} tracking-wide shadow-inner`}
-              whileHover={{ scale: 1.03, backgroundColor: "rgba(40, 35, 30, 0.6)" }}
+              className={`portal-button text-[#7db3fd] hover:text-[#7dd3fc] text-sm px-6 py-2 border border-[#334155] rounded-md cursor-pointer ${fontClass} tracking-wide shadow-inner`}
+              whileHover={{ scale: 1.03, backgroundColor: "rgba(30, 41, 59, 0.6)" }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
             >
               {t("homePage.immediatelyStart")}

@@ -212,7 +212,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                 trackButtonClick("CharacterSidebar", "移动端关闭侧边栏");
                 toggleSidebar();
               }}
-              className="w-8 h-8 flex items-center justify-center text-[#f4e8c1] bg-[#1c1c1c] rounded-full border border-[#333333] shadow-inner transition-all duration-300 hover:bg-[#252525] hover:border-[#444444] hover:text-blue-400 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"
+              className="w-8 h-8 flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-full border border-[#333333] shadow-inner transition-all duration-300 hover:bg-[#252525] hover:border-[#444444] hover:text-blue-400 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +251,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                   <div className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-blue-400 to-transparent w-0 group-hover:w-full transition-all duration-500 z-5" />
                   <div className="relative z-5 flex items-center">
                     <div
-                      className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
+                      className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -314,7 +314,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                   <div className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-blue-400 to-transparent w-0 group-hover:w-full transition-all duration-500 z-5" />
                   <div className="relative z-5 flex items-center">
                     <div
-                      className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
+                      className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -348,7 +348,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                   className="menu-item flex justify-center p-2 rounded-md cursor-pointer hover:bg-[#252525] transition-all duration-300"
                 >
                   <div
-                    className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] hover:text-blue-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
+                    className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] hover:text-blue-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -399,7 +399,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                   className="menu-item flex justify-center p-2 rounded-md cursor-pointer hover:bg-[#252525] transition-all duration-300"
                 >
                   <div
-                    className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] hover:text-blue-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
+                    className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] hover:text-blue-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -439,7 +439,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                   "menu-item flex p-2 rounded-md hover:bg-[#252525] overflow-hidden transition-all duration-300 group"
                 }
               >
-                <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 mr-3 flex items-center justify-center text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]">
+                <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 mr-3 flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]">
                   {character.avatar_path ? (
                     <CharacterAvatarBackground
                       avatarPath={character.avatar_path}
@@ -463,7 +463,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                 </div>
                 <div className="flex flex-col justify-center">
                   <span
-                    className={`magical-text whitespace-nowrap overflow-hidden text-ellipsis block text-xs md:text-sm text-[#f4e8c1] group-hover:text-blue-400 transition-colors duration-300 ${serifFontClass}`}
+                    className={`magical-text whitespace-nowrap overflow-hidden text-ellipsis block text-xs md:text-sm text-[#e0f2fe] group-hover:text-blue-400 transition-colors duration-300 ${serifFontClass}`}
                   >
                     {character.name
                       ? character.name.length > (isMobile ? 15 : 20)
@@ -508,7 +508,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                 <div className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-blue-400 to-transparent w-0 group-hover:w-full transition-all duration-500 z-5" />
                 <div className="relative z-5 flex items-center">
                   <div
-                    className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
+                    className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -526,7 +526,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                   </div>
                   <div className="ml-2 transition-all duration-300 ease-in-out overflow-hidden">
                     <p
-                      className={`text-[#f4e8c1] text-xs md:text-sm transition-colors duration-300 ${fontClass}`}
+                      className={`text-[#e0f2fe] text-xs md:text-sm transition-colors duration-300 ${fontClass}`}
                     >
                       {t("characterChat.Conversation")}
                     </p>
@@ -541,7 +541,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                 onClick={() => setShowDialogueTreeModal(true)}
               >
                 <div
-                  className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] hover:text-blue-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
+                  className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] hover:text-blue-400 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -580,7 +580,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
               <div className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-blue-400 to-transparent w-0 group-hover:w-full transition-all duration-500 z-5" />
               <div className="relative z-5 flex items-center">
                 <div
-                  className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
+                  className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -620,7 +620,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                 <div className="relative z-5 flex items-center justify-between w-full">
                   <div className="flex items-center">
                     <div
-                      className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-purple-400 group-hover:shadow-[0_0_8px_rgba(167,139,250,0.4)]`}
+                      className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-purple-400 group-hover:shadow-[0_0_8px_rgba(167,139,250,0.4)]`}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -687,7 +687,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                             >
                               <div className="flex items-center">
                                 <span
-                                  className={`text-xs md:text-sm text-[#f4e8c1] ${fontClass} block truncate`}
+                                  className={`text-xs md:text-sm text-[#e0f2fe] ${fontClass} block truncate`}
                                 >
                                   {getPresetDisplayName(
                                     preset.name,
@@ -786,7 +786,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                 <div className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-blue-400 to-transparent w-0 group-hover:w-full transition-all duration-500 z-5" />
                 <div className="relative z-5 flex items-center">
                   <div
-                    className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(96,165,250,0.4)]`}
+                    className={`${isMobile ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 group-hover:border-[#444444] group-hover:text-blue-400 group-hover:shadow-[0_0_8px_rgba(96,165,250,0.4)]`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

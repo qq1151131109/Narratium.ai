@@ -83,7 +83,7 @@ export default function NotFound() {
           <div className="flex items-center justify-center space-x-4">
             <Link href="/">
               <motion.div
-                className={`portal-button text-[#7db3fd] hover:text-[#ffd475] px-4 py-2 text-sm border border-[#334155] rounded-md cursor-pointer ${fontClass}`}
+                className={`portal-button text-[#7db3fd] hover:text-[#7dd3fc] px-4 py-2 text-sm border border-[#334155] rounded-md cursor-pointer ${fontClass}`}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >

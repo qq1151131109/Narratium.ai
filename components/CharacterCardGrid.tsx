@@ -98,7 +98,7 @@ const CharacterCardGrid: React.FC<CharacterCardGridProps> = ({
                 {/* move character to top of the screen */}
                 <button
                   onClick={(e) => {e.stopPropagation(); trackButtonClick("move_to_top_character_btn", "置顶角色"); onMoveToTopClick(character.id);}}
-                  className="p-2 sm:p-1.5 bg-[#252220] hover:bg-[#3a2a2a] rounded-full text-[#7db3fd] hover:text-[#ffd475] transition-colors"
+                  className="p-2 sm:p-1.5 bg-[#252220] hover:bg-[#3a2a2a] rounded-full text-[#7db3fd] hover:text-[#7dd3fc] transition-colors"
                   title={t("characterCardsPage.move_to_top")}
                   aria-label={t("characterCardsPage.move_to_top")}
                 >
@@ -110,7 +110,7 @@ const CharacterCardGrid: React.FC<CharacterCardGridProps> = ({
                 </button>
                 <button
                   onClick={(e) => {trackButtonClick("edit_character_btn", "编辑角色"); onEditClick(character, e);}}
-                  className="p-2 sm:p-1.5 bg-[#252220] hover:bg-[#3a2a2a] rounded-full text-[#7db3fd] hover:text-[#ffd475] transition-colors"
+                  className="p-2 sm:p-1.5 bg-[#252220] hover:bg-[#3a2a2a] rounded-full text-[#7db3fd] hover:text-[#7dd3fc] transition-colors"
                   title={t("characterCardsPage.edit")}
                   aria-label={t("characterCardsPage.edit")}
                 >
@@ -125,7 +125,7 @@ const CharacterCardGrid: React.FC<CharacterCardGridProps> = ({
                     e.stopPropagation();
                     onDeleteClick(character.id);
                   }}
-                  className="p-2 sm:p-1.5 bg-[#252220] hover:bg-[#3a2a2a] rounded-full text-[#7db3fd] hover:text-[#ffd475] transition-colors"
+                  className="p-2 sm:p-1.5 bg-[#252220] hover:bg-[#3a2a2a] rounded-full text-[#7db3fd] hover:text-[#7dd3fc] transition-colors"
                   title={t("characterCardsPage.delete")}
                   aria-label={t("characterCardsPage.delete")}
                 >

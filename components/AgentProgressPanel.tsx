@@ -75,7 +75,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
       thinking: { color: "text-blue-400", label: t("agentProgress.thinking") || "Thinking", icon: <Brain size={14} />, pulse: true },
       executing: { color: "text-blue-400", label: t("agentProgress.executing") || "Executing", icon: <Zap size={14} />, pulse: true },
       waiting_user: { color: "text-blue-400", label: t("agentProgress.waitingUser") || "Awaiting Input", icon: <User size={14} />, pulse: true },
-      completed: { color: "text-[#f4e8c1]", label: t("agentProgress.completed") || "Completed", icon: <Award size={14} /> },
+      completed: { color: "text-[#e0f2fe]", label: t("agentProgress.completed") || "Completed", icon: <Award size={14} /> },
       failed: { color: "text-rose-400", label: t("agentProgress.failed") || "Failed", icon: <AlertCircle size={14} /> },
     };
     return statusMap[status] || { color: "text-slate-400", label: t("agentProgress.unknown") || "Unknown", icon: <Clock size={14} /> };
@@ -100,7 +100,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
     <div className="bg-black/40 border border-blue-500/20 rounded-lg p-3 space-y-3">
       {/* Compact Header */}
       <div className="text-center">
-        <h3 className={`text-sm font-semibold text-[#f4e8c1] ${serifFontClass} magical-text`}>
+        <h3 className={`text-sm font-semibold text-[#e0f2fe] ${serifFontClass} magical-text`}>
           {t("agentProgress.title") || "创作进度"}
         </h3>
         <p className={`text-[11px] text-[#7db3fd]/60 mt-0.5 ${fontClass}`}>
@@ -156,7 +156,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
                     <CheckCircle className="w-3 h-3" />
                     <span className={fontClass}>{t("agentProgress.completed") || "已完成"}</span>
                   </div>
-                  <span className={`font-semibold text-[#f4e8c1] ${fontClass}`}>{progress.completedTasks}</span>
+                  <span className={`font-semibold text-[#e0f2fe] ${fontClass}`}>{progress.completedTasks}</span>
                 </div>
         
                 <div className="flex justify-between items-center text-xs">
@@ -164,7 +164,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
                     <Activity className="w-3 h-3" />
                     <span className={fontClass}>{t("agentProgress.iterations") || "迭代次数"}</span>
                   </div>
-                  <span className={`font-semibold text-[#f4e8c1] ${fontClass}`}>{progress.totalIterations}</span>
+                  <span className={`font-semibold text-[#e0f2fe] ${fontClass}`}>{progress.totalIterations}</span>
                 </div>
         
                 <div className="flex justify-between items-center text-xs">
@@ -172,7 +172,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
                     <Database className="w-3 h-3" />
                     <span className={fontClass}>{t("agentProgress.knowledgeBase") || "知识库"}</span>
                   </div>
-                  <span className={`font-semibold text-[#f4e8c1] ${fontClass}`}>{progress.knowledgeBaseSize}</span>
+                  <span className={`font-semibold text-[#e0f2fe] ${fontClass}`}>{progress.knowledgeBaseSize}</span>
                 </div>
               </div>
             </motion.div>
@@ -218,7 +218,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
                     </div>
                     <div className="flex items-center gap-2">
                       <div className={`w-1.5 h-1.5 rounded-full fantasy-glow ${
-                        result.character_data ? "bg-[#f4e8c1]" : "bg-slate-600"
+                        result.character_data ? "bg-[#e0f2fe]" : "bg-slate-600"
                       }`} />
                       {result.character_data && (
                         <button
@@ -226,7 +226,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
                           disabled={isExporting}
                           className="p-0.5 rounded hover:bg-black/30 transition-colors"
                         >
-                          <Download className="w-3 h-3 text-[#7db3fd]/80 hover:text-[#f4e8c1]" />
+                          <Download className="w-3 h-3 text-[#7db3fd]/80 hover:text-[#e0f2fe]" />
                         </button>
                       )}
                     </div>
@@ -240,7 +240,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
                     </div>
                     <div className="flex items-center gap-2">
                       <div className={`w-1.5 h-1.5 rounded-full fantasy-glow ${
-                        result.status_data ? "bg-[#f4e8c1]" : "bg-slate-600"
+                        result.status_data ? "bg-[#e0f2fe]" : "bg-slate-600"
                       }`} />
                       {result.status_data && (
                         <button
@@ -248,7 +248,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
                           disabled={isExporting}
                           className="p-0.5 rounded hover:bg-black/30 transition-colors"
                         >
-                          <Download className="w-3 h-3 text-[#7db3fd]/80 hover:text-[#f4e8c1]" />
+                          <Download className="w-3 h-3 text-[#7db3fd]/80 hover:text-[#e0f2fe]" />
                         </button>
                       )}
                     </div>
@@ -262,7 +262,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
                     </div>
                     <div className="flex items-center gap-2">
                       <div className={`w-1.5 h-1.5 rounded-full fantasy-glow ${
-                        result.world_data ? "bg-[#f4e8c1]" : "bg-slate-600"
+                        result.world_data ? "bg-[#e0f2fe]" : "bg-slate-600"
                       }`} />
                       {result.world_data && (
                         <button
@@ -270,7 +270,7 @@ const AgentProgressPanel: React.FC<AgentProgressPanelProps> = ({
                           disabled={isExporting}
                           className="p-0.5 rounded hover:bg-black/30 transition-colors"
                         >
-                          <Download className="w-3 h-3 text-[#7db3fd]/80 hover:text-[#f4e8c1]" />
+                          <Download className="w-3 h-3 text-[#7db3fd]/80 hover:text-[#e0f2fe]" />
                         </button>
                       )}
                     </div>

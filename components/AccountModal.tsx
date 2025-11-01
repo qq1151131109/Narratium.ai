@@ -146,7 +146,7 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
             <div className="relative p-6 pb-4">
               <button 
                 onClick={onClose}
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-[#888] hover:text-[#f4e8c1] transition-colors duration-200 rounded-lg hover:bg-white/5"
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-[#888] hover:text-[#e0f2fe] transition-colors duration-200 rounded-lg hover:bg-white/5"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -154,7 +154,7 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
                 </svg>
               </button>
               
-              <h2 className={`text-xl font-bold text-[#f4e8c1] mb-2 ${serifFontClass}`}>
+              <h2 className={`text-xl font-bold text-[#e0f2fe] mb-2 ${serifFontClass}`}>
                 {t("account.title")}
               </h2>
               
@@ -197,7 +197,7 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
                             type="text"
                             value={editedUsername}
                             onChange={(e) => setEditedUsername(e.target.value)}
-                            className="flex-1 bg-[#2a2a2a] border border-[#3a3a3a] rounded-lg px-3 py-2 text-[#f4e8c1] text-sm focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20"
+                            className="flex-1 bg-[#2a2a2a] border border-[#3a3a3a] rounded-lg px-3 py-2 text-[#e0f2fe] text-sm focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20"
                             autoFocus
                           />
                           <button
@@ -231,7 +231,7 @@ export default function AccountModal({ isOpen, onClose }: AccountModalProps) {
                       </div>
                     ) : (
                       <div className="flex items-center justify-between group">
-                        <span className={`text-[#f4e8c1] font-medium ${fontClass}`}>
+                        <span className={`text-[#e0f2fe] font-medium ${fontClass}`}>
                           {user.username}
                         </span>
                         <button

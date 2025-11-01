@@ -203,7 +203,7 @@ export default function PresetInfoModal({
             <div className="overflow-y-auto max-h-[50vh] space-y-4">
               {/* Description */}
               <div className="p-4 bg-gradient-to-br from-[#2a261f]/60 via-[#1a1816]/40 to-[#2a261f]/60 rounded-lg border border-[#334155]/50">
-                <h3 className={`text-sm font-medium text-[#f4e8c1] mb-2 ${serifFontClass}`}>
+                <h3 className={`text-sm font-medium text-[#e0f2fe] mb-2 ${serifFontClass}`}>
                   {t("presetInfo.description")}
                 </h3>
                 <p className={`text-xs sm:text-sm text-[#7db3fd] leading-relaxed ${fontClass}`}>
@@ -213,7 +213,7 @@ export default function PresetInfoModal({
 
               {/* Features */}
               <div className="p-4 bg-gradient-to-br from-[#2a261f]/60 via-[#1a1816]/40 to-[#2a261f]/60 rounded-lg border border-[#334155]/50">
-                <h3 className={`text-sm font-medium text-[#f4e8c1] mb-3 ${serifFontClass}`}>
+                <h3 className={`text-sm font-medium text-[#e0f2fe] mb-3 ${serifFontClass}`}>
                   {t("presetInfo.features")}
                 </h3>
                 <ul className="space-y-2">

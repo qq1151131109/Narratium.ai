@@ -128,7 +128,7 @@ export default function SettingsDropdown({}: SettingsDropdownProps) {
       <button
         onClick={() => setIsOpen(!isOpen)}
         data-tour="settings-button"
-        className="w-8 h-8 flex items-center justify-center text-[#f4e8c1] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 hover:bg-[#252525] hover:border-[#444444] hover:text-blue-400 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"
+        className="w-8 h-8 flex items-center justify-center text-[#e0f2fe] bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 hover:bg-[#252525] hover:border-[#444444] hover:text-blue-400 hover:shadow-[0_0_8px_rgba(59,130,246,0.4)]"
         aria-label={t("common.settings")}
         aria-expanded={isOpen}
       >
@@ -143,7 +143,7 @@ export default function SettingsDropdown({}: SettingsDropdownProps) {
           <div className="py-1">
             <button
               onClick={toggleLanguage}
-              className="flex items-center w-full px-4 py-2 text-sm text-[#f4e8c1] hover:bg-[#252525] transition-colors"
+              className="flex items-center w-full px-4 py-2 text-sm text-[#e0f2fe] hover:bg-[#252525] transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                 <path d="M5 8l6 6"></path>
@@ -160,7 +160,7 @@ export default function SettingsDropdown({}: SettingsDropdownProps) {
 
             <button
               onClick={openPluginManager}
-              className="flex items-center w-full px-4 py-2 text-sm text-[#f4e8c1] hover:bg-[#252525] transition-colors"
+              className="flex items-center w-full px-4 py-2 text-sm text-[#e0f2fe] hover:bg-[#252525] transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                 <rect width="7" height="9" x="3" y="3" rx="1"/>
@@ -173,7 +173,7 @@ export default function SettingsDropdown({}: SettingsDropdownProps) {
             
             <button
               onClick={toggleSound}
-              className="flex items-center w-full px-4 py-2 text-sm text-[#f4e8c1] hover:bg-[#252525] transition-colors"
+              className="flex items-center w-full px-4 py-2 text-sm text-[#e0f2fe] hover:bg-[#252525] transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                 {soundEnabled ? (
@@ -199,7 +199,7 @@ export default function SettingsDropdown({}: SettingsDropdownProps) {
                 setIsOpen(false);
                 window.location.reload();
               }}
-              className="flex items-center w-full px-4 py-2 text-sm text-[#f4e8c1] hover:bg-[#252525] transition-colors"
+              className="flex items-center w-full px-4 py-2 text-sm text-[#e0f2fe] hover:bg-[#252525] transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                 <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
@@ -214,7 +214,7 @@ export default function SettingsDropdown({}: SettingsDropdownProps) {
             
             <button
               onClick={handleExportData}
-              className="flex items-center w-full px-4 py-2 text-sm text-[#f4e8c1] hover:bg-[#252525] transition-colors"
+              className="flex items-center w-full px-4 py-2 text-sm text-[#e0f2fe] hover:bg-[#252525] transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -226,7 +226,7 @@ export default function SettingsDropdown({}: SettingsDropdownProps) {
 
             <button
               onClick={handleImportData}
-              className="flex items-center w-full px-4 py-2 text-sm text-[#f4e8c1] hover:bg-[#252525] transition-colors"
+              className="flex items-center w-full px-4 py-2 text-sm text-[#e0f2fe] hover:bg-[#252525] transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -238,7 +238,7 @@ export default function SettingsDropdown({}: SettingsDropdownProps) {
 
             <button
               onClick={handleExportDataToGoogle}
-              className="flex items-center w-full px-4 py-2 text-sm text-[#f4e8c1] hover:bg-[#252525] transition-colors"
+              className="flex items-center w-full px-4 py-2 text-sm text-[#e0f2fe] hover:bg-[#252525] transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -250,7 +250,7 @@ export default function SettingsDropdown({}: SettingsDropdownProps) {
 
             <button
               onClick={handleImportDataFromGoogle}
-              className="flex items-center w-full px-4 py-2 text-sm text-[#f4e8c1] hover:bg-[#252525] transition-colors"
+              className="flex items-center w-full px-4 py-2 text-sm text-[#e0f2fe] hover:bg-[#252525] transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>

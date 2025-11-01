@@ -691,7 +691,7 @@ export default function CharacterChatPanel({
 
                 return message.role === "user" ? (
                   <div key={index} className="flex justify-end mb-4">
-                    <div className="max-w-md lg:max-w-2xl break-words whitespace-pre-line text-[#f4e8c1] story-text leading-relaxed magical-text">
+                    <div className="max-w-md lg:max-w-2xl break-words whitespace-pre-line text-[#e0f2fe] story-text leading-relaxed magical-text">
                       <p
                         className={`${serifFontClass}`}
                         dangerouslySetInnerHTML={{
@@ -736,7 +736,7 @@ export default function CharacterChatPanel({
                       </div>
                       <div className="flex items-center">
                         <span
-                          className={`text-sm font-medium text-[#f4e8c1] ${serifFontClass}`}
+                          className={`text-sm font-medium text-[#e0f2fe] ${serifFontClass}`}
                         >
                           {character.name}
                         </span>
@@ -771,7 +771,7 @@ export default function CharacterChatPanel({
                                     />
                                   </svg>
                                 </div>
-                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#f4e8c1] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155] z-50">
+                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155] z-50">
                                   {getCurrentConfig()?.name ||
                                       t("modelSettings.noConfigs")}
                                 </div>
@@ -790,7 +790,7 @@ export default function CharacterChatPanel({
                                         className={`w-full text-left px-2 py-1.5 text-xs hover:bg-[#3a3632] transition-colors flex items-center justify-between ${
                                           activeConfigId === config.id
                                             ? "bg-[#3a3632] text-[#d1a35c]"
-                                            : "text-[#f4e8c1]"
+                                            : "text-[#e0f2fe]"
                                         }`}
                                       >
                                         <div className="flex items-center">
@@ -913,7 +913,7 @@ export default function CharacterChatPanel({
                                                 selectedConfig.model ===
                                                   "default")
                                               ? "bg-[#3a3632] text-[#d1a35c]"
-                                              : "text-[#f4e8c1]"
+                                              : "text-[#e0f2fe]"
                                           }`}
                                         >
                                           <span className="mr-2.5">
@@ -978,7 +978,7 @@ export default function CharacterChatPanel({
                                   : t("characterChat.enableStreaming")
                               }
                             >
-                              <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#f4e8c1] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155]">
+                              <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155]">
                                 {activeModes.streaming
                                   ? t("characterChat.disableStreaming")
                                   : t("characterChat.enableStreaming")}
@@ -1045,7 +1045,7 @@ export default function CharacterChatPanel({
                                   : t("characterChat.enableFastModel")
                               }
                             >
-                              <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#f4e8c1] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155]">
+                              <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155]">
                                 {activeModes.fastModel
                                   ? t("characterChat.disableFastModel")
                                   : t("characterChat.enableFastModel")}
@@ -1088,7 +1088,7 @@ export default function CharacterChatPanel({
                           className="ml-1 w-6 h-6 flex items-center justify-center text-[#a18d6f] hover:text-green-400 bg-[#1c1c1c] rounded-lg border border-[#333333] shadow-inner transition-all duration-300 hover:border-[#444444] hover:shadow-[0_0_8px_rgba(34,197,94,0.4)] group relative"
                           data-tooltip={t("characterChat.jumpToMessage")}
                         >
-                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#f4e8c1] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155]">
+                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155]">
                             {t("characterChat.jumpToMessage")}
                           </div>
                           <svg
@@ -1118,7 +1118,7 @@ export default function CharacterChatPanel({
                           }`}
                           data-tooltip={t("characterChat.regenerateMessage")}
                         >
-                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#f4e8c1] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155]">
+                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#e0f2fe] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#334155]">
                             {t("characterChat.regenerateMessage")}
                           </div>
                           <svg
@@ -1195,7 +1195,7 @@ export default function CharacterChatPanel({
           <div className="relative max-w-4xl mx-auto">
             <button
               onClick={() => setSuggestionsCollapsed(!suggestionsCollapsed)}
-              className="absolute -top-10 right-0 bg-[#2a261f] hover:bg-[#342f25] text-[#7db3fd] hover:text-[#f4e8c1] p-1.5 rounded-md border border-[#334155] hover:border-[#a18d6f] transition-all duration-300 shadow-sm hover:shadow z-10"
+              className="absolute -top-10 right-0 bg-[#2a261f] hover:bg-[#342f25] text-[#7db3fd] hover:text-[#e0f2fe] p-1.5 rounded-md border border-[#334155] hover:border-[#a18d6f] transition-all duration-300 shadow-sm hover:shadow z-10"
               aria-label={suggestionsCollapsed ? "展开建议" : "收起建议"}
             >
               {suggestionsCollapsed ? (
@@ -1243,7 +1243,7 @@ export default function CharacterChatPanel({
                       onSuggestedInput(input);
                     }}
                     disabled={isSending}
-                    className={`bg-[#2a261f] hover:bg-[#342f25] text-[#7db3fd] hover:text-[#f4e8c1] py-1.5 px-4 rounded-md text-xs border border-[#334155] hover:border-[#a18d6f] transition-all duration-300 shadow-sm hover:shadow menu-item ${
+                    className={`bg-[#2a261f] hover:bg-[#342f25] text-[#7db3fd] hover:text-[#e0f2fe] py-1.5 px-4 rounded-md text-xs border border-[#334155] hover:border-[#a18d6f] transition-all duration-300 shadow-sm hover:shadow menu-item ${
                       isSending ? "opacity-50 cursor-not-allowed" : ""
                     } ${fontClass}`}
                   >
@@ -1272,7 +1272,7 @@ export default function CharacterChatPanel({
                   t("characterChat.typeMessage") || "Type a message..."
                 }
                 data-tour="chat-input"
-                className="w-full bg-[#2a261f] border border-[#334155] rounded-lg py-2 sm:py-2.5 px-3 sm:px-4 text-[#f4e8c1] text-sm leading-tight focus:outline-none focus:border-[#7db3fd] shadow-inner relative z-1 transition-all duration-300 group-hover:border-[#a18d6f]"
+                className="w-full bg-[#2a261f] border border-[#334155] rounded-lg py-2 sm:py-2.5 px-3 sm:px-4 text-[#e0f2fe] text-sm leading-tight focus:outline-none focus:border-[#7db3fd] shadow-inner relative z-1 transition-all duration-300 group-hover:border-[#a18d6f]"
                 disabled={isSending}
               />
             </div>
@@ -1285,7 +1285,7 @@ export default function CharacterChatPanel({
               <button
                 type="submit"
                 disabled={!userInput.trim()}
-                className={`portal-button relative overflow-hidden bg-[#2a261f] hover:bg-[#342f25] text-[#7db3fd] hover:text-[#f4e8c1] py-2 px-3 sm:px-4 rounded-lg text-sm border border-[#334155] hover:border-[#a18d6f] shadow-md transition-all duration-300 ${
+                className={`portal-button relative overflow-hidden bg-[#2a261f] hover:bg-[#342f25] text-[#7db3fd] hover:text-[#e0f2fe] py-2 px-3 sm:px-4 rounded-lg text-sm border border-[#334155] hover:border-[#a18d6f] shadow-md transition-all duration-300 ${
                   !userInput.trim() ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >

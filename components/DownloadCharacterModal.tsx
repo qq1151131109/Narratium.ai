@@ -546,7 +546,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                 }
               }}
               disabled={loading}
-              className={`group p-2 rounded-full text-[#a18d6f] hover:text-[#5b9cfa] hover:bg-[#252220] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#ffd475]/40 relative ${loading ? "opacity-60 cursor-wait" : ""}`}
+              className={`group p-2 rounded-full text-[#a18d6f] hover:text-[#5b9cfa] hover:bg-[#252220] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#7dd3fc]/40 relative ${loading ? "opacity-60 cursor-wait" : ""}`}
               title={t("downloadModal.refresh")}
               aria-label={t("downloadModal.refresh")}
               type="button"
@@ -569,7 +569,7 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
               )}
             </button>
             <button
-              className={"p-2 rounded-full text-[#a18d6f] hover:text-[#5b9cfa] hover:bg-[#252220] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#ffd475]/40"}
+              className={"p-2 rounded-full text-[#a18d6f] hover:text-[#5b9cfa] hover:bg-[#252220] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#7dd3fc]/40"}
               onClick={onClose}
               title={t("common.close")}
               aria-label={t("common.close")}
@@ -702,13 +702,13 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                             {tags.slice(0, 2).map(tag => (
                               <span
                                 key={tag}
-                                className={`px-2 py-0.5 text-xs rounded-full bg-black/60 text-[#ffd475] ${fontClass}`}
+                                className={`px-2 py-0.5 text-xs rounded-full bg-black/60 text-[#7dd3fc] ${fontClass}`}
                               >
                                 {t(`downloadModal.tags.${tag}`)}
                               </span>
                             ))}
                             {tags.length > 2 && (
-                              <span className={`px-2 py-0.5 text-xs rounded-full bg-black/60 text-[#ffd475] ${fontClass}`}>
+                              <span className={`px-2 py-0.5 text-xs rounded-full bg-black/60 text-[#7dd3fc] ${fontClass}`}>
                                 +{tags.length - 2}
                               </span>
                             )}
@@ -731,13 +731,13 @@ export default function DownloadCharacterModal({ isOpen, onClose, onImport }: Do
                               {tags.slice(0, 3).map(tag => (
                                 <span
                                   key={tag}
-                                  className={`px-1.5 py-0.5 text-xs rounded-full bg-[#334155] text-[#ffd475] ${fontClass}`}
+                                  className={`px-1.5 py-0.5 text-xs rounded-full bg-[#334155] text-[#7dd3fc] ${fontClass}`}
                                 >
                                   {t(`downloadModal.tags.${tag}`)}
                                 </span>
                               ))}
                               {tags.length > 3 && (
-                                <span className={`px-1.5 py-0.5 text-xs rounded-full bg-[#334155] text-[#ffd475] ${fontClass}`}>
+                                <span className={`px-1.5 py-0.5 text-xs rounded-full bg-[#334155] text-[#7dd3fc] ${fontClass}`}>
                                   +{tags.length - 3}
                                 </span>
                               )}

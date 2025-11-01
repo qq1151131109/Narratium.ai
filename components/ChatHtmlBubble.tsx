@@ -142,49 +142,49 @@ const SEMANTIC_COLOR_GROUPS = {
   ],
   // Status & state tags  
   status: [
-    "#d4c4a8", // Muted gold - similar brightness to #f4e8c1
+    "#d4c4a8", // Muted gold - similar brightness to #e0f2fe
   ],
   // Emotion & feeling tags
   emotion: [
-    "#e8c8b0", // Soft peach - similar brightness to #f4e8c1
+    "#e8c8b0", // Soft peach - similar brightness to #e0f2fe
   ],
   // Action & movement tags
   action: [
-    "#c8d4b0", // Muted sage - similar brightness to #f4e8c1
+    "#c8d4b0", // Muted sage - similar brightness to #e0f2fe
   ],
   // Thought & mental tags
   thought: [
-    "#d0c8e0", // Soft lavender - similar brightness to #f4e8c1
+    "#d0c8e0", // Soft lavender - similar brightness to #e0f2fe
   ],
   // Narrative & description tags
   narrative: [
-    "#f4e8c1", // Default narrative color - same as base text
+    "#e0f2fe", // Default narrative color - same as base text
   ],
   // Emphasis & attention tags
   emphasis: [
-    "#e0b8a8", // Muted coral - similar brightness to #f4e8c1
+    "#e0b8a8", // Muted coral - similar brightness to #e0f2fe
   ],
   // Mystical & special tags
   mystical: [
-    "#d8c0e8", // Soft violet - similar brightness to #f4e8c1
+    "#d8c0e8", // Soft violet - similar brightness to #e0f2fe
   ],
 };
 
-// Simplified color palette with similar brightness to #f4e8c1
+// Simplified color palette with similar brightness to #e0f2fe
 const OPTIMIZED_COLOR_PALETTE = [
-  // Warm colors with similar brightness to #f4e8c1
+  // Warm colors with similar brightness to #e0f2fe
   "#e5d7b5", // Warm beige
   "#d4c4a8", // Muted gold
   "#e8c8b0", // Soft peach
   "#e0b8a8", // Muted coral
   
-  // Cool colors with similar brightness to #f4e8c1
+  // Cool colors with similar brightness to #e0f2fe
   "#c8d4b0", // Muted sage
   "#d0c8e0", // Soft lavender
   "#d8c0e8", // Soft violet
   "#c0d8e0", // Soft blue-gray
   
-  // Neutral colors with similar brightness to #f4e8c1
+  // Neutral colors with similar brightness to #e0f2fe
   "#d8d0c0", // Warm gray
   "#e0d8c8", // Light beige
   "#d0c8c0", // Muted taupe
@@ -669,7 +669,7 @@ export default memo(function ChatHtmlBubble({
 
   const initialContent = enableStreaming ? "" : processedHtml;
 
-  const srcDoc = `<!DOCTYPE html><html><head><meta charset="utf-8"><style>*,*::before,*::after{box-sizing:border-box;max-width:100%}html,body{margin:0;padding:0;color:#f4e8c1;font:16px/${1.5} serif;background:transparent;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;white-space:pre-wrap;overflow:hidden;}img,video,iframe{max-width:100%;height:auto;display:block;margin:0 auto}table{width:100%;border-collapse:collapse;overflow-x:auto;display:block}code,pre{font-family:monospace;font-size:0.9rem;white-space:pre-wrap;background:rgba(40,40,40,0.8);padding:4px 8px;border-radius:4px;border:1px solid rgba(255,255,255,0.1);}pre{background:rgba(40,40,40,0.8);padding:12px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);margin:8px 0;}blockquote{margin:8px 0;padding:8px 12px;border-left:4px solid #93c5fd;background:rgba(147,197,253,0.08);border-radius:0 4px 4px 0;font-style:italic;color:#93c5fd;}strong{color:#fb7185;font-weight:bold;}em{color:#c4b5fd;font-style:italic;}.dialogue{color:#fda4af;}a{color:#93c5fd}.tag-styled{white-space:inherit;}</style></head><body><div id="content-wrapper">${initialContent}</div><script>
+  const srcDoc = `<!DOCTYPE html><html><head><meta charset="utf-8"><style>*,*::before,*::after{box-sizing:border-box;max-width:100%}html,body{margin:0;padding:0;color:#e0f2fe;font:16px/${1.5} serif;background:transparent;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;white-space:pre-wrap;overflow:hidden;}img,video,iframe{max-width:100%;height:auto;display:block;margin:0 auto}table{width:100%;border-collapse:collapse;overflow-x:auto;display:block}code,pre{font-family:monospace;font-size:0.9rem;white-space:pre-wrap;background:rgba(40,40,40,0.8);padding:4px 8px;border-radius:4px;border:1px solid rgba(255,255,255,0.1);}pre{background:rgba(40,40,40,0.8);padding:12px;border-radius:6px;border:1px solid rgba(255,255,255,0.1);margin:8px 0;}blockquote{margin:8px 0;padding:8px 12px;border-left:4px solid #93c5fd;background:rgba(147,197,253,0.08);border-radius:0 4px 4px 0;font-style:italic;color:#93c5fd;}strong{color:#fb7185;font-weight:bold;}em{color:#c4b5fd;font-style:italic;}.dialogue{color:#fda4af;}a{color:#93c5fd}.tag-styled{white-space:inherit;}</style></head><body><div id="content-wrapper">${initialContent}</div><script>
 // Virtual queue integration for performance optimization
 const virtualQueue = {
   tasks: [],
