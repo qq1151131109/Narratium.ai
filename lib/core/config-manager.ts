@@ -97,49 +97,54 @@ export class ConfigManager {
 
 /**
  * Utility functions for Web environment
- * These functions handle localStorage integration for LLM configuration
+ * These functions handle environment variable integration for LLM configuration
  */
 
 /**
- * Load configuration from localStorage
+ * Load configuration from environment variables
  * This function should be called from the UI layer
  */
-export function loadConfigFromLocalStorage(): LLMConfig {
+export function loadConfigFromEnvironment(): LLMConfig {
   try {
-    const llmType = localStorage.getItem("llmType") as "openai" | "ollama" | null;
-    const openaiModel = localStorage.getItem("openaiModel");
-    const ollamaModel = localStorage.getItem("ollamaModel");
-    const openaiApiKey = localStorage.getItem("openaiApiKey");
-    const openaiBaseUrl = localStorage.getItem("openaiBaseUrl");
-    const ollamaBaseUrl = localStorage.getItem("ollamaBaseUrl");
-    const temperature = localStorage.getItem("temperature");
-    const maxTokens = localStorage.getItem("maxTokens");
-    const tavilyApiKey = localStorage.getItem("tavilyApiKey");
-    const jinaApiKey = localStorage.getItem("jinaApiKey");
-    const falApiKey = localStorage.getItem("falApiKey");
+    // Import getChatLLMConfig from features-config if in browser environment
+    if (typeof window !== "undefined") {
+      const { getChatLLMConfig } = require("@/lib/config/features-config");
+      const chatLLM = getChatLLMConfig();
 
-    const config: LLMConfig = {
-      llm_type: llmType || "openai",
-      model_name: llmType === "openai" ? openaiModel || "" : ollamaModel || "",
-      api_key: openaiApiKey || process.env.OPENAI_API_KEY || "",
-      base_url: llmType === "openai" ? openaiBaseUrl || "" : ollamaBaseUrl || "",
-      temperature: temperature ? parseFloat(temperature) : 0.7,
-      max_tokens: maxTokens ? parseInt(maxTokens) : 4000,
-      tavily_api_key: tavilyApiKey || process.env.NEXT_PUBLIC_TAVILY_API_KEY || "",
-      jina_api_key: jinaApiKey || process.env.NEXT_PUBLIC_JINA_API_KEY || "",
-      fal_api_key: falApiKey || process.env.NEXT_PUBLIC_FAL_API_KEY || "",
+      const config: LLMConfig = {
+        llm_type: chatLLM.type,
+        model_name: chatLLM.model,
+        api_key: chatLLM.apiKey,
+        base_url: chatLLM.baseUrl,
+        temperature: 0.7,
+        max_tokens: 4000,
+        tavily_api_key: process.env.NEXT_PUBLIC_TAVILY_API_KEY || "",
+        jina_api_key: process.env.NEXT_PUBLIC_JINA_API_KEY || "",
+        fal_api_key: process.env.NEXT_PUBLIC_FAL_API_KEY || "",
+      };
+
+      console.log("Config loaded from environment:", {
+        type: config.llm_type,
+        model: config.model_name,
+        hasApiKey: !!config.api_key,
+      });
+
+      return config;
+    }
+
+    // Fallback for server-side rendering
+    return {
+      llm_type: "openai",
+      model_name: "",
+      api_key: "",
+      temperature: 0.7,
+      max_tokens: 4000,
+      tavily_api_key: "",
+      jina_api_key: "",
+      fal_api_key: "",
     };
-    
-    // Debug: Log configuration loading
-    console.log("Config loaded from localStorage:", {
-      tavilyFromStorage: tavilyApiKey ? "***has value***" : "empty",
-      tavilyFromEnv: process.env.NEXT_PUBLIC_TAVILY_API_KEY ? "***has value***" : "empty",
-      finalTavily: config.tavily_api_key ? "***configured***" : "missing",
-    });
-    
-    return config;
   } catch (error) {
-    console.warn("Failed to load configuration from localStorage:", error);
+    console.warn("Failed to load configuration from environment:", error);
     return {
       llm_type: "openai",
       model_name: "",
@@ -154,48 +159,18 @@ export function loadConfigFromLocalStorage(): LLMConfig {
 }
 
 /**
- * Save configuration to localStorage
- * This function should be called from the UI layer when configuration changes
+ * @deprecated Configuration is now read from environment variables, not localStorage
+ * This function is kept for backward compatibility but does nothing
  */
 export function saveConfigToLocalStorage(config: LLMConfig): void {
-  if (typeof window === "undefined") {
-    console.warn("Cannot save to localStorage in server-side environment");
-    return;
-  }
+  console.warn("saveConfigToLocalStorage is deprecated. Configuration is now read from .env file.");
+}
 
-  try {
-    localStorage.setItem("llmType", config.llm_type);
-    
-    const modelKey = config.llm_type === "openai" ? "openaiModel" : "ollamaModel";
-    localStorage.setItem(modelKey, config.model_name);
-    
-    if (config.api_key) {
-      localStorage.setItem("openaiApiKey", config.api_key);
-    }
-    
-    if (config.base_url) {
-      const baseUrlKey = config.llm_type === "openai" ? "openaiBaseUrl" : "ollamaBaseUrl";
-      localStorage.setItem(baseUrlKey, config.base_url);
-    }
-    
-    localStorage.setItem("temperature", config.temperature.toString());
-    
-    if (config.max_tokens) {
-      localStorage.setItem("maxTokens", config.max_tokens.toString());
-    }
-    
-    if (config.tavily_api_key !== undefined) {
-      localStorage.setItem("tavilyApiKey", config.tavily_api_key);
-    }
-    
-    if (config.jina_api_key !== undefined) {
-      localStorage.setItem("jinaApiKey", config.jina_api_key);
-    }
-    
-    if (config.fal_api_key !== undefined) {
-      localStorage.setItem("falApiKey", config.fal_api_key);
-    }
-  } catch (error) {
-    console.error("Failed to save configuration to localStorage:", error);
-  }
+/**
+ * @deprecated Use loadConfigFromEnvironment instead
+ * This function is kept for backward compatibility
+ */
+export function loadConfigFromLocalStorage(): LLMConfig {
+  console.warn("loadConfigFromLocalStorage is deprecated. Use loadConfigFromEnvironment instead.");
+  return loadConfigFromEnvironment();
 }

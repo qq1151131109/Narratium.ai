@@ -28,21 +28,11 @@ import UserNameSettingModal from "@/components/UserNameSettingModal";
 import { getDisplayUsername, setDisplayUsername } from "@/utils/username-helper";
 import { trackButtonClick, trackFormSubmit } from "@/utils/google-analytics";
 import { useTTS } from "@/hooks/useTTS";
-
-/**
- * API Configuration types
- */
-type LLMType = "openai" | "ollama";
-
-interface APIConfig {
-  id: string;
-  name: string;
-  type: LLMType;
-  baseUrl: string;
-  model: string;
-  apiKey?: string;
-  availableModels?: string[]; // Available models for this config
-}
+import { TTSService } from "@/lib/api/tts-service";
+import { useSceneImage } from "@/hooks/useSceneImage";
+import { SceneImageConfig } from "@/lib/api/scene-image-service";
+import { ComfyUIVideoService } from "@/lib/api/comfyui-video-service";
+import { getTTSConfig, getSceneImageConfig, getVideoGenerationConfig, getChatLLMConfig } from "@/lib/config/features-config";
 
 /**
  * Interface definitions for the component's data structures
@@ -50,6 +40,7 @@ interface APIConfig {
 interface Character {
   id: string;
   name: string;
+  description?: string;
   personality?: string;
   avatar_path?: string;
 }
@@ -61,6 +52,21 @@ interface Message {
   content: string;
   timestamp?: string;
   isUser?: boolean;
+  sceneImage?: {
+    url: string;
+    prompt: string;
+    timestamp: number;
+    characterRef?: string;
+  };
+  sceneVideo?: {
+    url: string;
+    imagePrompt: string;
+    videoPrompt: string;
+    ttsText: string;
+    duration: number;
+    timestamp: number;
+    status: "generating" | "completed" | "failed";
+  };
 }
 
 interface Props {
@@ -116,26 +122,44 @@ export default function CharacterChatPanel({
   // Control panel expansion state
   const [isControlPanelExpanded, setIsControlPanelExpanded] = useState(false);
 
-  // API Configuration states
-  const [configs, setConfigs] = useState<APIConfig[]>([]);
-  const [activeConfigId, setActiveConfigId] = useState<string>("");
-  const [showApiDropdown, setShowApiDropdown] = useState(false);
-  const [showModelDropdown, setShowModelDropdown] = useState(false);
-  const [selectedConfigId, setSelectedConfigId] = useState<string>(""); // For the second level dropdown
-  const [currentModel, setCurrentModel] = useState<string>(""); // Current active model
+  // Load feature configurations from environment variables
+  const ttsConfig = getTTSConfig();
+  const sceneImageConfig = getSceneImageConfig();
+  const videoGenConfig = getVideoGenerationConfig();
+  const chatLLMConfig = getChatLLMConfig();
 
-  // TTS Configuration states
-  const [ttsApiKey, setTtsApiKey] = useState<string>("");
-  const [ttsEnabled, setTtsEnabled] = useState<boolean>(false);
-  const [ttsAutoPlay, setTtsAutoPlay] = useState<boolean>(true);
-  const [ttsWorkflowId, setTtsWorkflowId] = useState<string>("1983711725981769729");
+  // Scene image generation states for each message
+  const [generatingImages, setGeneratingImages] = useState<Map<string, boolean>>(new Map());
+  const [generatedImages, setGeneratedImages] = useState<Map<string, string>>(new Map());
+  const [imageProgress, setImageProgress] = useState<Map<string, number>>(new Map());
+  const [imageErrors, setImageErrors] = useState<Map<string, string>>(new Map());
+
+  // Video generation states for each message
+  const [generatingVideos, setGeneratingVideos] = useState<Map<string, boolean>>(new Map());
+  const [generatedVideos, setGeneratedVideos] = useState<Map<string, string>>(new Map());
+  const [videoProgress, setVideoProgress] = useState<Map<string, number>>(new Map());
+  const [videoStatus, setVideoStatus] = useState<Map<string, string>>(new Map());
+  const [videoErrors, setVideoErrors] = useState<Map<string, string>>(new Map());
 
   // Initialize TTS hook
   const tts = useTTS({
-    apiKey: ttsApiKey,
-    autoPlay: ttsAutoPlay,
-    workflowId: ttsWorkflowId,
+    apiKey: ttsConfig.apiKey,
+    autoPlay: ttsConfig.autoPlay,
+    workflowId: ttsConfig.workflowId,
   });
+
+  // Initialize Scene Image hook
+  const sceneImageHookConfig: SceneImageConfig = {
+    apiKey: sceneImageConfig.apiKey,
+    workflowId: sceneImageConfig.workflowId,
+    llmConfig: sceneImageConfig.enabled ? {
+      type: sceneImageConfig.llmType,
+      baseUrl: sceneImageConfig.llmBaseUrl,
+      model: sceneImageConfig.llmModel,
+      apiKey: sceneImageConfig.llmApiKey,
+    } : undefined,
+  };
+  const sceneImage = useSceneImage(sceneImageHookConfig);
 
   useEffect(() => {
     const savedStreaming = localStorage.getItem("streamingEnabled");
@@ -165,53 +189,28 @@ export default function CharacterChatPanel({
 
     // Load display username using helper function
     setCurrentDisplayName(getDisplayUsername());
-
-    // Load TTS configuration
-    const savedTtsApiKey = localStorage.getItem("tts_api_key");
-    const savedTtsEnabled = localStorage.getItem("tts_enabled");
-    const savedTtsAutoPlay = localStorage.getItem("tts_auto_play");
-    const savedTtsWorkflowId = localStorage.getItem("tts_workflow_id");
-
-    if (savedTtsApiKey) {
-      setTtsApiKey(savedTtsApiKey);
-    }
-    if (savedTtsEnabled === "true") {
-      setTtsEnabled(true);
-    }
-    if (savedTtsAutoPlay === "false") {
-      setTtsAutoPlay(false);
-    }
-
-    // Auto-migrate old workflow ID to new one
-    if (savedTtsWorkflowId === "1983506334995914754") {
-      const newWorkflowId = "1983711725981769729";
-      setTtsWorkflowId(newWorkflowId);
-      localStorage.setItem("tts_workflow_id", newWorkflowId);
-    } else if (savedTtsWorkflowId) {
-      setTtsWorkflowId(savedTtsWorkflowId);
-    }
   }, []);
 
   // Auto-generate TTS for new assistant messages
   useEffect(() => {
-    if (!ttsEnabled || !ttsApiKey || messages.length === 0 || isSending) {
+    if (!ttsConfig.enabled || !ttsConfig.apiKey || messages.length === 0 || isSending) {
       return;
     }
 
     const lastMessage = messages[messages.length - 1];
 
     // Only auto-generate for assistant messages
-    if (lastMessage.role === "assistant" && ttsAutoPlay) {
+    if (lastMessage.role === "assistant" && ttsConfig.autoPlay) {
       // Check if already generated or generating
       const state = tts.getState(lastMessage.id);
       if (state.isGenerating || state.isPlaying || tts.isCached(lastMessage.id)) {
-        console.log('TTS: Skipping generation - already generated or in progress');
+        console.log("TTS: Skipping generation - already generated or in progress");
         return;
       }
 
       // Delay to ensure content is fully rendered
       const timer = setTimeout(() => {
-        console.log('TTS: Auto-generating for message:', lastMessage.id);
+        console.log("TTS: Auto-generating for message:", lastMessage.id);
         tts.generateAndPlay(lastMessage.id, lastMessage.content).catch((error) => {
           console.error("Auto TTS generation failed:", error);
         });
@@ -219,7 +218,7 @@ export default function CharacterChatPanel({
 
       return () => clearTimeout(timer);
     }
-  }, [messages, ttsEnabled, ttsApiKey, ttsAutoPlay, isSending]);
+  }, [messages, ttsConfig.enabled, ttsConfig.apiKey, ttsConfig.autoPlay, isSending, tts]);
 
   const scrollToBottom = () => {
     const el = scrollRef.current;
@@ -246,379 +245,192 @@ export default function CharacterChatPanel({
     return true;
   };
 
+  // Handle scene image generation
+  const handleGenerateSceneImage = async (messageId: string, messageIndex: number) => {
+    if (!sceneImageConfig.enabled || !sceneImageConfig.apiKey || !sceneImageConfig.llmApiKey) {
+      console.error("Scene image generation is not properly configured");
+      return;
+    }
+
+    // Check if already generating
+    if (generatingImages.get(messageId)) {
+      console.log("Scene image already generating for message:", messageId);
+      return;
+    }
+
+    // Mark as generating
+    setGeneratingImages(new Map(generatingImages.set(messageId, true)));
+    setImageProgress(new Map(imageProgress.set(messageId, 0)));
+    setImageErrors(new Map(imageErrors.set(messageId, "")));
+
+    try {
+      // Get recent messages for context (last 3-5 messages before current)
+      const recentMessages = messages
+        .slice(Math.max(0, messageIndex - 4), messageIndex)
+        .map(msg => ({
+          role: msg.role,
+          content: msg.content,
+        }));
+
+      const currentMessage = {
+        role: messages[messageIndex].role,
+        content: messages[messageIndex].content,
+      };
+
+      // Generate scene image
+      await sceneImage.generateSceneImage(
+        {
+          name: character.name,
+          description: character.description,
+          personality: character.personality,
+        },
+        recentMessages,
+        undefined, // TODO: Add reference image support
+      );
+
+      // Check if generation succeeded
+      if (sceneImage.status === "completed" && sceneImage.imageUrl) {
+        setGeneratedImages(new Map(generatedImages.set(messageId, sceneImage.imageUrl)));
+        console.log("Scene image generated successfully:", sceneImage.imageUrl);
+      } else if (sceneImage.status === "error") {
+        setImageErrors(new Map(imageErrors.set(messageId, sceneImage.error || "Generation failed")));
+        console.error("Scene image generation failed:", sceneImage.error);
+      }
+    } catch (error) {
+      console.error("Error generating scene image:", error);
+      setImageErrors(new Map(imageErrors.set(messageId, error instanceof Error ? error.message : "Unknown error")));
+    } finally {
+      setGeneratingImages(new Map(generatingImages.set(messageId, false)));
+    }
+  };
+
+  // Handle scene video generation
+  const handleGenerateVideo = async (messageId: string, messageIndex: number) => {
+    if (!videoGenConfig.enabled || !videoGenConfig.llmApiKey) {
+      console.error("Video generation is not properly configured");
+      return;
+    }
+
+    // Check if already generating
+    if (generatingVideos.get(messageId)) {
+      console.log("Video already generating for message:", messageId);
+      return;
+    }
+
+    const message = messages[messageIndex];
+
+    // Extract TTS text (highlighted/quoted text)
+    const ttsService = new TTSService({ apiKey: "", workflowId: "" });
+    const speeches = ttsService.extractSpeechContent(message.content);
+
+    if (speeches.length === 0) {
+      setVideoErrors(new Map(videoErrors.set(messageId, "未找到说话内容")));
+      console.error("No speech content found in message");
+      return;
+    }
+
+    const ttsText = speeches.join(" ");
+    console.log("=== Starting video generation ===");
+    console.log("Message ID:", messageId);
+    console.log("TTS text:", ttsText);
+
+    // Mark as generating
+    setGeneratingVideos(new Map(generatingVideos.set(messageId, true)));
+    setVideoProgress(new Map(videoProgress.set(messageId, 0)));
+    setVideoStatus(new Map(videoStatus.set(messageId, "正在准备...")));
+    setVideoErrors(new Map(videoErrors.set(messageId, "")));
+
+    try {
+      // Get recent messages for context (last 3-5 messages)
+      const recentMessages = messages
+        .slice(Math.max(0, messageIndex - 4), messageIndex + 1)
+        .map(msg => ({
+          role: msg.role,
+          content: msg.content,
+        }));
+
+      console.log("Recent messages:", recentMessages.length);
+
+      // Create service instance
+      const service = new ComfyUIVideoService({
+        llmConfig: {
+          type: videoGenConfig.llmType,
+          baseUrl: videoGenConfig.llmBaseUrl,
+          model: videoGenConfig.llmModel,
+          apiKey: videoGenConfig.llmApiKey,
+        },
+      });
+
+      // Step 1: Generate prompts
+      setVideoStatus(new Map(videoStatus.set(messageId, "正在分析对话...")));
+      console.log("Step 1: Generating prompts...");
+
+      const prompts = await service.generatePrompts(
+        {
+          name: character.name,
+          description: character.description,
+          personality: character.personality,
+        },
+        recentMessages,
+        ttsText,
+      );
+
+      console.log("Prompts generated:");
+      console.log("- Image prompt:", prompts.imagePrompt);
+      console.log("- Video prompt:", prompts.videoPrompt);
+
+      setVideoProgress(new Map(videoProgress.set(messageId, 5)));
+
+      // Step 2: Build workflow
+      setVideoStatus(new Map(videoStatus.set(messageId, "正在准备工作流...")));
+      console.log("Step 2: Building workflow...");
+
+      const workflow = service.buildWorkflow(ttsText, prompts.imagePrompt, prompts.videoPrompt);
+      setVideoProgress(new Map(videoProgress.set(messageId, 10)));
+
+      // Step 3: Submit workflow
+      setVideoStatus(new Map(videoStatus.set(messageId, "正在提交工作流...")));
+      console.log("Step 3: Submitting workflow...");
+
+      const promptId = await service.submitWorkflow(workflow, (progress, status) => {
+        setVideoProgress(new Map(videoProgress.set(messageId, progress)));
+        setVideoStatus(new Map(videoStatus.set(messageId, status)));
+        console.log(`Progress: ${progress}% - ${status}`);
+      });
+
+      console.log("Workflow submitted, prompt_id:", promptId);
+
+      // Step 4: Poll for results
+      setVideoStatus(new Map(videoStatus.set(messageId, "正在获取视频...")));
+      setVideoProgress(new Map(videoProgress.set(messageId, 98)));
+      console.log("Step 4: Polling for results...");
+
+      const result = await service.pollResult(promptId);
+
+      console.log("Video generated successfully:", result.videoUrl);
+
+      // Save result
+      setGeneratedVideos(new Map(generatedVideos.set(messageId, result.videoUrl)));
+      setVideoProgress(new Map(videoProgress.set(messageId, 100)));
+      setVideoStatus(new Map(videoStatus.set(messageId, "视频生成完成！")));
+
+      console.log("=== Video generation completed ===");
+    } catch (error) {
+      console.error("Video generation failed:", error);
+      const errorMessage = error instanceof Error ? error.message : "视频生成失败";
+      setVideoErrors(new Map(videoErrors.set(messageId, errorMessage)));
+      setVideoStatus(new Map(videoStatus.set(messageId, "生成失败")));
+      console.log("=== Video generation failed ===");
+    } finally {
+      setGeneratingVideos(new Map(generatingVideos.set(messageId, false)));
+    }
+  };
+
   // Username setting helper functions
   const handleUserNameSave = (newDisplayName: string) => {
     setCurrentDisplayName(newDisplayName);
     // Use helper function to set username, which also triggers the event
     setDisplayUsername(newDisplayName);
-  };
-
-  // API configuration helper functions
-  const getCurrentConfig = () => {
-    return configs.find((c) => c.id === activeConfigId);
-  };
-
-  // Get icon based on configuration name (for first level)
-  const getConfigIcon = (configName: string) => {
-    const name = configName.toLowerCase();
-
-    if (name.includes("deepseek") || name.includes("deep-seek")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/deepseek.svg"
-            alt="DeepSeek"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    } else if (name.includes("claude") || name.includes("anthropic")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/claude.svg"
-            alt="Claude"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    } else if (name.includes("gemini") || name.includes("google")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/gemini.svg"
-            alt="Gemini"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    } else if (name.includes("gemma")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/gemma.svg"
-            alt="Gemma"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    } else if (name.includes("ollama")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/ollama.svg"
-            alt="Ollama"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    } else if (
-      name.includes("qwen") ||
-      name.includes("qwq") ||
-      name.includes("tongyi")
-    ) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/qwen.svg"
-            alt="Qwen"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    } else if (name.includes("grok") || name.includes("xai")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/grok.svg"
-            alt="Grok"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full text-white"
-          />
-        </div>
-      );
-    } else if (name.includes("kimi") || name.includes("moonshot")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/kimi.svg"
-            alt="Kimi"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full text-white"
-          />
-        </div>
-      );
-    } else {
-      // Default OpenAI icon
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/openai.svg"
-            alt="OpenAI"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    }
-  };
-
-  // Get icon based on model name (for second level)
-  const getModelIcon = (modelName: string) => {
-    const name = modelName.toLowerCase();
-
-    if (name.includes("deepseek") || name.includes("deep-seek")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/deepseek.svg"
-            alt="DeepSeek"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    } else if (name.includes("claude") || name.includes("anthropic")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/claude.svg"
-            alt="Claude"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    } else if (name.includes("gemini") || name.includes("google")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/gemini.svg"
-            alt="Gemini"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    } else if (name.includes("gemma")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/gemma.svg"
-            alt="Gemma"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    } else if (
-      name.includes("ollama") ||
-      name.includes("llama") ||
-      name.includes("mistral") ||
-      name.includes("codellama") ||
-      name.includes("dolphin") ||
-      name.includes("vicuna") ||
-      name.includes("alpaca")
-    ) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/ollama.svg"
-            alt="Ollama"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    } else if (
-      name.includes("qwen") ||
-      name.includes("qwq") ||
-      name.includes("tongyi")
-    ) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/qwen.svg"
-            alt="Qwen"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    } else if (name.includes("grok") || name.includes("xai")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/grok.svg"
-            alt="Grok"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full text-white"
-          />
-        </div>
-      );
-    } else if (name.includes("kimi") || name.includes("moonshot")) {
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/kimi.svg"
-            alt="Kimi"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full text-white"
-          />
-        </div>
-      );
-    } else {
-      // Default OpenAI icon for GPT models and others
-      return (
-        <div className="w-5 h-5 rounded-full overflow-hidden bg-transparent flex items-center justify-center">
-          <img
-            src="/api-icons/openai.svg"
-            alt="OpenAI"
-            width={20}
-            height={20}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      );
-    }
-  };
-
-  // Fetch available models for a config
-  const fetchAvailableModels = async (config: APIConfig): Promise<string[]> => {
-    if (config.type === "ollama") {
-      // For Ollama, return the configured model
-      return [config.model || "default"];
-    }
-
-    if (!config.baseUrl || !config.apiKey) {
-      return ["default"];
-    }
-
-    try {
-      const response = await fetch(`${config.baseUrl}/models`, {
-        headers: {
-          Authorization: `Bearer ${config.apiKey}`,
-        },
-      });
-      const data = await response.json();
-      const modelList = data.data?.map((item: any) => item.id) || [];
-      return modelList.length > 0 ? modelList : ["default"];
-    } catch (error) {
-      console.error("Failed to fetch models for config", config.id, error);
-      return ["default"];
-    }
-  };
-
-  const handleConfigSelect = async (configId: string) => {
-    const selectedConfig = configs.find((c) => c.id === configId);
-    if (!selectedConfig) return;
-
-    // If config doesn't have availableModels, fetch them
-    if (!selectedConfig.availableModels) {
-      const models = await fetchAvailableModels(selectedConfig);
-      selectedConfig.availableModels = models;
-
-      // Update configs with available models
-      const updatedConfigs = configs.map((c) =>
-        c.id === configId ? { ...c, availableModels: models } : c,
-      );
-      setConfigs(updatedConfigs);
-    }
-
-    if (selectedConfig.availableModels.length === 1) {
-      // If only one model available, switch directly
-      handleModelSwitch(configId, selectedConfig.availableModels[0]);
-      setShowApiDropdown(false);
-      setShowModelDropdown(false);
-    } else {
-      // Show model dropdown for this config
-      setSelectedConfigId(configId);
-      setShowModelDropdown(true);
-      setShowApiDropdown(false);
-    }
-  };
-
-  const handleModelSwitch = (configId: string, modelName?: string) => {
-    const selectedConfig = configs.find((c) => c.id === configId);
-    if (!selectedConfig) {
-      console.error("CharacterChatPanel: Config not found for id", configId);
-      return;
-    }
-
-    // If modelName is provided, update the config's model
-    // For "default", use the original configured model or "default" if none exists
-    if (modelName && modelName !== selectedConfig.model) {
-      const actualModelName =
-        modelName === "default" ? selectedConfig.model || "default" : modelName;
-      selectedConfig.model = actualModelName;
-      const updatedConfigs = configs.map((c) =>
-        c.id === configId ? { ...c, model: actualModelName } : c,
-      );
-      setConfigs(updatedConfigs);
-      localStorage.setItem("apiConfigs", JSON.stringify(updatedConfigs));
-    }
-
-    setActiveConfigId(configId);
-    setCurrentModel(selectedConfig.model);
-    localStorage.setItem("activeConfigId", configId);
-
-    // Load configuration values to localStorage
-    localStorage.setItem("llmType", selectedConfig.type);
-    localStorage.setItem(
-      selectedConfig.type === "openai" ? "openaiBaseUrl" : "ollamaBaseUrl",
-      selectedConfig.baseUrl,
-    );
-    localStorage.setItem(
-      selectedConfig.type === "openai" ? "openaiModel" : "ollamaModel",
-      selectedConfig.model,
-    );
-    localStorage.setItem("modelName", selectedConfig.model);
-    localStorage.setItem("modelBaseUrl", selectedConfig.baseUrl);
-
-    // Store API key properly
-    if (selectedConfig.type === "openai" && selectedConfig.apiKey) {
-      localStorage.setItem("openaiApiKey", selectedConfig.apiKey);
-      localStorage.setItem("apiKey", selectedConfig.apiKey);
-    }
-
-    // Dispatch custom event to notify other components
-    window.dispatchEvent(
-      new CustomEvent("modelChanged", {
-        detail: {
-          configId,
-          config: selectedConfig,
-          modelName: selectedConfig.model,
-          configName: selectedConfig.name,
-        },
-      }),
-    );
-
-    setShowApiDropdown(false);
-    setShowModelDropdown(false);
-    trackButtonClick("CharacterChat", "切换模型");
   };
 
   useEffect(() => {
@@ -642,90 +454,6 @@ export default function CharacterChatPanel({
       }));
       localStorage.setItem("fastModelEnabled", "true");
     }
-  }, []);
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (
-        (showApiDropdown || showModelDropdown) &&
-        !target.closest(".api-dropdown-container")
-      ) {
-        setShowApiDropdown(false);
-        setShowModelDropdown(false);
-      }
-    };
-
-    if (showApiDropdown || showModelDropdown) {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }
-  }, [showApiDropdown, showModelDropdown]);
-
-  // Load API configurations
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const loadConfigs = () => {
-      const savedConfigsStr = localStorage.getItem("apiConfigs");
-      let loadedConfigs: APIConfig[] = [];
-
-      if (savedConfigsStr) {
-        try {
-          loadedConfigs = JSON.parse(savedConfigsStr) as APIConfig[];
-        } catch (e) {
-          console.error("Error parsing saved API configs", e);
-        }
-      }
-
-      const storedActiveId = localStorage.getItem("activeConfigId");
-      const activeIdCandidate =
-        storedActiveId && loadedConfigs.some((c) => c.id === storedActiveId)
-          ? storedActiveId
-          : loadedConfigs[0]?.id || "";
-
-      setConfigs(loadedConfigs);
-      setActiveConfigId(activeIdCandidate);
-
-      // Set current model
-      const activeConfig = loadedConfigs.find(
-        (c) => c.id === activeIdCandidate,
-      );
-      if (activeConfig) {
-        setCurrentModel(activeConfig.model);
-      }
-    };
-
-    // Initial load
-    loadConfigs();
-
-    // Listen for changes from ModelSidebar
-    const handleModelChanged = (event: CustomEvent) => {
-      loadConfigs();
-    };
-
-    const handleStorageChange = (event: StorageEvent) => {
-      if (event.key === "apiConfigs" || event.key === "activeConfigId") {
-        loadConfigs();
-      }
-    };
-
-    window.addEventListener(
-      "modelChanged",
-      handleModelChanged as EventListener,
-    );
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener(
-        "modelChanged",
-        handleModelChanged as EventListener,
-      );
-      window.removeEventListener("storage", handleStorageChange);
-    };
   }, []);
 
   return (
@@ -811,211 +539,6 @@ export default function CharacterChatPanel({
                         {message.role === "assistant" &&
                           shouldShowRegenerateButton(message, index) && (
                           <>
-                            {/* Two-Level API/Model Configuration Selector */}
-                            <div className="relative mx-2 api-dropdown-container">
-                              <button
-                                onClick={() => {
-                                  setShowApiDropdown(!showApiDropdown);
-                                  setShowModelDropdown(false);
-                                }}
-                                className="p-1 rounded-md transition-all duration-300 group relative text-[#8a8a8a] hover:text-[#d1a35c] flex items-center"
-                              >
-                                <div className="flex items-center">
-                                  {getCurrentConfig()
-                                    ? getConfigIcon(getCurrentConfig()!.name)
-                                    : getConfigIcon("openai")}
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-2 w-2 ml-0.5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    strokeWidth={3}
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      d="M19 9l-7 7-7-7"
-                                    />
-                                  </svg>
-                                </div>
-                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#f4e8c1] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#534741] z-50">
-                                  {getCurrentConfig()?.name ||
-                                      t("modelSettings.noConfigs")}
-                                </div>
-                              </button>
-
-                              {/* First Level Dropdown - API Configurations */}
-                              {showApiDropdown && !showModelDropdown && (
-                                <div className="absolute top-full left-0 mt-1 bg-[#2a261f] border border-[#534741] rounded-md shadow-lg z-50 min-w-[160px]">
-                                  {configs.length > 0 ? (
-                                    configs.map((config) => (
-                                      <button
-                                        key={config.id}
-                                        onClick={() =>
-                                          handleConfigSelect(config.id)
-                                        }
-                                        className={`w-full text-left px-2 py-1.5 text-xs hover:bg-[#3a3632] transition-colors flex items-center justify-between ${
-                                          activeConfigId === config.id
-                                            ? "bg-[#3a3632] text-[#d1a35c]"
-                                            : "text-[#f4e8c1]"
-                                        }`}
-                                      >
-                                        <div className="flex items-center">
-                                          <span className="mr-2.5">
-                                            {getConfigIcon(config.name)}
-                                          </span>
-                                          <span
-                                            className="truncate"
-                                            title={config.name}
-                                          >
-                                            {config.name.length > 20
-                                              ? `${config.name.substring(0, 20)}...`
-                                              : config.name}
-                                          </span>
-                                        </div>
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          className="h-3 w-3 ml-2"
-                                          fill="none"
-                                          viewBox="0 0 24 24"
-                                          stroke="currentColor"
-                                          strokeWidth={2}
-                                        >
-                                          <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M9 5l7 7-7 7"
-                                          />
-                                        </svg>
-                                      </button>
-                                    ))
-                                  ) : (
-                                    <div className="px-2 py-1.5 text-xs text-[#8a8a8a]">
-                                      {t("common.noApisConfigured")}
-                                    </div>
-                                  )}
-                                </div>
-                              )}
-
-                              {/* Second Level Dropdown - Models within Config */}
-                              {showModelDropdown && selectedConfigId && (
-                                <div className="absolute top-full left-0 mt-1 bg-[#2a261f] border border-[#534741] rounded-md shadow-lg z-50 min-w-[180px]">
-                                  <div className="px-2 py-1.5 text-xs text-[#8a8a8a] border-b border-[#534741] flex items-center justify-between">
-                                    <button
-                                      onClick={() => {
-                                        setShowModelDropdown(false);
-                                        setShowApiDropdown(true);
-                                      }}
-                                      className="flex items-center text-[#c0a480] hover:text-[#d1a35c] transition-colors"
-                                    >
-                                      <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-3 w-3 mr-1"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth={2}
-                                      >
-                                        <path
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          d="M15 19l-7-7 7-7"
-                                        />
-                                      </svg>
-                                      {t("characterChat.back")}
-                                    </button>
-                                    <span>
-                                      {t("characterChat.selectModel")}
-                                    </span>
-                                  </div>
-                                  {(() => {
-                                    const selectedConfig = configs.find(
-                                      (c) => c.id === selectedConfigId,
-                                    );
-                                    if (
-                                      !selectedConfig ||
-                                        !selectedConfig.availableModels
-                                    ) {
-                                      return (
-                                        <div className="px-2 py-1.5 text-xs text-[#8a8a8a] flex items-center">
-                                          <svg
-                                            className="animate-spin h-3 w-3 mr-2"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                          >
-                                            <circle
-                                              className="opacity-25"
-                                              cx="12"
-                                              cy="12"
-                                              r="10"
-                                              stroke="currentColor"
-                                              strokeWidth="4"
-                                            ></circle>
-                                            <path
-                                              className="opacity-75"
-                                              fill="currentColor"
-                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                            ></path>
-                                          </svg>
-                                            Loading models...
-                                        </div>
-                                      );
-                                    }
-
-                                    return selectedConfig.availableModels.map(
-                                      (modelName) => (
-                                        <button
-                                          key={modelName}
-                                          onClick={() =>
-                                            handleModelSwitch(
-                                              selectedConfigId,
-                                              modelName,
-                                            )
-                                          }
-                                          className={`w-full text-left px-2 py-1.5 text-xs hover:bg-[#3a3632] transition-colors flex items-center ${
-                                            selectedConfig.model ===
-                                                modelName ||
-                                              (modelName === "default" &&
-                                                selectedConfig.model ===
-                                                  "default")
-                                              ? "bg-[#3a3632] text-[#d1a35c]"
-                                              : "text-[#f4e8c1]"
-                                          }`}
-                                        >
-                                          <span className="mr-2.5">
-                                            {modelName === "default"
-                                              ? getConfigIcon(
-                                                selectedConfig.name,
-                                              )
-                                              : getModelIcon(modelName)}
-                                          </span>
-                                          <span
-                                            className="truncate"
-                                            title={
-                                              modelName === "default"
-                                                ? t(
-                                                  "characterChat.defaultModel",
-                                                )
-                                                : modelName
-                                            }
-                                          >
-                                            {modelName === "default"
-                                              ? t(
-                                                "characterChat.defaultModel",
-                                              )
-                                              : modelName.length > 25
-                                                ? `${modelName.substring(0, 25)}...`
-                                                : modelName}
-                                          </span>
-                                        </button>
-                                      ),
-                                    );
-                                  })()}
-                                </div>
-                              )}
-                            </div>
                             <button
                               onClick={() => {
                                 setActiveModes((prev) => {
@@ -1207,7 +730,7 @@ export default function CharacterChatPanel({
                           </svg>
                         </button>
                         {/* TTS Play Button - Show for assistant messages when TTS is enabled */}
-                        {message.role === "assistant" && ttsEnabled && ttsApiKey && (
+                        {message.role === "assistant" && ttsConfig.enabled && ttsConfig.apiKey && (
                           <button
                             onClick={() => {
                               const state = tts.getState(message.id);
@@ -1306,6 +829,160 @@ export default function CharacterChatPanel({
                             )}
                           </button>
                         )}
+                        {/* Scene Image Generation Button - Show for assistant messages when enabled */}
+                        {message.role === "assistant" && sceneImageConfig.enabled && sceneImageConfig.apiKey && (
+                          <button
+                            onClick={() => {
+                              handleGenerateSceneImage(message.id, index);
+                              trackButtonClick("page", "生成场景图片");
+                            }}
+                            disabled={generatingImages.get(message.id) || false}
+                            className={`ml-1 w-6 h-6 flex items-center justify-center bg-[#1c1c1c] rounded-lg border shadow-inner transition-all duration-300 group relative ${
+                              generatedImages.has(message.id)
+                                ? "text-purple-400 hover:text-purple-300 border-purple-400/60 hover:border-purple-300/70 hover:shadow-[0_0_8px_rgba(168,85,247,0.4)]"
+                                : generatingImages.get(message.id)
+                                  ? "text-[#8a8a8a] border-[#333333] cursor-not-allowed"
+                                  : "text-[#a18d6f] hover:text-[#a78bfa] border-[#333333] hover:border-[#444444] hover:shadow-[0_0_8px_rgba(167,139,250,0.4)]"
+                            }`}
+                            data-tooltip={
+                              generatingImages.get(message.id)
+                                ? `生成场景图片中... ${Math.round(imageProgress.get(message.id) || 0)}%`
+                                : imageErrors.get(message.id)
+                                  ? imageErrors.get(message.id)
+                                  : generatedImages.has(message.id)
+                                    ? "重新生成场景图片"
+                                    : "生成场景图片"
+                            }
+                          >
+                            <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#f4e8c1] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#534741] pointer-events-none">
+                              {generatingImages.get(message.id) ? (
+                                `生成中... ${Math.round(imageProgress.get(message.id) || 0)}%`
+                              ) : imageErrors.get(message.id) ? (
+                                imageErrors.get(message.id)
+                              ) : generatedImages.has(message.id) ? (
+                                "重新生成场景图片"
+                              ) : (
+                                "生成场景图片"
+                              )}
+                            </div>
+                            {generatingImages.get(message.id) ? (
+                              // Loading animation
+                              <svg
+                                className="animate-spin h-3 w-3"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <circle
+                                  className="opacity-25"
+                                  cx="12"
+                                  cy="12"
+                                  r="10"
+                                  stroke="currentColor"
+                                  strokeWidth="4"
+                                ></circle>
+                                <path
+                                  className="opacity-75"
+                                  fill="currentColor"
+                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                ></path>
+                              </svg>
+                            ) : (
+                              // Image icon
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                              </svg>
+                            )}
+                          </button>
+                        )}
+                        {/* Scene Video Generation Button - Show for assistant messages when enabled */}
+                        {message.role === "assistant" && videoGenConfig.enabled && videoGenConfig.llmApiKey && (
+                          <button
+                            onClick={() => {
+                              handleGenerateVideo(message.id, index);
+                              trackButtonClick("page", "生成场景视频");
+                            }}
+                            disabled={generatingVideos.get(message.id) || false}
+                            className={`ml-1 w-6 h-6 flex items-center justify-center bg-[#1c1c1c] rounded-lg border shadow-inner transition-all duration-300 group relative ${
+                              generatedVideos.has(message.id)
+                                ? "text-green-400 hover:text-green-300 border-green-400/60 hover:border-green-300/70 hover:shadow-[0_0_8px_rgba(74,222,128,0.4)]"
+                                : generatingVideos.get(message.id)
+                                  ? "text-[#8a8a8a] border-[#333333] cursor-not-allowed"
+                                  : "text-[#6b9bd1] hover:text-[#60a5fa] border-[#333333] hover:border-[#444444] hover:shadow-[0_0_8px_rgba(96,165,250,0.4)]"
+                            }`}
+                          >
+                            {/* Tooltip */}
+                            <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-[#2a261f] text-[#f4e8c1] text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap border border-[#534741] pointer-events-none z-50">
+                              {generatingVideos.get(message.id) ? (
+                                <>
+                                  {videoStatus.get(message.id) || "生成中..."}
+                                  <br />
+                                  {Math.round(videoProgress.get(message.id) || 0)}%
+                                </>
+                              ) : videoErrors.get(message.id) ? (
+                                videoErrors.get(message.id)
+                              ) : generatedVideos.has(message.id) ? (
+                                "重新生成视频"
+                              ) : (
+                                "生成场景视频"
+                              )}
+                            </div>
+
+                            {generatingVideos.get(message.id) ? (
+                              // Loading animation with progress
+                              <div className="relative">
+                                <svg
+                                  className="animate-spin h-3 w-3"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <circle
+                                    className="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    strokeWidth="4"
+                                  ></circle>
+                                  <path
+                                    className="opacity-75"
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                  ></path>
+                                </svg>
+                              </div>
+                            ) : (
+                              // Video icon
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                              </svg>
+                            )}
+                          </button>
+                        )}
                       </div>
                     </div>
 
@@ -1337,6 +1014,82 @@ export default function CharacterChatPanel({
                           : undefined
                       }
                     />
+
+                    {/* Scene Image Display - Show generated image if available */}
+                    {message.role === "assistant" && generatedImages.has(message.id) && (
+                      <div className="mt-4 rounded-lg overflow-hidden border border-[#534741] bg-[#1e1a15] p-2">
+                        <img
+                          src={generatedImages.get(message.id)}
+                          alt="Generated scene"
+                          className="w-full h-auto rounded-md"
+                          loading="lazy"
+                          onError={(e) => {
+                            console.error("Failed to load scene image");
+                            // Remove from generated images if failed to load
+                            const newMap = new Map(generatedImages);
+                            newMap.delete(message.id);
+                            setGeneratedImages(newMap);
+                          }}
+                        />
+                      </div>
+                    )}
+
+                    {/* Scene Video Display - Show generated video if available */}
+                    {message.role === "assistant" && generatedVideos.has(message.id) && (
+                      <div className="mt-4 rounded-lg overflow-hidden border border-[#534741] bg-[#1e1a15] p-2">
+                        <video
+                          src={generatedVideos.get(message.id)}
+                          controls
+                          className="w-full h-auto rounded-md"
+                          preload="metadata"
+                          onError={(e) => {
+                            console.error("Failed to load scene video:", e);
+                            setVideoErrors(new Map(videoErrors.set(message.id, "视频加载失败")));
+                            const newMap = new Map(generatedVideos);
+                            newMap.delete(message.id);
+                            setGeneratedVideos(newMap);
+                          }}
+                        >
+                          您的浏览器不支持视频播放
+                        </video>
+
+                        {/* Video info */}
+                        <div className="mt-2 text-xs text-[#8a8a8a] flex items-center justify-between">
+                          <span>场景视频</span>
+                          <a
+                            href={generatedVideos.get(message.id)}
+                            download={`scene-video-${message.id}.mp4`}
+                            className="text-[#6b9bd1] hover:text-[#60a5fa] hover:underline"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            下载视频
+                          </a>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Video generation progress bar */}
+                    {message.role === "assistant" && generatingVideos.get(message.id) && (
+                      <div className="mt-4 rounded-lg border border-[#534741] bg-[#1e1a15] p-3">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm text-[#f4e8c1]">
+                            {videoStatus.get(message.id) || "生成中..."}
+                          </span>
+                          <span className="text-sm text-[#8a8a8a]">
+                            {Math.round(videoProgress.get(message.id) || 0)}%
+                          </span>
+                        </div>
+                        <div className="w-full h-2 bg-[#2a261f] rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-[#6b9bd1] to-[#60a5fa] transition-all duration-300"
+                            style={{ width: `${videoProgress.get(message.id) || 0}%` }}
+                          ></div>
+                        </div>
+                        <div className="mt-2 text-xs text-[#8a8a8a]">
+                          ℹ️ 视频生成需要 30-90 秒，请耐心等待...
+                        </div>
+                      </div>
+                    )}
                   </div>
                 );
               })}

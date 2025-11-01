@@ -45,6 +45,7 @@ import { Toast } from "@/components/Toast";
 import LoginModal from "@/components/LoginModal";
 import { useAuth } from "@/hooks/useAuth";
 import { getDisplayUsername } from "@/utils/username-helper";
+import { getChatLLMConfig } from "@/lib/config/features-config";
 
 /**
  * Interface definitions for the component's data structures
@@ -433,17 +434,13 @@ export default function CharacterPage() {
       setLoadingPhase(t("characterChat.extractingTemplate"));
       const username = getDisplayUsername();
       const language = localStorage.getItem("language") || "zh";
-      const llmType = localStorage.getItem("llmType") || "openai";
-      const modelName =
-        localStorage.getItem(
-          llmType === "openai" ? "openaiModel" : "ollamaModel",
-        ) || "";
-      const baseUrl =
-        localStorage.getItem(
-          llmType === "openai" ? "openaiBaseUrl" : "ollamaBaseUrl",
-        ) || "";
-      const apiKey =
-        llmType === "openai" ? localStorage.getItem("openaiApiKey") || "" : "";
+
+      // Get LLM configuration from environment variables
+      const chatLLMConfig = getChatLLMConfig();
+      const llmType = chatLLMConfig.type;
+      const modelName = chatLLMConfig.model;
+      const baseUrl = chatLLMConfig.baseUrl;
+      const apiKey = chatLLMConfig.apiKey;
 
       const initData = await initCharacterDialogue({
         username,
@@ -490,17 +487,14 @@ export default function CharacterPage() {
       setMessages((prev) => [...prev, userMessage]);
 
       const language = localStorage.getItem("language") || "zh";
-      const llmType = localStorage.getItem("llmType") || "openai";
-      const modelName =
-        localStorage.getItem(
-          llmType === "openai" ? "openaiModel" : "ollamaModel",
-        ) || "";
-      const baseUrl =
-        localStorage.getItem(
-          llmType === "openai" ? "openaiBaseUrl" : "ollamaBaseUrl",
-        ) || "";
-      const apiKey =
-        llmType === "openai" ? localStorage.getItem("openaiApiKey") || "" : "";
+
+      // Get LLM configuration from environment variables
+      const chatLLMConfig = getChatLLMConfig();
+      const llmType = chatLLMConfig.type;
+      const modelName = chatLLMConfig.model;
+      const baseUrl = chatLLMConfig.baseUrl;
+      const apiKey = chatLLMConfig.apiKey;
+
       const storedNumber = localStorage.getItem("responseLength");
       const username = getDisplayUsername();
       const responseLength = storedNumber ? parseInt(storedNumber) : 200;

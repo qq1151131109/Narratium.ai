@@ -25,8 +25,8 @@ export function useTTS(options: UseTTSOptions) {
   const { apiKey, workflowId = '1983711725981769729', autoPlay = true } = options;
 
   const [states, setStates] = useState<Map<string, TTSState>>(new Map());
-  const ttsServiceRef = useRef<TTSService>();
-  const audioRef = useRef<HTMLAudioElement>();
+  const ttsServiceRef = useRef<TTSService | undefined>(undefined);
+  const audioRef = useRef<HTMLAudioElement | undefined>(undefined);
   const currentPlayingRef = useRef<string | null>(null);
 
   // Initialize TTS service and audio element

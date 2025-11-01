@@ -6,6 +6,7 @@ export interface CharacterRecord {
   id: string;
   data: RawCharacterData;
   imagePath: string;
+  referenceImage?: string; // Reference image for scene generation
   created_at: string;
   updated_at: string;
 }
