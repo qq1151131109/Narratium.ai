@@ -907,8 +907,8 @@
     }
   },
   "tour": {
-    "welcome": "欢迎使用 Narratium",
-    "welcomeDescription": "Narratium 是一个智能角色对话平台，您可以与各种AI角色进行深度对话，创造独特的故事体验。让我们先了解一下基本功能。",
+    "welcome": "欢迎使用 YX-story",
+    "welcomeDescription": "YX-story 是一个智能角色对话平台，您可以与各种AI角色进行深度对话，创造独特的故事体验。让我们先了解一下基本功能。",
     "loginTitle": "首先登录账户",
     "loginDescription": "点击这里登录。请注意：您输入的用户名可能会被AI角色用作主角名称，所以建议使用您希望在故事中使用的名字。",
     "settingsTitle": "配置AI模型",

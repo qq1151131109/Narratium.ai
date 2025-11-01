@@ -1,7 +1,7 @@
 {
-  "name": "Narratium.ai",
-  "short_name": "Narratium",
-  "description": "AI-powered storytelling and character creation platform",
+  "name": "YX-story",
+  "short_name": "YX-story",
+  "description": "AI-powered interactive storytelling platform",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

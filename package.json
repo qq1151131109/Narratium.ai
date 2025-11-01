@@ -1,8 +1,8 @@
 {
-  "name": "Narratium",
+  "name": "yx-story",
   "version": "0.1.0",
   "private": true,
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "main": "electron/main.js",
   "scripts": {
     "dev": "next dev --turbopack",
@@ -12,9 +12,9 @@
     "preview": "serve -s out",
     "test": "vitest",
     "build:pwa": "node scripts/build-pwa.js",
-    "pake-mac": "pake out/index.html --name Narratium --use-local-file --icon ./public/icon.icns --multi-arch",
-    "pake-win": "pake out/index.html --name Narratium --use-local-file --icon ./public/icon.ico",
-    "pake-linux": "pake out/index.html --name narratium --use-local-file --icon ./public/icon.png",
+    "pake-mac": "pake out/index.html --name YX-story --use-local-file --icon ./public/icon.icns --multi-arch",
+    "pake-win": "pake out/index.html --name YX-story --use-local-file --icon ./public/icon.ico",
+    "pake-linux": "pake out/index.html --name yx-story --use-local-file --icon ./public/icon.png",
     "prepare": "husky"
   },
   "dependencies": {

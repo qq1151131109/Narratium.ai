@@ -18,31 +18,31 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"),
-  title: "Narratium - Interactive Storytelling Platform",
-  description: "Narratium is an innovative interactive storytelling platform that brings your stories to life. Create, share, and experience unique narratives in a fantasy-themed environment.",
-  keywords: "interactive storytelling, narrative platform, fantasy stories, creative writing, story creation",
-  authors: [{ name: "Narratium Team" }],
+  title: "YX-story - AI Interactive Storytelling Platform",
+  description: "YX-story is an innovative interactive storytelling platform powered by AI. Create, share, and experience unique narratives.",
+  keywords: "interactive storytelling, AI stories, narrative platform, creative writing, story creation",
+  authors: [{ name: "YX-story Team" }],
   manifest: "/manifest.json",
   openGraph: {
-    title: "Narratium - Interactive Storytelling Platform",
-    description: "Create and experience unique interactive stories in a fantasy-themed environment",
+    title: "YX-story - AI Interactive Storytelling Platform",
+    description: "Create and experience unique interactive stories powered by AI",
     type: "website",
     locale: "en_US",
     alternateLocale: "zh_CN",
-    siteName: "Narratium",
+    siteName: "YX-story",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Narratium - Interactive Storytelling Platform",
+        alt: "YX-story - AI Interactive Storytelling Platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Narratium - Interactive Storytelling Platform",
-    description: "Create and experience unique interactive stories in a fantasy-themed environment",
+    title: "YX-story - AI Interactive Storytelling Platform",
+    description: "Create and experience unique interactive stories powered by AI",
     images: ["/og-image.png"],
   },
   robots: {
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Narratium",
+    title: "YX-story",
   },
 };
 

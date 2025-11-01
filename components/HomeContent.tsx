@@ -92,8 +92,8 @@ export default function HomeContent() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center max-w-2xl px-4 relative z-20"
       >
-        <h1 className="text-5xl font-cinzel mb-6 bg-clip-text text-transparent bg-gradient-to-r from-amber-500 via-orange-400 to-yellow-300 drop-shadow-[0_0_10px_rgba(251,146,60,0.5)]">
-        Narratium
+        <h1 className="text-5xl font-cinzel mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-sky-400 to-blue-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
+        YX-story
         </h1>
         <p
           className={`text-xl mb-12 tracking-wide ${serifFontClass}`}

@@ -903,8 +903,8 @@
     }
   },
   "tour": {
-    "welcome": "Welcome to Narratium",
-    "welcomeDescription": "Narratium is an intelligent character dialogue platform where you can have in-depth conversations with various AI characters and create unique story experiences. Let's explore the basic features.",
+    "welcome": "Welcome to YX-story",
+    "welcomeDescription": "YX-story is an intelligent character dialogue platform where you can have in-depth conversations with various AI characters and create unique story experiences. Let's explore the basic features.",
     "loginTitle": "First, Login to Your Account",
     "loginDescription": "Click here to login. Note: The username you enter may be used by AI characters as the protagonist's name, so we recommend using a name you'd like to use in stories.",
     "settingsTitle": "Configure AI Model",

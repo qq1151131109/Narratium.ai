@@ -5,23 +5,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { useLanguage } from "@/app/i18n";
-import { isUpdateAvailable, fetchLatestRelease } from "@/utils/version-compare";
 import "@/app/styles/fantasy-ui.css";
 import { useAuth } from "@/hooks/useAuth";
-import PWAInstallButton from "./PWAInstallButton";
-
-// Current app version from package.json
-const CURRENT_VERSION = "1.1.9";
 
 interface SidebarProps {
   isOpen: boolean;
   toggleSidebar: () => void;
   openLoginModal: () => void;
   openAccountModal?: () => void;
-  openDownloadModal: () => void;
 }
 
-export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAccountModal, openDownloadModal }: SidebarProps) {
+export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAccountModal }: SidebarProps) {
   const router = useRouter();
   const pathname = usePathname();
   const { user, isAuthenticated, logout } = useAuth();
@@ -31,8 +25,6 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
   const { t, language, fontClass } = useLanguage();
   const [animationComplete, setAnimationComplete] = useState(false);
   const [isCreatorOpen, setIsCreatorOpen] = useState(true);
-  const [updateInfo, setUpdateInfo] = useState<{version: string, url: string} | null>(null);
-  const [hasCheckedUpdate, setHasCheckedUpdate] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -42,28 +34,6 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
       setAnimationComplete(false);
     }
   }, [isOpen]);
-
-  // Check for updates on component mount
-  useEffect(() => {
-    const checkForUpdates = async () => {
-      if (hasCheckedUpdate) return;
-      
-      try {
-        const latestRelease = await fetchLatestRelease();
-        if (latestRelease && isUpdateAvailable(CURRENT_VERSION, latestRelease.version)) {
-          setUpdateInfo(latestRelease);
-        }
-      } catch (error) {
-        console.warn("Failed to check for updates:", error);
-      } finally {
-        setHasCheckedUpdate(true);
-      }
-    };
-
-    // Delay the check to avoid blocking initial render
-    const timer = setTimeout(checkForUpdates, 2000);
-    return () => clearTimeout(timer);
-  }, [hasCheckedUpdate]);
 
   const handleOpenAccount = () => {
     if (openAccountModal) {
@@ -83,10 +53,10 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
         <div className={`logo-magic-container transition-all duration-300 ease-in-out ${isOpen ? "opacity-100 max-w-[200px]" : "opacity-0 max-w-0"}`} style={{ overflow: "hidden", transitionDelay: isOpen ? "0ms" : "0ms" }}>
           <div className="flex items-center h-10">
             <div className={"w-[80px] h-10 flex items-center"}>
-              <Image src="/logo-narratium.png" alt="Narratium" width={80} height={20} className="object-contain" />
+              <Image src="/logo_circle.png" alt="YX-story" width={80} height={20} className="object-contain" />
             </div>
             <span className={"ml-1 text-lg font-cinzel font-bold tracking-wider h-10 flex items-center -translate-x-3"} style={{ fontFamily: "var(--font-cinzel)" }}>
-              <span className={"bg-clip-text text-transparent bg-gradient-to-r from-amber-500 via-orange-400 to-yellow-300 drop-shadow-[0_0_10px_rgba(251,146,60,0.5)] font-cinzel"}>Narratium</span>
+              <span className={"bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-sky-400 to-blue-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] font-cinzel"}>YX-story</span>
             </span>
           </div>
         </div>
@@ -370,108 +340,11 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
           )}
         </div>
 
-        {/* PWA Install Button */}
-        <PWAInstallButton 
-          isOpen={isOpen} 
-          animationComplete={animationComplete} 
-          fontClass={fontClass}
-          onOpenDownloadModal={openDownloadModal}
-        />
+        {/* PWA Install Button removed */}
 
-        <div>
-          <a 
-            href="https://github.com/Narratium/Narratium.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`focus:outline-none group relative overflow-hidden rounded-md w-full transition-all duration-300 ${!isOpen ? "p-2 flex justify-center" : "py-1.5 px-2 flex items-center justify-center"}`}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#242424]/0 to-[#1a1a1a]/0 opacity-0 group-hover:opacity-80 transition-opacity duration-300"></div>
-            <div className="relative flex items-center justify-center transition-all duration-300 z-10">
-              <div className={`${isOpen ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-[#f8d36a] group-hover:text-[#ffc107] transition-colors duration-300`}>
-                <svg xmlns="http://www.w3.org/2000/svg" width={isOpen ? "14" : "16"} height={isOpen ? "14" : "16"} viewBox="0 0 24 24" fill="currentColor" className="transition-transform duration-300 group-hover:scale-110">
-                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 
-                  3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 
-                  0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.416-4.042-1.416 
-                  -.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.084-.729.084-.729 
-                  1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.304 
-                  3.495.997.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.334-5.466-5.93 
-                  0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.523.117-3.176 
-                  0 0 1.008-.322 3.3 1.23a11.52 11.52 0 013.003-.404c1.018.005 2.045.138 3.003.404 
-                  2.29-1.552 3.295-1.23 3.295-1.23.655 1.653.243 2.873.12 3.176 
-                  .77.84 1.234 1.91 1.234 3.22 0 4.61-2.807 5.625-5.48 5.92.43.37.823 1.096.823 2.21 
-                  0 1.595-.015 2.88-.015 3.27 0 .32.216.694.825.576 
-                  C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-                </svg>
-              </div>
-              {isOpen && (
-                <div className="ml-2 transition-all duration-300 ease-in-out overflow-hidden" style={{ transitionDelay: isOpen ? "50ms" : "0ms", opacity: isOpen ? 1 : 0 }}>
-                  <span className={`magical-text whitespace-nowrap block text-xs font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#f8d36a] to-[#ffc107] ${fontClass}`}>
-                    {isOpen && "Star us on GitHub".split("").map((char, index) => (
-                      <span 
-                        key={index} 
-                        className="inline-block transition-all duration-300" 
-                        style={{ 
-                          opacity: animationComplete ? 1 : 0,
-                          transform: animationComplete ? "translateY(0)" : "translateY(8px)",
-                          transitionDelay: `${250 + index * 30}ms`,
-                          width: char === " " ? "0.25em" : "auto",
-                        }}
-                      >
-                        {char}
-                      </span>
-                    ))}
-                  </span>
-                </div>
-              )}
-            </div>
-            <div className="absolute inset-0 w-full h-full bg-[#333] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-            <div className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-[#f8d36a] to-transparent w-0 group-hover:w-full transition-all duration-500"></div>
-          </a>
-        </div>
+        {/* GitHub Star button removed */}
 
-        {/* Update notification */}
-        {updateInfo && (
-          <div className="mt-2">
-            <a 
-              href={updateInfo.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`focus:outline-none group relative overflow-hidden rounded-md w-full transition-all duration-300 ${!isOpen ? "p-2 flex justify-center" : "py-1.5 px-2 flex items-center justify-center"}`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-transparent rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0" />
-              <div className="absolute inset-0 w-full h-full bg-[#333] opacity-0 group-hover:opacity-10 transition-opacity duration-300 z-0" />
-              <div className="absolute bottom-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-green-400 to-transparent w-0 group-hover:w-full transition-all duration-500 z-5" />
-              <div className="relative flex items-center justify-center transition-all duration-300 z-10">
-                <div className={`${isOpen ? "w-6 h-6" : "w-8 h-8"} flex items-center justify-center flex-shrink-0 text-green-400 group-hover:text-green-300 transition-colors duration-300`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width={isOpen ? "14" : "16"} height={isOpen ? "14" : "16"} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:scale-110">
-                    <path d="M21 12c0 1-.6 1.8-1.5 2.1l-.3.1c-.3.1-.6.4-.6.8 0 .3.1.6.3.8l.3.3c.6.6 1 1.4 1 2.2s-.4 1.6-1 2.2c-.6.6-1.4 1-2.2 1s-1.6-.4-2.2-1l-.3-.3c-.2-.2-.5-.3-.8-.3-.4 0-.7.3-.8.6l-.1.3C12.8 20.4 12 21 11 21s-1.8-.6-2.1-1.5l-.1-.3c-.1-.3-.4-.6-.8-.6-.3 0-.6.1-.8.3l-.3.3c-.6.6-1.4 1-2.2 1s-1.6-.4-2.2-1c-.6-.6-1-1.4-1-2.2s.4-1.6 1-2.2l.3-.3c.2-.2.3-.5.3-.8 0-.4-.3-.7-.6-.8l-.3-.1C3.6 13.8 3 13 3 12s.6-1.8 1.5-2.1l.3-.1c.3-.1.6-.4.6-.8 0-.3-.1-.6-.3-.8l-.3-.3C4.2 7.3 3.8 6.5 3.8 5.7s.4-1.6 1-2.2c.6-.6 1.4-1 2.2-1s1.6.4 2.2 1l.3.3c.2.2.5.3.8.3.4 0 .7-.3.8-.6l.1-.3C11.2 3.6 12 3 13 3s1.8.6 2.1 1.5l.1.3c.1.3.4.6.8.6.3 0 .6-.1.8-.3l.3-.3c.6-.6 1.4-1 2.2-1s1.6.4 2.2 1c.6.6 1 1.4 1 2.2s-.4 1.6-1 2.2l-.3.3c-.2.2-.3.5-.3.8 0 .4.3.7.6.8l.3.1c.9.3 1.5 1.1 1.5 2.1z"/>
-                    <path d="m9 12 2 2 4-4"/>
-                  </svg>
-                </div>
-                {isOpen && (
-                  <div className="ml-2 transition-all duration-300 ease-in-out overflow-hidden" style={{ transitionDelay: isOpen ? "50ms" : "0ms", opacity: isOpen ? 1 : 0 }}>
-                    <span className={`magical-text whitespace-nowrap block text-xs font-medium text-green-400 group-hover:text-green-300 transition-colors duration-300 ${fontClass}`}>
-                      {isOpen && t("sidebar.goToUpdate").split("").map((char, index) => (
-                        <span 
-                          key={index} 
-                          className="inline-block transition-all duration-300" 
-                          style={{ 
-                            opacity: animationComplete ? 1 : 0,
-                            transform: animationComplete ? "translateY(0)" : "translateY(8px)",
-                            transitionDelay: `${250 + index * 30}ms`,
-                            width: char === " " ? "0.25em" : "auto",
-                          }}
-                        >
-                          {char}
-                        </span>
-                      ))}
-                    </span>
-                  </div>
-                )}
-              </div>
-            </a>
-          </div>
-        )}
+        {/* Update notification removed */}
       </div>
     </div>
   );

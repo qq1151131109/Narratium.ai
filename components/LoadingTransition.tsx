@@ -360,9 +360,9 @@ export default function LoadingTransition({
         ></div>
         <img 
           ref={logoRef}
-          src="/logo-narratium.png" 
-          className="logo" 
-          alt="Narratium Logo"
+          src="/logo_circle.png"
+          className="logo"
+          alt="YX-story Logo"
           style={{
             position: "absolute",
             width: "min(10rem, 25vw)",
