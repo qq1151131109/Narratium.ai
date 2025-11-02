@@ -433,7 +433,10 @@
     "requestFailed": "Request Failed",
     "checkNetworkOrAPI": "Please check your network connection or API configuration",
     "userNameSetting": "Username",
-    "openUserNameSetting": "Set Username"
+    "openUserNameSetting": "Set Username",
+    "restartChat": "Restart",
+    "restartConfirm": "Are you sure you want to restart the conversation? The current chat history will be saved, but the chat interface will be cleared.",
+    "restartingChat": "Restarting conversation..."
   },
   "presetInfo": {
     "modalTitle": "Preset Details",

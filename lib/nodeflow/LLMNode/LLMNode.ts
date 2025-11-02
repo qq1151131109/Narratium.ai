@@ -18,7 +18,7 @@ export class LLMNode extends NodeBase {
     return NodeCategory.MIDDLE;
   }
 
-  protected async _call(input: NodeInput): Promise<NodeOutput> {    
+  protected async _call(input: NodeInput): Promise<NodeOutput> {
     const systemMessage = input.systemMessage;
     const userMessage = input.userMessage;
     const modelName = input.modelName;
@@ -26,6 +26,7 @@ export class LLMNode extends NodeBase {
     const baseUrl = input.baseUrl;
     const llmType = input.llmType || "openai";
     const temperature = input.temperature;
+    const maxTokens = input.maxTokens;
     const language = input.language || "zh";
     const streaming = input.streaming || false;
     const streamUsage = input.streamUsage ?? true; // 默认启用token usage追踪
@@ -34,7 +35,7 @@ export class LLMNode extends NodeBase {
       throw new Error("System message is required for LLMNode");
     }
 
-    if (!userMessage) { 
+    if (!userMessage) {
       throw new Error("User message is required for LLMNode");
     }
 
@@ -48,6 +49,7 @@ export class LLMNode extends NodeBase {
         baseUrl,
         llmType,
         temperature,
+        maxTokens,
         language,
         streaming,
         streamUsage,

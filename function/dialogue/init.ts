@@ -2,6 +2,7 @@ import { Character } from "@/lib/core/character";
 import { CharacterDialogue } from "@/lib/core/character-dialogue";
 import { LocalCharacterDialogueOperations } from "@/lib/data/roleplay/character-dialogue-operation";
 import { LocalCharacterRecordOperations } from "@/lib/data/roleplay/character-record-operation";
+import { ServerCharacterOperations } from "@/lib/data/roleplay/server-character-operation";
 import { adaptText } from "@/lib/adapter/tagReplacer";
 import { RegexProcessor } from "@/lib/core/regex-processor";
 
@@ -23,7 +24,24 @@ export async function initCharacterDialogue(options: InitCharacterDialogueOption
   }
 
   try {
-    const characterRecord = await LocalCharacterRecordOperations.getCharacterById(characterId);
+    // 先尝试从服务器加载角色数据
+    let characterRecord;
+    try {
+      const serverCharacter = await ServerCharacterOperations.getCharacterById(characterId);
+      if (serverCharacter) {
+        characterRecord = serverCharacter;
+        console.log('✅ [initCharacterDialogue] 从服务器加载角色:', characterId);
+      }
+    } catch (serverError) {
+      console.warn('⚠️ [initCharacterDialogue] 服务器加载角色失败，尝试从浏览器加载:', serverError);
+    }
+
+    // 如果服务器没有，从浏览器 IndexedDB 加载
+    if (!characterRecord) {
+      characterRecord = await LocalCharacterRecordOperations.getCharacterById(characterId);
+      console.log('📱 [initCharacterDialogue] 从浏览器加载角色:', characterId);
+    }
+
     if (!characterRecord) {
       throw new Error("Character not found");
     }

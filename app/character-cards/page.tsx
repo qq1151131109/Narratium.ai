@@ -381,15 +381,15 @@ export default function CharacterCards() {
                     before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-[rgba(192,164,128,0.1)] before:to-transparent
                     before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700
                     group`}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.01,
                     boxShadow: "0 0 25px rgba(192,164,128,0.3)",
                   }}
                   whileTap={{ scale: 0.98 }}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 400, 
-                    damping: 10, 
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 10,
                   }}
                   onClick={() => setIsImportModalOpen(true)}
                 >
@@ -397,7 +397,8 @@ export default function CharacterCards() {
                     {t("characterCardsPage.importCharacter")}
                   </span>
                 </motion.div>
-                <motion.div
+                {/* 隐藏下载角色按钮 */}
+                {/* <motion.div
                   className={`portal-button relative overflow-hidden px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg cursor-pointer ${fontClass}
                     bg-gradient-to-b from-[#2a231c] to-[#1a1510]
                     border border-[#4a3b5c]
@@ -406,22 +407,22 @@ export default function CharacterCards() {
                     before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-[rgba(192,164,128,0.1)] before:to-transparent
                     before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700
                     group`}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.01,
                     boxShadow: "0 0 25px rgba(192,164,128,0.3)",
                   }}
                   whileTap={{ scale: 0.98 }}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 400, 
-                    damping: 10, 
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 10,
                   }}
                   onClick={() => setIsDownloadModalOpen(true)}
                 >
                   <span className="relative z-10 text-[#7db3fd] group-hover:text-[#f9a8d4] transition-colors duration-300 text-xs sm:text-base">
                     {t("characterCardsPage.downloadCharacter")}
                   </span>
-                </motion.div>
+                </motion.div> */}
               </div>
             </motion.div>
 

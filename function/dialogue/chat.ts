@@ -27,10 +27,12 @@ export async function handleCharacterChatRequest(payload: {
       apiKey,
       llmType = "openai",
       language = "zh",
-      number = 200,
+      number = 2000,
       nodeId,
       fastModel = false,
     } = payload;
+
+    console.log(`📝 [Chat Handler] Received number: ${number}, will set maxTokens: ${Math.ceil(number * 2)}`);
 
     if (!characterId || !message) {
       return new Response(JSON.stringify({ error: "Missing required parameters" }), { status: 400 });
@@ -51,7 +53,8 @@ export async function handleCharacterChatRequest(payload: {
         streaming: false,
         streamUsage: true, // 确保token usage追踪
         number,
-        fastModel,  
+        maxTokens: Math.ceil((number || 2000) * 2), // 设置max_tokens为字符数的2倍（中文约1字符=2tokens）
+        fastModel,
         systemPresetType: getCurrentSystemPresetType(),
       };
       const workflowResult = await workflow.execute(workflowParams);

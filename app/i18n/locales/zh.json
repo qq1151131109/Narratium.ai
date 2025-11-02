@@ -435,7 +435,10 @@
     "requestFailed": "请求失败",
     "checkNetworkOrAPI": "请检查网络连接或API配置",
     "userNameSetting": "用户名称",
-    "openUserNameSetting": "设置用户名称"
+    "openUserNameSetting": "设置用户名称",
+    "restartChat": "重新开始",
+    "restartConfirm": "确定要重新开始对话吗？当前对话历史将被保存,但聊天界面会清空。",
+    "restartingChat": "正在重新开始对话..."
   },
   "presetInfo": {
     "modalTitle": "预设详细信息",

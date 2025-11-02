@@ -80,7 +80,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
 }) => {
   const { t, fontClass, serifFontClass, language } = useLanguage();
   const [currentResponseLength, setCurrentResponseLength] =
-    useState<number>(200);
+    useState<number>(2000);
   const [githubPresets, setGithubPresets] = useState<any[]>([]);
   const [showGithubPresetDropdown, setShowGithubPresetDropdown] =
     useState(false);
@@ -93,7 +93,14 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
     if (typeof window !== "undefined") {
       const savedLength = localStorage.getItem("responseLength");
       if (savedLength) {
-        setCurrentResponseLength(parseInt(savedLength, 10));
+        let length = parseInt(savedLength, 10);
+        // 自动修复：如果存储的值太小（旧版本默认的200），更新为2000
+        if (length < 500) {
+          console.warn(`⚠️ [CharacterSidebar Auto-fix] responseLength (${length}) too small, updating to 2000`);
+          length = 2000;
+          localStorage.setItem("responseLength", "2000");
+        }
+        setCurrentResponseLength(length);
       }
     }
   }, []);
@@ -607,7 +614,8 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
               </div>
             </div>
 
-            <div className="relative">
+            {/* 隐藏提示词选择功能 */}
+            {/* <div className="relative">
               <div
                 className={`menu-item flex items-center p-2 mx-6 rounded-md hover:bg-[#252525] cursor-pointer overflow-hidden transition-all duration-300 group ${showGithubPresetDropdown ? "bg-[#252525]" : ""}`}
                 onClick={() =>
@@ -681,7 +689,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                           }`}
                         >
                           <div className="flex items-center justify-between">
-                            <div 
+                            <div
                               className="flex-1 min-w-0 cursor-pointer"
                               onClick={() => handleSelectPreset(preset.name)}
                             >
@@ -757,7 +765,7 @@ const CharacterSidebar: React.FC<CharacterSidebarProps> = ({
                   )}
                 </div>
               )}
-            </div>
+            </div> */}
           </>
         )}
 

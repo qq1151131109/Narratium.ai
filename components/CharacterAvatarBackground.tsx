@@ -8,6 +8,13 @@ export function CharacterAvatarBackground({ avatarPath }: { avatarPath: string }
     let objectUrl: string;
 
     async function loadImage() {
+      // 如果是服务器API路径，直接使用
+      if (avatarPath.startsWith('/api/')) {
+        setBgUrl(avatarPath);
+        return;
+      }
+
+      // 否则从 IndexedDB 加载（浏览器存储）
       const blob = await getBlob(avatarPath);
       if (blob) {
         objectUrl = URL.createObjectURL(blob);

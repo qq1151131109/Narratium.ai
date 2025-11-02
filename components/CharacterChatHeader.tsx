@@ -43,6 +43,7 @@ interface Props {
   onSwitchToView: (view: "chat" | "worldbook" | "regex" | "preset") => void;
   onToggleView: () => void;
   onToggleRegexEditor: () => void;
+  onRestartChat?: () => void; // 添加重新开始回调
 }
 
 /**
@@ -64,6 +65,7 @@ export default function CharacterChatHeader({
   activeView,
   toggleSidebar,
   onSwitchToView,
+  onRestartChat, // 添加到参数列表
 }: Props) {
   const { t, fontClass } = useLanguage();
   const [isMobile, setIsMobile] = useState(false);
@@ -336,6 +338,41 @@ export default function CharacterChatHeader({
               {t("characterChat.preset")}
             </span>
           </button>
+
+          {/* 重新开始按钮 */}
+          {onRestartChat && activeView === "chat" && (
+            <button
+              onClick={() => {
+                trackButtonClick("page", "重新开始对话");
+                if (window.confirm(t("characterChat.restartConfirm"))) {
+                  onRestartChat();
+                }
+              }}
+              className="group px-2 py-1.5 md:px-3 md:py-1 md:ml-2 flex items-center rounded-md border transition-all duration-300 shadow-md relative overflow-hidden portal-button border-[#d35959]/60 bg-gradient-to-br from-[#282121] to-[#1a1313] hover:from-[#332121] hover:to-[#1f1313] hover:shadow-[0_0_12px_rgba(248,88,88,0.2)]"
+              title={t("characterChat.restartChat")}
+            >
+              <div className="relative w-6 h-6 md:mr-2 flex items-center justify-center transition-colors text-[#d35959] group-hover:text-[#f6aeae]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-5 w-5"
+                >
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+                <span className="absolute inset-0 rounded-full border border-[#d35959]/40 group-hover:border-[#f6aeae]/60 animate-ring-pulse pointer-events-none"></span>
+                <span className="absolute w-3 h-3 rounded-full bg-[#f6aeae]/40 blur-sm animate-ping-fast top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></span>
+              </div>
+              <span className="font-medium text-sm transition-all duration-300 ${serifFontClass} hidden md:block text-[#c05959] group-hover:text-[#f6aeae]">
+                {t("characterChat.restartChat")}
+              </span>
+            </button>
+          )}
         </div>
       </div>
     </div>

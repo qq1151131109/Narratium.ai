@@ -2,7 +2,8 @@ import type { NextConfig } from "next";
 import withPWA from "next-pwa";
 
 const nextConfig: NextConfig = {
-  output: "export",
+  // Removed "output: export" to support API routes
+  // output: "export",
   distDir: ".next",
   images: {
     domains: ["localhost"],

@@ -78,9 +78,9 @@ export class DialogueWorkflow extends BaseWorkflow {
           name: "userInput",
           category: NodeCategory.ENTRY,
           next: ["plugin-message-1"],
-          initParams: ["characterId", "userInput", "number", "language", "username", "modelName", "apiKey", "baseUrl", "llmType", "temperature", "fastModel", "systemPresetType", "streaming", "streamUsage"],
+          initParams: ["characterId", "userInput", "number", "language", "username", "modelName", "apiKey", "baseUrl", "llmType", "temperature", "maxTokens", "fastModel", "systemPresetType", "streaming", "streamUsage"],
           inputFields: [],
-          outputFields: ["characterId", "userInput", "number", "language", "username", "modelName", "apiKey", "baseUrl", "llmType", "temperature", "fastModel", "systemPresetType", "streaming", "streamUsage"],
+          outputFields: ["characterId", "userInput", "number", "language", "username", "modelName", "apiKey", "baseUrl", "llmType", "temperature", "maxTokens", "fastModel", "systemPresetType", "streaming", "streamUsage"],
         },
         {
           id: "plugin-message-1",
@@ -89,7 +89,7 @@ export class DialogueWorkflow extends BaseWorkflow {
           next: ["preset-1"],
           initParams: [],
           inputFields: ["characterId", "userInput"],
-          outputFields: ["characterId", "userInput", "number", "language", "username", "modelName", "apiKey", "baseUrl", "llmType", "temperature", "fastModel", "systemPresetType", "streaming", "streamUsage"],
+          outputFields: ["characterId", "userInput", "number", "language", "username", "modelName", "apiKey", "baseUrl", "llmType", "temperature", "maxTokens", "fastModel", "systemPresetType", "streaming", "streamUsage"],
         },
         {
           id: "preset-1",
@@ -127,7 +127,7 @@ export class DialogueWorkflow extends BaseWorkflow {
           category: NodeCategory.MIDDLE,
           next: ["regex-1"],
           initParams: [],
-          inputFields: ["systemMessage", "userMessage", "modelName", "apiKey", "baseUrl", "llmType", "temperature", "language", "streaming", "streamUsage"],
+          inputFields: ["systemMessage", "userMessage", "modelName", "apiKey", "baseUrl", "llmType", "temperature", "maxTokens", "language", "streaming", "streamUsage"],
           outputFields: ["llmResponse"],
         },
         {

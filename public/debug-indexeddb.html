@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IndexedDB 调试工具</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    h1 {
+      color: #667eea;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 10px;
+    }
+    h2 {
+      color: #764ba2;
+      margin-top: 30px;
+    }
+    .btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+      transition: transform 0.2s;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    .btn-danger {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    .output {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      padding: 15px;
+      margin-top: 15px;
+      max-height: 500px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+    .success { color: #28a745; font-weight: bold; }
+    .warning { color: #ffc107; font-weight: bold; }
+    .error { color: #dc3545; font-weight: bold; }
+    .info { color: #17a2b8; font-weight: bold; }
+    pre {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .stat-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-card h3 {
+      margin: 0;
+      font-size: 36px;
+    }
+    .stat-card p {
+      margin: 5px 0 0 0;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 IndexedDB 调试工具</h1>
+
+    <div class="stats" id="stats"></div>
+
+    <h2>🛠️ 操作</h2>
+    <button class="btn" onclick="checkLocalStorage()">检查 localStorage</button>
+    <button class="btn" onclick="checkIndexedDB()">检查 IndexedDB 角色</button>
+    <button class="btn" onclick="checkServerCharacters()">检查服务器角色</button>
+    <button class="btn" onclick="compareData()">对比服务器和浏览器</button>
+    <button class="btn btn-danger" onclick="clearResponseLength()">清除 responseLength</button>
+
+    <div class="output" id="output"></div>
+  </div>
+
+  <script>
+    const output = document.getElementById('output');
+    const stats = document.getElementById('stats');
+
+    function log(message, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      const className = type;
+      output.innerHTML += `<div class="${className}">[${timestamp}] ${message}</div>`;
+      output.scrollTop = output.scrollHeight;
+    }
+
+    function updateStats(data) {
+      stats.innerHTML = Object.entries(data).map(([key, value]) => `
+        <div class="stat-card">
+          <h3>${value}</h3>
+          <p>${key}</p>
+        </div>
+      `).join('');
+    }
+
+    async function checkLocalStorage() {
+      output.innerHTML = '';
+      log('📦 检查 localStorage...', 'info');
+
+      const responseLength = localStorage.getItem('responseLength');
+      const apiKey = localStorage.getItem('apiKey');
+      const baseUrl = localStorage.getItem('baseUrl');
+      const modelName = localStorage.getItem('modelName');
+
+      log(`responseLength: ${responseLength || '未设置'}`, responseLength ? 'warning' : 'success');
+      log(`apiKey: ${apiKey ? '已设置 (长度: ' + apiKey.length + ')' : '未设置'}`, apiKey ? 'success' : 'warning');
+      log(`baseUrl: ${baseUrl || '未设置'}`, baseUrl ? 'success' : 'warning');
+      log(`modelName: ${modelName || '未设置'}`, modelName ? 'success' : 'warning');
+
+      if (responseLength) {
+        const expectedMaxTokens = parseInt(responseLength) * 2;
+        log(`⚠️ 当前 maxTokens 将是: ${expectedMaxTokens}`, 'warning');
+        log(`💡 建议清除 responseLength，使用新默认值 2000（maxTokens: 4000）`, 'info');
+      } else {
+        log(`✅ responseLength 已清除，将使用默认值 2000（maxTokens: 4000）`, 'success');
+      }
+    }
+
+    async function checkIndexedDB() {
+      output.innerHTML = '';
+      log('🗄️ 检查 IndexedDB...', 'info');
+
+      try {
+        const dbName = 'characterRecordDB';
+        const storeName = 'characterRecords';
+
+        const db = await new Promise((resolve, reject) => {
+          const request = indexedDB.open(dbName);
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error);
+        });
+
+        log(`✅ 打开数据库: ${dbName}`, 'success');
+
+        const transaction = db.transaction(storeName, 'readonly');
+        const store = transaction.objectStore(storeName);
+        const getAllRequest = store.getAll();
+
+        const characters = await new Promise((resolve, reject) => {
+          getAllRequest.onsuccess = () => resolve(getAllRequest.result);
+          getAllRequest.onerror = () => reject(getAllRequest.error);
+        });
+
+        log(`📊 浏览器角色数量: ${characters.length}`, characters.length > 0 ? 'success' : 'warning');
+
+        if (characters.length === 0) {
+          log(`⚠️ 浏览器 IndexedDB 中没有角色数据`, 'warning');
+          log(`💡 这就是为什么只显示 7 个角色（全部来自服务器）`, 'info');
+        } else {
+          log(`\n浏览器角色列表:`, 'info');
+          characters.forEach((char, index) => {
+            const name = char.data?.data?.name || char.data?.name || '未知';
+            log(`  ${index + 1}. ${name} (ID: ${char.id})`, 'info');
+          });
+        }
+
+        db.close();
+
+        updateStats({
+          '浏览器角色': characters.length
+        });
+
+      } catch (error) {
+        log(`❌ 检查 IndexedDB 失败: ${error.message}`, 'error');
+      }
+    }
+
+    async function checkServerCharacters() {
+      output.innerHTML = '';
+      log('🌐 检查服务器角色...', 'info');
+
+      try {
+        const response = await fetch('/api/characters');
+        const result = await response.json();
+
+        if (result.success && result.data) {
+          log(`📊 服务器角色数量: ${result.data.length}`, 'success');
+          log(`\n服务器角色列表:`, 'info');
+
+          result.data.forEach((char, index) => {
+            const name = char.data?.name || '未知';
+            log(`  ${index + 1}. ${name} (ID: ${char.id})`, 'info');
+          });
+
+          updateStats({
+            '服务器角色': result.data.length
+          });
+        } else {
+          log(`❌ 获取服务器角色失败`, 'error');
+        }
+      } catch (error) {
+        log(`❌ 请求服务器失败: ${error.message}`, 'error');
+      }
+    }
+
+    async function compareData() {
+      output.innerHTML = '';
+      log('🔄 对比服务器和浏览器数据...', 'info');
+
+      try {
+        // 获取服务器数据
+        const serverResponse = await fetch('/api/characters');
+        const serverResult = await serverResponse.json();
+        const serverChars = serverResult.success ? serverResult.data : [];
+
+        // 获取浏览器数据
+        const dbName = 'characterRecordDB';
+        const storeName = 'characterRecords';
+        const db = await new Promise((resolve, reject) => {
+          const request = indexedDB.open(dbName);
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error);
+        });
+
+        const transaction = db.transaction(storeName, 'readonly');
+        const store = transaction.objectStore(storeName);
+        const getAllRequest = store.getAll();
+        const localChars = await new Promise((resolve, reject) => {
+          getAllRequest.onsuccess = () => resolve(getAllRequest.result);
+          getAllRequest.onerror = () => reject(getAllRequest.error);
+        });
+
+        db.close();
+
+        // 统计
+        const serverCount = serverChars.length;
+        const localCount = localChars.length;
+
+        // 找出ID重复的角色
+        const serverIds = new Set(serverChars.map(c => c.id));
+        const localIds = new Set(localChars.map(c => c.id));
+        const duplicateIds = [...serverIds].filter(id => localIds.has(id));
+
+        const totalUnique = serverCount + localCount - duplicateIds.length;
+
+        log(`📊 数据对比结果:`, 'info');
+        log(`  服务器角色: ${serverCount}`, 'info');
+        log(`  浏览器角色: ${localCount}`, 'info');
+        log(`  重复ID数量: ${duplicateIds.length}`, duplicateIds.length > 0 ? 'warning' : 'success');
+        log(`  合并后总数: ${totalUnique}`, 'success');
+
+        if (duplicateIds.length > 0) {
+          log(`\n重复的角色ID:`, 'warning');
+          duplicateIds.forEach(id => {
+            const serverChar = serverChars.find(c => c.id === id);
+            const localChar = localChars.find(c => c.id === id);
+            const serverName = serverChar?.data?.name || '未知';
+            const localName = localChar?.data?.data?.name || localChar?.data?.name || '未知';
+            log(`  ${id}: 服务器="${serverName}" vs 浏览器="${localName}"`, 'warning');
+          });
+          log(`💡 重复的角色会优先使用服务器版本`, 'info');
+        }
+
+        if (totalUnique !== 10) {
+          log(`\n⚠️ 当前总数 ${totalUnique} 不等于预期的 10 个`, 'warning');
+          if (localCount === 0) {
+            log(`💡 浏览器中没有角色，建议导入3个额外角色`, 'info');
+          } else if (duplicateIds.length === localCount) {
+            log(`💡 浏览器中的所有角色都和服务器重复，建议导入不同的角色`, 'info');
+          }
+        } else {
+          log(`\n✅ 总数正确！应该能看到 10 个角色`, 'success');
+        }
+
+        updateStats({
+          '服务器角色': serverCount,
+          '浏览器角色': localCount,
+          '重复角色': duplicateIds.length,
+          '合并总数': totalUnique
+        });
+
+      } catch (error) {
+        log(`❌ 对比失败: ${error.message}`, 'error');
+      }
+    }
+
+    function clearResponseLength() {
+      const old = localStorage.getItem('responseLength');
+      localStorage.removeItem('responseLength');
+      output.innerHTML = '';
+      log(`✅ 已清除 responseLength`, 'success');
+      log(`  旧值: ${old || '无'}`, 'info');
+      log(`  新值: 使用默认 2000`, 'success');
+      log(`  maxTokens: 4000`, 'success');
+      log(`\n刷新页面以生效...`, 'info');
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
+    }
+
+    // 页面加载时自动检查
+    window.onload = () => {
+      log('👋 欢迎使用 IndexedDB 调试工具', 'success');
+      log('点击上方按钮开始调试', 'info');
+    };
+  </script>
+</body>
+</html>

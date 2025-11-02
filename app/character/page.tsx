@@ -468,6 +468,30 @@ export default function CharacterPage() {
     }
   };
 
+  // 重新开始对话
+  const handleRestartChat = async () => {
+    if (!characterId || isInitializing || isSending) return;
+
+    try {
+      setIsInitializing(true);
+      setLoadingPhase(t("characterChat.restartingChat"));
+
+      // 清空当前消息
+      setMessages([]);
+      setSuggestedInputs([]);
+      setError("");
+
+      // 重新初始化对话
+      await initializeNewDialogue(characterId);
+
+      setIsInitializing(false);
+    } catch (error) {
+      console.error("Error restarting chat:", error);
+      setError("Failed to restart chat");
+      setIsInitializing(false);
+    }
+  };
+
   const handleSendMessage = async (message: string) => {
     if (!character || isSending) return;
 
@@ -494,7 +518,16 @@ export default function CharacterPage() {
 
       const storedNumber = localStorage.getItem("responseLength");
       const username = getDisplayUsername();
-      const responseLength = storedNumber ? parseInt(storedNumber) : 200;
+
+      // 自动修复：如果存储的值太小（旧版本默认的200），更新为2000
+      let responseLength = storedNumber ? parseInt(storedNumber) : 2000;
+      if (responseLength < 500) {
+        console.warn(`⚠️ [Auto-fix] responseLength (${responseLength}) too small, updating to 2000`);
+        responseLength = 2000;
+        localStorage.setItem("responseLength", "2000");
+      }
+
+      console.log(`🔍 [Chat Request] responseLength: ${responseLength}, maxTokens: ${responseLength * 2}`);
       const nodeId = uuidv4();
       const fastModel = localStorage.getItem("fastModelEnabled") === "true";
       const response = await handleCharacterChatRequest({
@@ -733,6 +766,7 @@ export default function CharacterPage() {
           onSwitchToView={switchToView}
           onToggleView={toggleView}
           onToggleRegexEditor={toggleRegexEditor}
+          onRestartChat={handleRestartChat}
         />
 
         {activeView === "chat" ? (

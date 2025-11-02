@@ -68,10 +68,12 @@ export class LLMNodeTools extends NodeTool {
   ): Promise<string> {
     try {
       console.log("invokeLLM");
-      
+      console.log("🔧 [LLM Config] maxTokens:", config.maxTokens, "modelName:", config.modelName);
+
       // 为了获取真实的token usage，我们需要直接调用LLM而不是使用chain
       if (config.llmType === "openai") {
         const openaiLlm = this.createLLM(config) as ChatOpenAI;
+        console.log("📤 [LLM] Invoking OpenAI with maxTokens:", config.maxTokens);
         
         // 直接调用LLM获取完整的AIMessage响应
         const aiMessage = await openaiLlm.invoke([
@@ -139,7 +141,7 @@ export class LLMNodeTools extends NodeTool {
     const safeModel = config.modelName?.trim() || "";
     const defaultSettings = {
       temperature: 0.7,
-      maxTokens: undefined,
+      maxTokens: 4000, // 默认4000 tokens，约2000字符
       timeout: 1000000000,
       maxRetries: 0,
       topP: 0.7,
@@ -159,6 +161,7 @@ export class LLMNodeTools extends NodeTool {
           baseURL: config.baseUrl?.trim() || undefined,
         },
         temperature: config.temperature ?? defaultSettings.temperature,
+        maxTokens: config.maxTokens ?? defaultSettings.maxTokens,
         maxRetries: config.maxRetries ?? defaultSettings.maxRetries,
         topP: config.topP ?? defaultSettings.topP,
         frequencyPenalty: config.frequencyPenalty ?? defaultSettings.frequencyPenalty,
@@ -171,6 +174,7 @@ export class LLMNodeTools extends NodeTool {
         model: safeModel,
         baseUrl: config.baseUrl?.trim() || "http://localhost:11434",
         temperature: config.temperature ?? defaultSettings.temperature,
+        numPredict: config.maxTokens ?? defaultSettings.maxTokens,
         topK: config.topK ?? defaultSettings.topK,
         topP: config.topP ?? defaultSettings.topP,
         frequencyPenalty: config.frequencyPenalty ?? defaultSettings.frequencyPenalty,

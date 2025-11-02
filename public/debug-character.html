@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>角色加载测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #1a1510;
+            color: #eae6db;
+        }
+        .test-section {
+            background: #252220;
+            border: 1px solid #4a3b5c;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #5b9cfa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #7db3fd;
+        }
+        .log {
+            background: #1a1510;
+            border: 1px solid #4a3b5c;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+        .warning { color: #fbbf24; }
+        .info { color: #60a5fa; }
+        h2 { color: #7db3fd; }
+        .character-card {
+            background: #2a231c;
+            border: 1px solid #4a3b5c;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .character-card h3 {
+            margin: 0 0 10px 0;
+            color: #f9a8d4;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 角色加载调试工具</h1>
+
+    <div class="test-section">
+        <h2>步骤 1：加载所有角色</h2>
+        <button onclick="loadAllCharacters()">加载角色列表</button>
+        <div id="characters-list"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>步骤 2：测试单个角色加载</h2>
+        <p>输入角色ID：<input type="text" id="characterId" style="width: 400px; padding: 5px;" placeholder="粘贴角色ID"></p>
+        <button onclick="testLoadCharacter()">测试加载</button>
+        <div id="character-detail"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>调试日志</h2>
+        <button onclick="clearLog()">清空日志</button>
+        <div id="log" class="log"></div>
+    </div>
+
+    <script>
+        const log = document.getElementById('log');
+
+        function addLog(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const line = `[${timestamp}] ${message}\n`;
+            const span = document.createElement('span');
+            span.className = type;
+            span.textContent = line;
+            log.appendChild(span);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function clearLog() {
+            log.innerHTML = '';
+        }
+
+        async function loadAllCharacters() {
+            addLog('🚀 开始加载所有角色...', 'info');
+            const listDiv = document.getElementById('characters-list');
+            listDiv.innerHTML = '<p>加载中...</p>';
+
+            try {
+                const response = await fetch('/api/characters');
+                const result = await response.json();
+
+                addLog(`✅ API响应成功: ${result.success}`, 'success');
+                addLog(`📊 角色数量: ${result.data.length}`, 'info');
+
+                let html = '';
+                result.data.forEach((char, index) => {
+                    const name = char.data.data?.name || char.data.name || '未命名';
+                    const imagePath = char.imagePath;
+
+                    html += `
+                        <div class="character-card">
+                            <h3>${index + 1}. ${name}</h3>
+                            <p><strong>ID:</strong> ${char.id}</p>
+                            <p><strong>图片路径:</strong> ${imagePath}</p>
+                            <p><strong>数据结构:</strong> ${char.data.data ? '嵌套 (data.data)' : '扁平 (data)'}</p>
+                            <button onclick="document.getElementById('characterId').value='${char.id}'; testLoadCharacter();">测试加载此角色</button>
+                            <button onclick="window.open('/character?id=${char.id}', '_blank')">在新窗口打开</button>
+                        </div>
+                    `;
+
+                    addLog(`  ${index + 1}. ${name} (${char.id})`, 'info');
+                });
+
+                listDiv.innerHTML = html;
+            } catch (error) {
+                addLog(`❌ 加载失败: ${error.message}`, 'error');
+                addLog(error.stack, 'error');
+                listDiv.innerHTML = `<p class="error">加载失败: ${error.message}</p>`;
+            }
+        }
+
+        async function testLoadCharacter() {
+            const characterId = document.getElementById('characterId').value.trim();
+            const detailDiv = document.getElementById('character-detail');
+
+            if (!characterId) {
+                addLog('⚠️ 请输入角色ID', 'warning');
+                return;
+            }
+
+            addLog(`\n🔍 开始测试加载角色: ${characterId}`, 'info');
+            detailDiv.innerHTML = '<p>加载中...</p>';
+
+            try {
+                // 步骤1：从API获取角色
+                addLog('步骤1: 从API获取角色数据...', 'info');
+                const response = await fetch('/api/characters');
+                const result = await response.json();
+
+                const character = result.data.find(c => c.id === characterId);
+
+                if (!character) {
+                    throw new Error(`角色不存在: ${characterId}`);
+                }
+
+                addLog('✅ 角色数据获取成功', 'success');
+                addLog(`  ID: ${character.id}`, 'info');
+                addLog(`  数据字段: ${Object.keys(character.data).join(', ')}`, 'info');
+
+                // 步骤2: 检查数据结构
+                addLog('\n步骤2: 检查数据结构...', 'info');
+                const isNested = !!character.data.data;
+                addLog(`  数据结构: ${isNested ? '嵌套 (data.data)' : '扁平 (data)'}`, 'info');
+
+                // 步骤3: 提取关键字段
+                addLog('\n步骤3: 提取关键字段...', 'info');
+                const name = character.data.data?.name || character.data.name;
+                const personality = character.data.data?.personality || character.data.personality;
+                const first_mes = character.data.data?.first_mes || character.data.first_mes;
+                const character_book = character.data.data?.character_book || character.data.character_book;
+
+                addLog(`  name: ${name || '(空)'}`, name ? 'success' : 'warning');
+                addLog(`  personality: ${personality ? '有' : '(空)'}`, 'info');
+                addLog(`  first_mes: ${first_mes ? '有' : '(空)'}`, first_mes ? 'success' : 'warning');
+                addLog(`  character_book: ${character_book ? '有' : '(空)'}`, 'info');
+
+                if (!name) {
+                    throw new Error('角色名称为空！');
+                }
+
+                // 显示结果
+                let html = `
+                    <div class="character-card">
+                        <h3>✅ 角色加载成功！</h3>
+                        <p><strong>名称:</strong> ${name}</p>
+                        <p><strong>ID:</strong> ${character.id}</p>
+                        <p><strong>性格:</strong> ${personality || '(无)'}</p>
+                        <p><strong>开场白:</strong> ${first_mes ? first_mes.substring(0, 100) + '...' : '(无)'}</p>
+                        <p><strong>图片路径:</strong> ${character.imagePath}</p>
+                        <p><strong>世界书:</strong> ${character_book ? `有 (${character_book.entries ? character_book.entries.length : 0} 条目)` : '(无)'}</p>
+                    </div>
+                `;
+
+                detailDiv.innerHTML = html;
+                addLog('\n🎉 测试完成！角色数据完整', 'success');
+
+            } catch (error) {
+                addLog(`\n❌ 测试失败: ${error.message}`, 'error');
+                addLog(error.stack, 'error');
+                detailDiv.innerHTML = `<div class="character-card" style="border-color: #f87171;"><h3 class="error">❌ 加载失败</h3><p>${error.message}</p></div>`;
+            }
+        }
+
+        // 页面加载时自动加载角色列表
+        window.addEventListener('load', () => {
+            addLog('👋 欢迎使用角色加载调试工具', 'info');
+            addLog('💡 点击"加载角色列表"开始测试', 'info');
+        });
+    </script>
+</body>
+</html>

@@ -27,12 +27,15 @@ export class Character {
       first_mes: characterRecord.data.data?.first_mes || characterRecord.data.first_mes || "",
       scenario: characterRecord.data.data?.scenario || characterRecord.data.scenario || "",
       mes_example: characterRecord.data.data?.mes_example || characterRecord.data.mes_example || "",
-      creatorcomment: characterRecord.data.creatorcomment || "",
+      creatorcomment: characterRecord.data.creatorcomment || characterRecord.data.data?.creator_notes || "",
       avatar: characterRecord.data.avatar || "",
-      creator_notes: characterRecord.data.data?.creator_notes || "",
-      alternate_greetings: characterRecord.data.data?.alternate_greetings || [],
-    }; 
-    this.worldBook = this.processCharacterBook(characterRecord.data.data?.character_book);
+      creator_notes: characterRecord.data.data?.creator_notes || characterRecord.data.creator_notes || "",
+      alternate_greetings: characterRecord.data.data?.alternate_greetings || characterRecord.data.alternate_greetings || [],
+    };
+    // 支持两种数据结构：嵌套的 data.data.character_book 和扁平的 data.character_book
+    this.worldBook = this.processCharacterBook(
+      characterRecord.data.data?.character_book || characterRecord.data.character_book
+    );
   }
     
   private processCharacterBook(characterBook: any): WorldBookEntry[] | Record<string, WorldBookEntry> {
