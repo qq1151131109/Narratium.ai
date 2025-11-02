@@ -16,53 +16,29 @@ import { useTour } from "@/hooks/useTour";
 export default function HomeContent() {
   const { t, fontClass, serifFontClass } = useLanguage();
   const [mounted, setMounted] = useState(false);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
   const { isTourVisible, currentTourSteps, completeTour, skipTour } = useTour();
 
   useEffect(() => {
     setMounted(true);
-    const yellowImg = new Image();
-    const redImg = new Image();
-    
-    yellowImg.src = "/background_yellow.png";
-    redImg.src = "/background_red.png";
-    
-    Promise.all([
-      new Promise(resolve => yellowImg.onload = resolve),
-      new Promise(resolve => redImg.onload = resolve),
-    ]).then(() => {
-      setImagesLoaded(true);
-    });
   }, []);
 
   if (!mounted) return null;
 
   return (
-    <div className="flex flex-col items-center justify-center h-full login-fantasy-bg relative">
+    <div className="flex flex-col items-center justify-center h-full login-fantasy-bg relative overflow-hidden">
+      {/* 渐变背景层1 - 粉色光晕 */}
       <div
-        className={`absolute inset-0 z-0 opacity-15 transition-opacity duration-500 ${
-          imagesLoaded ? "opacity-15" : "opacity-0"
-        }`}
+        className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('/background_yellow.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          filter: "hue-rotate(280deg) saturate(0.7)",
+          background: "radial-gradient(circle at 30% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 50%)",
         }}
       />
 
+      {/* 渐变背景层2 - 柔和晕染 */}
       <div
-        className={`absolute inset-0 z-1 opacity-20 transition-opacity duration-500 ${
-          imagesLoaded ? "opacity-20" : "opacity-0"
-        }`}
+        className="absolute inset-0 z-1"
         style={{
-          backgroundImage: "url('/background_red.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          mixBlendMode: "multiply",
-          filter: "hue-rotate(300deg) saturate(0.8)",
+          background: "linear-gradient(135deg, rgba(219, 39, 119, 0.08) 0%, rgba(168, 85, 247, 0.1) 50%, rgba(236, 72, 153, 0.06) 100%)",
         }}
       />
       <div className="absolute inset-0 pointer-events-none z-10">
@@ -97,19 +73,6 @@ export default function HomeContent() {
         <h1 className="text-5xl font-cinzel mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 via-purple-400 to-pink-400 drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]">
         YX-story
         </h1>
-        <p
-          className={`text-xl mb-12 tracking-wide ${serifFontClass}`}
-          style={{
-            background: "linear-gradient(to right, #db2777, #ec4899, #a855f7)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            color: "transparent",
-            textShadow: "0 0 2px rgba(236, 72, 153, 0.3)",
-          }}
-        >
-          {t("homePage.slogan")}
-        </p>
 
         <div className="flex flex-col md:flex-row gap-4 justify-center mt-6">
           <Link href="/character-cards">

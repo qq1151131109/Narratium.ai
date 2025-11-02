@@ -268,25 +268,19 @@ export default function LoadingTransition({
       className="fixed inset-0 z-50 flex items-center justify-center"
       style={{ backgroundColor: "#2d1b2e", overflow: "hidden" }}
     >
+      {/* 渐变背景层1 - 粉色光晕 */}
       <div
-        className="absolute inset-0 z-0 opacity-15"
+        className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('/loading_yellow.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          filter: "hue-rotate(280deg) saturate(0.7)",
+          background: "radial-gradient(circle at 30% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 50%)",
         }}
       />
+
+      {/* 渐变背景层2 - 柔和晕染 */}
       <div
-        className="absolute inset-0 z-1 opacity-20"
+        className="absolute inset-0 z-1"
         style={{
-          backgroundImage: "url('/loading_red.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          mixBlendMode: "multiply",
-          filter: "hue-rotate(300deg) saturate(0.8)",
+          background: "linear-gradient(135deg, rgba(219, 39, 119, 0.08) 0%, rgba(168, 85, 247, 0.1) 50%, rgba(236, 72, 153, 0.06) 100%)",
         }}
       />
       <audio  
