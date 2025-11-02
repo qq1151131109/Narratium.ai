@@ -3,7 +3,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import { DEFAULT_LANGUAGE, Language, LANGUAGES, LanguageContext, getTranslation, getClientLanguage } from "./index";
 import { getLanguageFont, getLanguageTitleFont, getLanguageSerifFont } from "./fonts";
-import LoadingTransition from "@/components/LoadingTransition";
 
 interface LanguageProviderProps {
   children: ReactNode;
@@ -12,8 +11,6 @@ interface LanguageProviderProps {
 export function LanguageProvider({ children }: LanguageProviderProps) {
   const [language, setLanguageState] = useState<Language>(DEFAULT_LANGUAGE);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showTransition, setShowTransition] = useState(false);
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const [fontClass, setFontClass] = useState(getLanguageFont(DEFAULT_LANGUAGE));
   const [titleFontClass, setTitleFontClass] = useState(getLanguageTitleFont(DEFAULT_LANGUAGE));
@@ -30,38 +27,22 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     if (typeof document !== "undefined") {
       document.documentElement.setAttribute("lang", clientLanguage);
     }
-    
-    if (isFirstLoad) {
-      setShowTransition(true);
-      setTimeout(() => {
-        setShowTransition(false);
-        setIsFirstLoad(false);
-      }, 3000);
-    }
-    
+
     setIsLoaded(true);
-  }, [isFirstLoad]);
+  }, []);
 
   const setLanguage = (newLanguage: Language) => {
     if (LANGUAGES.includes(newLanguage) && newLanguage !== language) {
-      setShowTransition(true);
+      setLanguageState(newLanguage);
+      localStorage.setItem("language", newLanguage);
 
-      setTimeout(() => {
-        setLanguageState(newLanguage);
-        localStorage.setItem("language", newLanguage);
+      setFontClass(getLanguageFont(newLanguage));
+      setTitleFontClass(getLanguageTitleFont(newLanguage));
+      setSerifFontClass(getLanguageSerifFont(newLanguage));
 
-        setFontClass(getLanguageFont(newLanguage));
-        setTitleFontClass(getLanguageTitleFont(newLanguage));
-        setSerifFontClass(getLanguageSerifFont(newLanguage));
-
-        if (typeof document !== "undefined") {
-          document.documentElement.setAttribute("lang", newLanguage);
-        }
-        
-        setTimeout(() => {
-          setShowTransition(false);
-        }, 2000);
-      }, 500);
+      if (typeof document !== "undefined") {
+        document.documentElement.setAttribute("lang", newLanguage);
+      }
     }
   };
 
@@ -79,7 +60,6 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t, fontClass, titleFontClass, serifFontClass }}>
-      {showTransition && <LoadingTransition duration={3000} />}
       {children}
     </LanguageContext.Provider>
   );

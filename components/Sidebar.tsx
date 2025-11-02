@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { useLanguage } from "@/app/i18n";
 import "@/app/styles/fantasy-ui.css";
@@ -52,11 +51,8 @@ export default function Sidebar({ isOpen, toggleSidebar, openLoginModal, openAcc
       <div className="flex justify-between items-center h-16 py-3 px-4">
         <div className={`logo-magic-container transition-all duration-300 ease-in-out ${isOpen ? "opacity-100 max-w-[200px]" : "opacity-0 max-w-0"}`} style={{ overflow: "hidden", transitionDelay: isOpen ? "0ms" : "0ms" }}>
           <div className="flex items-center h-10">
-            <div className={"w-[80px] h-10 flex items-center"}>
-              <Image src="/logo_circle.png" alt="YX-story" width={80} height={20} className="object-contain" />
-            </div>
-            <span className={"ml-1 text-lg font-cinzel font-bold tracking-wider h-10 flex items-center -translate-x-3"} style={{ fontFamily: "var(--font-cinzel)" }}>
-              <span className={"bg-clip-text text-transparent bg-gradient-to-r from-rose-500 via-purple-400 to-pink-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] font-cinzel"}>YX-story</span>
+            <span className={"text-lg font-cinzel font-bold tracking-wider h-10 flex items-center"} style={{ fontFamily: "var(--font-cinzel)" }}>
+              <span className={"bg-clip-text text-transparent bg-gradient-to-r from-rose-500 via-purple-400 to-pink-400 drop-shadow-[0_0_10px_rgba(236,72,153,0.5)] font-cinzel"}>YX-story</span>
             </span>
           </div>
         </div>
