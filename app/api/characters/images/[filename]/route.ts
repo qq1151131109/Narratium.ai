@@ -9,14 +9,14 @@ import fs from "fs";
 import path from "path";
 
 // Force dynamic rendering for this API route
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const IMAGES_DIR = path.join(process.cwd(), "data", "character-images");
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ filename: string }> }
+  { params }: { params: Promise<{ filename: string }> },
 ) {
   try {
     const { filename } = await params;
@@ -25,7 +25,7 @@ export async function GET(
     if (!fs.existsSync(imagePath)) {
       return NextResponse.json(
         { success: false, error: "Image not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -51,7 +51,7 @@ export async function GET(
     console.error("Error serving image:", error);
     return NextResponse.json(
       { success: false, error: "Failed to serve image" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

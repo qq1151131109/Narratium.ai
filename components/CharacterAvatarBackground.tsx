@@ -9,7 +9,7 @@ export function CharacterAvatarBackground({ avatarPath }: { avatarPath: string }
 
     async function loadImage() {
       // 如果是服务器API路径，直接使用
-      if (avatarPath.startsWith('/api/')) {
+      if (avatarPath.startsWith("/api/")) {
         setBgUrl(avatarPath);
         return;
       }

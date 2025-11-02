@@ -50,7 +50,7 @@ export class ServerCharacterOperations {
    * Get a single character by ID
    */
   static async getCharacterById(
-    characterId: string
+    characterId: string,
   ): Promise<ServerCharacterRecord | null> {
     try {
       const characters = await this.getAllCharacters();
@@ -67,7 +67,7 @@ export class ServerCharacterOperations {
   static async createCharacter(
     characterId: string,
     rawCharacterData: RawCharacterData,
-    imageData?: string
+    imageData?: string,
   ): Promise<ServerCharacterRecord | null> {
     try {
       const response = await fetch(`${this.baseUrl}/api/characters`, {
@@ -101,7 +101,7 @@ export class ServerCharacterOperations {
   static async updateCharacter(
     characterId: string,
     characterData: Partial<RawCharacterData>,
-    imageData?: string
+    imageData?: string,
   ): Promise<ServerCharacterRecord | null> {
     try {
       const response = await fetch(`${this.baseUrl}/api/characters`, {
@@ -141,7 +141,7 @@ export class ServerCharacterOperations {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (!response.ok) {
@@ -191,7 +191,7 @@ export class ServerCharacterOperations {
           const result = await this.createCharacter(
             localChar.id,
             localChar.data,
-            imageData
+            imageData,
           );
 
           if (result) {

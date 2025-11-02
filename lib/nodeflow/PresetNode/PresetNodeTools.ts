@@ -49,16 +49,16 @@ export class PresetNodeTools extends NodeTool {
         const serverCharacter = await ServerCharacterOperations.getCharacterById(characterId);
         if (serverCharacter) {
           characterRecord = serverCharacter;
-          console.log('✅ [PresetNodeTools] 从服务器加载角色:', characterId);
+          console.log("✅ [PresetNodeTools] 从服务器加载角色:", characterId);
         }
       } catch (serverError) {
-        console.warn('⚠️ [PresetNodeTools] 服务器加载角色失败，尝试从浏览器加载:', serverError);
+        console.warn("⚠️ [PresetNodeTools] 服务器加载角色失败，尝试从浏览器加载:", serverError);
       }
 
       // 如果服务器没有，从浏览器 IndexedDB 加载
       if (!characterRecord) {
         characterRecord = await LocalCharacterRecordOperations.getCharacterById(characterId);
-        console.log('📱 [PresetNodeTools] 从浏览器加载角色:', characterId);
+        console.log("📱 [PresetNodeTools] 从浏览器加载角色:", characterId);
       }
 
       if (!characterRecord) {

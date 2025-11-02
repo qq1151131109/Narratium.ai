@@ -19,7 +19,7 @@ export class PresetAssembler {
     const outputLanguage: "zh" | "en" | "ja" = isYuiHatano ? "ja" : language;
 
     if (isYuiHatano) {
-      console.log('🇯🇵 [PresetAssembler] 检测到波多野结衣,强制使用日语提示词');
+      console.log("🇯🇵 [PresetAssembler] 检测到波多野结衣,强制使用日语提示词");
     }
 
     if (prompts.length === 0 || fastModel) {
@@ -212,7 +212,7 @@ export class PresetAssembler {
     language: "zh" | "en" = "zh",
     outputLanguage: "zh" | "en" | "ja" = "zh",
     contextData: { username?: string; charName?: string; number?: number },
-    systemPresetType: PromptKey = "mirror_realm"
+    systemPresetType: PromptKey = "mirror_realm",
   ): { systemMessage: string; userMessage: string } {
     const orderedSystemIdentifiers = [
       "main",

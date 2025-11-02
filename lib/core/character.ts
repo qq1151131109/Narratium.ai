@@ -34,7 +34,7 @@ export class Character {
     };
     // 支持两种数据结构：嵌套的 data.data.character_book 和扁平的 data.character_book
     this.worldBook = this.processCharacterBook(
-      characterRecord.data.data?.character_book || characterRecord.data.character_book
+      characterRecord.data.data?.character_book || characterRecord.data.character_book,
     );
   }
     

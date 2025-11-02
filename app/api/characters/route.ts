@@ -16,7 +16,7 @@ import fs from "fs";
 import path from "path";
 
 // Force dynamic rendering for this API route
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const DATA_DIR = path.join(process.cwd(), "data");
@@ -65,7 +65,7 @@ export async function GET() {
     console.error("Error in GET /api/characters:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch characters" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
     if (!id || !data) {
       return NextResponse.json(
         { success: false, error: "Missing required fields: id, data" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
     if (existingIndex !== -1) {
       return NextResponse.json(
         { success: false, error: "Character with this ID already exists" },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
@@ -125,7 +125,7 @@ export async function POST(request: NextRequest) {
     console.error("Error in POST /api/characters:", error);
     return NextResponse.json(
       { success: false, error: "Failed to create character" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -141,7 +141,7 @@ export async function PUT(request: NextRequest) {
     if (!id) {
       return NextResponse.json(
         { success: false, error: "Missing required field: id" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -151,7 +151,7 @@ export async function PUT(request: NextRequest) {
     if (index === -1) {
       return NextResponse.json(
         { success: false, error: "Character not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -183,7 +183,7 @@ export async function PUT(request: NextRequest) {
     console.error("Error in PUT /api/characters:", error);
     return NextResponse.json(
       { success: false, error: "Failed to update character" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -199,7 +199,7 @@ export async function DELETE(request: NextRequest) {
     if (!id) {
       return NextResponse.json(
         { success: false, error: "Missing required parameter: id" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -209,7 +209,7 @@ export async function DELETE(request: NextRequest) {
     if (index === -1) {
       return NextResponse.json(
         { success: false, error: "Character not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -228,7 +228,7 @@ export async function DELETE(request: NextRequest) {
     console.error("Error in DELETE /api/characters:", error);
     return NextResponse.json(
       { success: false, error: "Failed to delete character" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
